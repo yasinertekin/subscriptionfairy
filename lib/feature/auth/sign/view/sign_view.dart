@@ -43,9 +43,9 @@ final class _SignViewBuilder extends StatelessWidget {
       body: BlocConsumer<AuthenticationCubit, AuthenticationState>(
         listener: (context, state) {
           if (state is AuthenticationSuccess) {
-            // NavigationService.instance.navigateToPage(
-            //  path: Routes.home,
-            // );
+            NavigationService.instance.navigateToPage(
+              path: Routes.bottomNavigationBar,
+            );
           }
         },
         builder: (context, state) {
@@ -114,9 +114,7 @@ final class _SignViewBody extends StatelessWidget {
                   }
                 },
               ),
-              SizedBox(
-                height: context.sized.dynamicHeight(0.02),
-              ),
+              context.sized.emptySizedHeightBoxLow,
               const SignInWithGoogleButton(),
             ],
           ),
@@ -149,7 +147,6 @@ final class _CustomForm extends StatelessWidget {
             hintText: 'Email',
             controller: emailController,
             keyboardType: TextInputType.emailAddress,
-            textInputAction: TextInputAction.next,
             validatorText: 'Email is required',
           ),
           const SizedBox(height: 16),
@@ -158,9 +155,9 @@ final class _CustomForm extends StatelessWidget {
             hintText: 'Password',
             controller: passwordController,
             keyboardType: TextInputType.visiblePassword,
-            textInputAction: TextInputAction.done,
             obscureText: true,
             validatorText: 'Password is required',
+            textInputAction: TextInputAction.done,
           ),
         ],
       ),

@@ -32,4 +32,13 @@ final class StringConstants {
 
   /// sign in with google
   static const String signInWithGoogle = 'Sign In with Google';
+
+  /// email is required
+  static const String emailIsRequired = 'Email is required';
+
+  /// password is required
+  static const String passwordIsRequired = 'Password is required';
+
+  /// passwords do not match
+  static const String passwordDoNotMatch = 'Passwords do not match';
 }

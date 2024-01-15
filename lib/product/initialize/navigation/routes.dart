@@ -20,8 +20,9 @@ final class Routes {
   /// [getRouteTable] is a function that returns route table
   static Map<String, WidgetBuilder> getRouteTable() {
     return {
-      initialRoute: (context) =>
-          User == null ? const SignView() : const CustomBottomNavigationBar(),
+      initialRoute: (context) => FirebaseAuth.instance.currentUser == null
+          ? const CustomBottomNavigationBar()
+          : const SignView(),
       sign: (context) => const SignView(),
       register: (context) => const RegisterView(),
       bottomNavigationBar: (context) => const CustomBottomNavigationBar(),

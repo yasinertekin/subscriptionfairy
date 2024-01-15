@@ -7,9 +7,9 @@ final class CustomTextField extends StatelessWidget {
     required this.hintText,
     required this.controller,
     required this.keyboardType,
-    required this.textInputAction,
     required this.validatorText,
     required this.formKey,
+    this.textInputAction = TextInputAction.next,
     this.obscureText = false,
     super.key,
   });
