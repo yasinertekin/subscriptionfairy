@@ -40,6 +40,8 @@ dependencies:
   firebase_auth: ^4.16.0
   firebase_core: ^2.24.2
 
+  # Utility
+
   gen:
     path: module/gen
 
