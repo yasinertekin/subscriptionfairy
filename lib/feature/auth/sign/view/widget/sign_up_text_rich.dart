@@ -25,7 +25,10 @@ final class _SignUpTextRich extends StatelessWidget {
               children: [
                 WidgetSpan(
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      NavigationService.instance
+                          .navigateToPage(path: Routes.register);
+                    },
                     child: Text(
                       StringConstants.signUp,
                       style: context.general.textTheme.bodyLarge!.copyWith(
