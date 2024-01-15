@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:subscriptionfairy/feature/auth/register/view/register_view.dart';
 import 'package:subscriptionfairy/feature/auth/sign/view/sign_view.dart';
-import 'package:subscriptionfairy/main.dart';
 
 /// [Routes] is a class that contains all the routes
 @immutable
@@ -8,7 +8,7 @@ final class Routes {
   /// [Routes] is a class that contains all the routes
   static const String sign = 'sign';
 
-  static const String home = 'home';
+  static const String register = 'home';
 
   /// [initialRoute] is a function that returns initial route
   static String get initialRoute => 'initialRoute';
@@ -17,7 +17,7 @@ final class Routes {
   static Map<String, WidgetBuilder> getRouteTable() {
     return {
       initialRoute: (context) => const SignView(),
-      home: (context) => const HomeView(),
+      register: (context) => const RegisterView(),
     };
   }
 }
