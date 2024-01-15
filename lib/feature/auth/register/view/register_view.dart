@@ -7,9 +7,13 @@ import 'package:subscriptionfairy/feature/auth/register/view_model/register_stat
 import 'package:subscriptionfairy/product/constants/string_constants.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
+import 'package:subscriptionfairy/product/mixin/custom_scaffold_messenger.dart';
+import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
 import 'package:subscriptionfairy/product/widget/custom_button.dart';
 import 'package:subscriptionfairy/product/widget/custom_text_field.dart';
-import 'package:subscriptionfairy/product/widget/sign_in_with_google_button.dart';
+
+part 'widget/register_body.dart';
+part 'widget/register_header.dart';
 
 /// This is the view for the register feature.
 final class RegisterView extends StatelessWidget {
@@ -22,161 +26,59 @@ final class RegisterView extends StatelessWidget {
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
     final confirmPasswordController = TextEditingController();
-
     return Scaffold(
-      body: BlocConsumer<RegisterCubit, RegisterState>(
-        listener: (context, state) {
-          if (state is RegisterStateSuccess) {
-            Navigator.of(context).pushNamedAndRemoveUntil(
-              Routes.bottomNavigationBar,
-              (route) => false,
-            );
-          }
-        },
-        builder: (context, state) {
-          final authCubit = context.watch<RegisterCubit>();
-          if (state is RegisterStateLoading) {
-            return const Center(child: CircularProgressIndicator.adaptive());
-          } else if (state is RegisterStateSuccess) {
-          } else if (state is RegisterStateFailure) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    state.error,
-                  ),
-                ),
-              );
-            });
-          }
-          return _RegisterBody(
-            formKey: formKey,
-            emailController: emailController,
-            passwordController: passwordController,
-            confirmPasswordController: confirmPasswordController,
-            authCubit: authCubit,
-          );
-        },
+      body: _CustomBlocConsumer(
+        formKey: formKey,
+        emailController: emailController,
+        passwordController: passwordController,
+        confirmPasswordController: confirmPasswordController,
       ),
     );
   }
 }
 
-final class _RegisterBody extends StatelessWidget {
-  const _RegisterBody({
+final class _CustomBlocConsumer extends StatelessWidget
+    with CustomScaffoldMessenger {
+  const _CustomBlocConsumer({
     required this.formKey,
     required this.emailController,
     required this.passwordController,
     required this.confirmPasswordController,
-    required this.authCubit,
   });
 
   final GlobalKey<FormState> formKey;
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
-  final RegisterCubit authCubit;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Column(
-        children: [
-          const Spacer(
-            flex: 2,
-          ),
-          const _RegisterHeader(),
-          _CustomForm(
-            formKey: formKey,
-            emailController: emailController,
-            passwordController: passwordController,
-            confirmPasswordController: confirmPasswordController,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              CustomButton(
-                title: StringConstants.register,
-                formKey: formKey,
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    if (passwordController.text ==
-                        confirmPasswordController.text) {
-                      authCubit.signUpWithEmailAndPassword(
-                        emailController.text.trim(),
-                        passwordController.text,
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Passwords do not match',
-                          ),
-                        ),
-                      );
-                    }
-                  }
-                },
-              ),
-              SizedBox(
-                height: context.sized.dynamicHeight(0.02),
-              ),
-              if (!context.general.isKeyBoardOpen)
-                const SignInWithGoogleButton()
-              else
-                const SizedBox.shrink(),
-            ],
-          ),
-          const Spacer(),
-        ],
-      ),
-    );
-  }
-}
-
-final class _RegisterHeader extends StatelessWidget {
-  const _RegisterHeader();
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Register',
-            style: context.general.textTheme.headlineMedium,
-          ),
-          Text(
-            'Please register to continue',
-            style: context.general.textTheme.headlineSmall,
-          ),
-          Text.rich(
-            TextSpan(
-              text: 'Already have an account? ',
-              children: [
-                WidgetSpan(
-                  child: GestureDetector(
-                    onTap: () {
-                      NavigationService.instance.navigateToPage(
-                        path: Routes.initialRoute,
-                      );
-                    },
-                    child: Text(
-                      StringConstants.signIn,
-                      style: context.general.textTheme.bodyLarge!.copyWith(
-                        color: ColorName.colorRed,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+    return BlocConsumer<RegisterCubit, RegisterState>(
+      listener: (context, state) {
+        if (state is RegisterStateSuccess) {
+          NavigationService.instance.navigateToPage(
+            path: Routes.bottomNavigationBar,
+          );
+        }
+      },
+      builder: (context, state) {
+        final authCubit = context.watch<RegisterCubit>();
+        if (state is RegisterStateLoading) {
+          return const Center(child: CircularProgressIndicator.adaptive());
+        } else if (state is RegisterStateSuccess) {
+        } else if (state is RegisterStateFailure) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            showSnackBar(context, state.error);
+          });
+        }
+        return _RegisterBody(
+          formKey: formKey,
+          emailController: emailController,
+          passwordController: passwordController,
+          confirmPasswordController: confirmPasswordController,
+          authCubit: authCubit,
+        );
+      },
     );
   }
 }
@@ -199,39 +101,36 @@ final class _CustomForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
-      child: SizedBox(
-        height: context.sized.dynamicHeight(0.40),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            CustomTextField(
-              hintText: 'Enter your email',
-              controller: emailController,
-              keyboardType: TextInputType.emailAddress,
-              textInputAction: TextInputAction.next,
-              validatorText: 'Please enter your email',
-              formKey: formKey,
-            ),
-            CustomTextField(
-              formKey: formKey,
-              hintText: 'Password',
-              controller: passwordController,
-              keyboardType: TextInputType.visiblePassword,
-              textInputAction: TextInputAction.next,
-              obscureText: true,
-              validatorText: 'Password is required',
-            ),
-            CustomTextField(
-              formKey: formKey,
-              hintText: 'Confirm Password',
-              controller: confirmPasswordController,
-              keyboardType: TextInputType.visiblePassword,
-              textInputAction: TextInputAction.done,
-              obscureText: true,
-              validatorText: 'Password is required',
-            ),
-          ],
-        ),
+      child: Column(
+        children: [
+          CustomTextField(
+            hintText: StringConstants.email,
+            controller: emailController,
+            keyboardType: TextInputType.emailAddress,
+            validatorText: StringConstants.emailIsRequired,
+            formKey: formKey,
+          ),
+          context.sized.emptySizedHeightBoxLow,
+          CustomTextField(
+            formKey: formKey,
+            hintText: StringConstants.password,
+            controller: passwordController,
+            keyboardType: TextInputType.visiblePassword,
+            obscureText: true,
+            validatorText: StringConstants.passwordIsRequired,
+          ),
+          context.sized.emptySizedHeightBoxLow,
+          CustomTextField(
+            formKey: formKey,
+            hintText: StringConstants.confirmPassword,
+            controller: confirmPasswordController,
+            keyboardType: TextInputType.visiblePassword,
+            textInputAction: TextInputAction.done,
+            obscureText: true,
+            validatorText: StringConstants.passwordIsRequired,
+          ),
+          context.sized.emptySizedHeightBoxNormal,
+        ],
       ),
     );
   }
