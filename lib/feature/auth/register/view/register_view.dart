@@ -28,7 +28,7 @@ final class RegisterView extends StatelessWidget {
         listener: (context, state) {
           if (state is RegisterStateSuccess) {
             Navigator.of(context).pushNamedAndRemoveUntil(
-              Routes.initialRoute,
+              Routes.bottomNavigationBar,
               (route) => false,
             );
           }

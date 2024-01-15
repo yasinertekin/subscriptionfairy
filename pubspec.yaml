@@ -36,11 +36,19 @@ dependencies:
   cupertino_icons: ^1.0.2
   kartal: ^3.5.0
 
+  #Core
+  freezed: ^2.4.6
+
   # Firebase
   firebase_auth: ^4.16.0
   firebase_core: ^2.24.2
+  cloud_firestore: ^4.14.0
 
   # Utility
+  persistent_bottom_nav_bar: ^5.0.2
+
+  # Google
+  json_annotation: ^4.8.1
 
   gen:
     path: module/gen
@@ -60,6 +68,8 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   very_good_analysis: ^5.1.0
+  json_serializable: ^6.7.1
+  build_runner: ^2.4.8
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
