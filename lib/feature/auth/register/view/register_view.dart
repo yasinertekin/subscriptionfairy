@@ -38,7 +38,6 @@ final class RegisterView extends StatelessWidget {
           if (state is RegisterStateLoading) {
             return const Center(child: CircularProgressIndicator.adaptive());
           } else if (state is RegisterStateSuccess) {
-            return const Center(child: CircularProgressIndicator.adaptive());
           } else if (state is RegisterStateFailure) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               ScaffoldMessenger.of(context).showSnackBar(
