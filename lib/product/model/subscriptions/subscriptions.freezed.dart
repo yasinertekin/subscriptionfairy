@@ -30,11 +30,19 @@ mixin _$Subscriptions {
   @JsonKey(name: 'subscription_plan')
   String? get subscriptionPlan => throw _privateConstructorUsedError;
   @JsonKey(name: 'isSubscribed')
-  bool? get subscriptionPlanId => throw _privateConstructorUsedError;
+  bool? get isSubscribed => throw _privateConstructorUsedError;
   @JsonKey(name: 'subscription_icon')
   String? get subscriptionIcon => throw _privateConstructorUsedError;
   @JsonKey(name: 'subId')
   String? get subId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'endDate')
+  DateTime? get endDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'startDate')
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'subscriptionPrice')
+  double? get price => throw _privateConstructorUsedError;
+  @JsonKey(name: 'subscription_length')
+  double? get subscriptionLength => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,9 +59,13 @@ abstract class $SubscriptionsCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'name') String? name,
       @JsonKey(name: 'subscription_plan') String? subscriptionPlan,
-      @JsonKey(name: 'isSubscribed') bool? subscriptionPlanId,
+      @JsonKey(name: 'isSubscribed') bool? isSubscribed,
       @JsonKey(name: 'subscription_icon') String? subscriptionIcon,
-      @JsonKey(name: 'subId') String? subId});
+      @JsonKey(name: 'subId') String? subId,
+      @JsonKey(name: 'endDate') DateTime? endDate,
+      @JsonKey(name: 'startDate') DateTime? startDate,
+      @JsonKey(name: 'subscriptionPrice') double? price,
+      @JsonKey(name: 'subscription_length') double? subscriptionLength});
 }
 
 /// @nodoc
@@ -71,9 +83,13 @@ class _$SubscriptionsCopyWithImpl<$Res, $Val extends Subscriptions>
   $Res call({
     Object? name = freezed,
     Object? subscriptionPlan = freezed,
-    Object? subscriptionPlanId = freezed,
+    Object? isSubscribed = freezed,
     Object? subscriptionIcon = freezed,
     Object? subId = freezed,
+    Object? endDate = freezed,
+    Object? startDate = freezed,
+    Object? price = freezed,
+    Object? subscriptionLength = freezed,
   }) {
     return _then(_value.copyWith(
       name: freezed == name
@@ -84,9 +100,9 @@ class _$SubscriptionsCopyWithImpl<$Res, $Val extends Subscriptions>
           ? _value.subscriptionPlan
           : subscriptionPlan // ignore: cast_nullable_to_non_nullable
               as String?,
-      subscriptionPlanId: freezed == subscriptionPlanId
-          ? _value.subscriptionPlanId
-          : subscriptionPlanId // ignore: cast_nullable_to_non_nullable
+      isSubscribed: freezed == isSubscribed
+          ? _value.isSubscribed
+          : isSubscribed // ignore: cast_nullable_to_non_nullable
               as bool?,
       subscriptionIcon: freezed == subscriptionIcon
           ? _value.subscriptionIcon
@@ -96,6 +112,22 @@ class _$SubscriptionsCopyWithImpl<$Res, $Val extends Subscriptions>
           ? _value.subId
           : subId // ignore: cast_nullable_to_non_nullable
               as String?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double?,
+      subscriptionLength: freezed == subscriptionLength
+          ? _value.subscriptionLength
+          : subscriptionLength // ignore: cast_nullable_to_non_nullable
+              as double?,
     ) as $Val);
   }
 }
@@ -111,9 +143,13 @@ abstract class _$$SubscriptionsImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'name') String? name,
       @JsonKey(name: 'subscription_plan') String? subscriptionPlan,
-      @JsonKey(name: 'isSubscribed') bool? subscriptionPlanId,
+      @JsonKey(name: 'isSubscribed') bool? isSubscribed,
       @JsonKey(name: 'subscription_icon') String? subscriptionIcon,
-      @JsonKey(name: 'subId') String? subId});
+      @JsonKey(name: 'subId') String? subId,
+      @JsonKey(name: 'endDate') DateTime? endDate,
+      @JsonKey(name: 'startDate') DateTime? startDate,
+      @JsonKey(name: 'subscriptionPrice') double? price,
+      @JsonKey(name: 'subscription_length') double? subscriptionLength});
 }
 
 /// @nodoc
@@ -129,9 +165,13 @@ class __$$SubscriptionsImplCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? subscriptionPlan = freezed,
-    Object? subscriptionPlanId = freezed,
+    Object? isSubscribed = freezed,
     Object? subscriptionIcon = freezed,
     Object? subId = freezed,
+    Object? endDate = freezed,
+    Object? startDate = freezed,
+    Object? price = freezed,
+    Object? subscriptionLength = freezed,
   }) {
     return _then(_$SubscriptionsImpl(
       name: freezed == name
@@ -142,9 +182,9 @@ class __$$SubscriptionsImplCopyWithImpl<$Res>
           ? _value.subscriptionPlan
           : subscriptionPlan // ignore: cast_nullable_to_non_nullable
               as String?,
-      subscriptionPlanId: freezed == subscriptionPlanId
-          ? _value.subscriptionPlanId
-          : subscriptionPlanId // ignore: cast_nullable_to_non_nullable
+      isSubscribed: freezed == isSubscribed
+          ? _value.isSubscribed
+          : isSubscribed // ignore: cast_nullable_to_non_nullable
               as bool?,
       subscriptionIcon: freezed == subscriptionIcon
           ? _value.subscriptionIcon
@@ -154,6 +194,22 @@ class __$$SubscriptionsImplCopyWithImpl<$Res>
           ? _value.subId
           : subId // ignore: cast_nullable_to_non_nullable
               as String?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double?,
+      subscriptionLength: freezed == subscriptionLength
+          ? _value.subscriptionLength
+          : subscriptionLength // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -164,9 +220,13 @@ class _$SubscriptionsImpl implements _Subscriptions {
   const _$SubscriptionsImpl(
       {@JsonKey(name: 'name') this.name,
       @JsonKey(name: 'subscription_plan') this.subscriptionPlan,
-      @JsonKey(name: 'isSubscribed') this.subscriptionPlanId,
+      @JsonKey(name: 'isSubscribed') this.isSubscribed,
       @JsonKey(name: 'subscription_icon') this.subscriptionIcon,
-      @JsonKey(name: 'subId') this.subId});
+      @JsonKey(name: 'subId') this.subId,
+      @JsonKey(name: 'endDate') this.endDate,
+      @JsonKey(name: 'startDate') this.startDate,
+      @JsonKey(name: 'subscriptionPrice') this.price,
+      @JsonKey(name: 'subscription_length') this.subscriptionLength});
 
   factory _$SubscriptionsImpl.fromJson(Map<String, dynamic> json) =>
       _$$SubscriptionsImplFromJson(json);
@@ -184,17 +244,29 @@ class _$SubscriptionsImpl implements _Subscriptions {
   final String? subscriptionPlan;
   @override
   @JsonKey(name: 'isSubscribed')
-  final bool? subscriptionPlanId;
+  final bool? isSubscribed;
   @override
   @JsonKey(name: 'subscription_icon')
   final String? subscriptionIcon;
   @override
   @JsonKey(name: 'subId')
   final String? subId;
+  @override
+  @JsonKey(name: 'endDate')
+  final DateTime? endDate;
+  @override
+  @JsonKey(name: 'startDate')
+  final DateTime? startDate;
+  @override
+  @JsonKey(name: 'subscriptionPrice')
+  final double? price;
+  @override
+  @JsonKey(name: 'subscription_length')
+  final double? subscriptionLength;
 
   @override
   String toString() {
-    return 'Subscriptions(name: $name, subscriptionPlan: $subscriptionPlan, subscriptionPlanId: $subscriptionPlanId, subscriptionIcon: $subscriptionIcon, subId: $subId)';
+    return 'Subscriptions(name: $name, subscriptionPlan: $subscriptionPlan, isSubscribed: $isSubscribed, subscriptionIcon: $subscriptionIcon, subId: $subId, endDate: $endDate, startDate: $startDate, price: $price, subscriptionLength: $subscriptionLength)';
   }
 
   @override
@@ -205,17 +277,32 @@ class _$SubscriptionsImpl implements _Subscriptions {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.subscriptionPlan, subscriptionPlan) ||
                 other.subscriptionPlan == subscriptionPlan) &&
-            (identical(other.subscriptionPlanId, subscriptionPlanId) ||
-                other.subscriptionPlanId == subscriptionPlanId) &&
+            (identical(other.isSubscribed, isSubscribed) ||
+                other.isSubscribed == isSubscribed) &&
             (identical(other.subscriptionIcon, subscriptionIcon) ||
                 other.subscriptionIcon == subscriptionIcon) &&
-            (identical(other.subId, subId) || other.subId == subId));
+            (identical(other.subId, subId) || other.subId == subId) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.subscriptionLength, subscriptionLength) ||
+                other.subscriptionLength == subscriptionLength));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, subscriptionPlan,
-      subscriptionPlanId, subscriptionIcon, subId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      subscriptionPlan,
+      isSubscribed,
+      subscriptionIcon,
+      subId,
+      endDate,
+      startDate,
+      price,
+      subscriptionLength);
 
   @JsonKey(ignore: true)
   @override
@@ -235,9 +322,14 @@ abstract class _Subscriptions implements Subscriptions {
   const factory _Subscriptions(
       {@JsonKey(name: 'name') final String? name,
       @JsonKey(name: 'subscription_plan') final String? subscriptionPlan,
-      @JsonKey(name: 'isSubscribed') final bool? subscriptionPlanId,
+      @JsonKey(name: 'isSubscribed') final bool? isSubscribed,
       @JsonKey(name: 'subscription_icon') final String? subscriptionIcon,
-      @JsonKey(name: 'subId') final String? subId}) = _$SubscriptionsImpl;
+      @JsonKey(name: 'subId') final String? subId,
+      @JsonKey(name: 'endDate') final DateTime? endDate,
+      @JsonKey(name: 'startDate') final DateTime? startDate,
+      @JsonKey(name: 'subscriptionPrice') final double? price,
+      @JsonKey(name: 'subscription_length')
+      final double? subscriptionLength}) = _$SubscriptionsImpl;
 
   factory _Subscriptions.fromJson(Map<String, dynamic> json) =
       _$SubscriptionsImpl.fromJson;
@@ -256,13 +348,25 @@ abstract class _Subscriptions implements Subscriptions {
   String? get subscriptionPlan;
   @override
   @JsonKey(name: 'isSubscribed')
-  bool? get subscriptionPlanId;
+  bool? get isSubscribed;
   @override
   @JsonKey(name: 'subscription_icon')
   String? get subscriptionIcon;
   @override
   @JsonKey(name: 'subId')
   String? get subId;
+  @override
+  @JsonKey(name: 'endDate')
+  DateTime? get endDate;
+  @override
+  @JsonKey(name: 'startDate')
+  DateTime? get startDate;
+  @override
+  @JsonKey(name: 'subscriptionPrice')
+  double? get price;
+  @override
+  @JsonKey(name: 'subscription_length')
+  double? get subscriptionLength;
   @override
   @JsonKey(ignore: true)
   _$$SubscriptionsImplCopyWith<_$SubscriptionsImpl> get copyWith =>

@@ -17,9 +17,13 @@ class Subscriptions with _$Subscriptions {
     /// title
     // ignore: invalid_annotation_target
     @JsonKey(name: 'subscription_plan') String? subscriptionPlan,
-    @JsonKey(name: 'isSubscribed') bool? subscriptionPlanId,
+    @JsonKey(name: 'isSubscribed') bool? isSubscribed,
     @JsonKey(name: 'subscription_icon') String? subscriptionIcon,
     @JsonKey(name: 'subId') String? subId,
+    @JsonKey(name: 'endDate') DateTime? endDate,
+    @JsonKey(name: 'startDate') DateTime? startDate,
+    @JsonKey(name: 'subscriptionPrice') double? price,
+    @JsonKey(name: 'subscription_length') double? subscriptionLength,
   }) = _Subscriptions;
 
   /// Converts a Subscriptions instance to json

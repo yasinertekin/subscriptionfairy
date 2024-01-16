@@ -68,14 +68,12 @@ final class _HomeBlocBuilder extends StatelessWidget {
                     state.users.subscriptionList?[index].subscriptionPlan ?? '',
                   ),
                   subtitle: Text(
-                    state.users.subscriptionList?[index].subscriptionPlanId
-                            ?.toString() ??
+                    state.users.subscriptionList?[index].price?.toString() ??
                         '',
                   ),
                   trailing: Switch(
                     onChanged: (value) {},
-                    value: state.users.subscriptionList?[index]
-                            .subscriptionPlanId ??
+                    value: state.users.subscriptionList?[index].isSubscribed ??
                         false,
                   ),
                 ),

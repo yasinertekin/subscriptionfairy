@@ -15,3 +15,8 @@ class AppErrorState extends AppState {
   AppErrorState(this.error);
   final String error;
 }
+
+class AppUpdateState extends AppState {
+  AppUpdateState(this.users);
+  final Users users;
+}
