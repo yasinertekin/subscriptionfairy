@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
-import 'package:subscriptionfairy/feature/subscriptions/view_model/subscriptions_cubit.dart';
-import 'package:subscriptionfairy/feature/subscriptions/view_model/subscriptions_state.dart';
+import 'package:subscriptionfairy/product/base/base_state.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
@@ -13,13 +11,20 @@ import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dar
 /// SubscriptionsView
 final class SubscriptionsView extends StatelessWidget {
   /// Default constructor
-  const SubscriptionsView({super.key});
+  const SubscriptionsView({
+    required this.state,
+    super.key,
+  });
 
+  /// AppLoadedState
+  final AppLoadedState state;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: _SubscriptionViewAppBar(),
-      body: _SubscriptionViewBlocBuilder(),
+    return Scaffold(
+      appBar: const _SubscriptionViewAppBar(),
+      body: _SubscriptionViewBlocBuilder(
+        state,
+      ),
     );
   }
 }
@@ -41,40 +46,27 @@ final class _SubscriptionViewAppBar extends StatelessWidget
 }
 
 final class _SubscriptionViewBlocBuilder extends StatelessWidget {
-  const _SubscriptionViewBlocBuilder();
+  const _SubscriptionViewBlocBuilder(
+    this.state,
+  );
+  final AppLoadedState state;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SubscriptionsCubit, SubscriptionsState>(
-      builder: (context, state) {
-        if (state is SubscriptionsLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (state is SubscriptionsLoaded) {
-          final subscriptions = state.subscriptions;
-          return Padding(
-            padding: const ProjectPadding.allSmall(),
-            child: Column(
-              children: [
-                const _SearchSubscriptions(),
-                context.sized.emptySizedHeightBoxLow3x,
-                _SubscriptionsList(
-                  subscriptions: subscriptions,
-                ),
-              ],
-            ),
-          );
-        } else if (state is SubscriptionsError) {
-          return Center(
-            child: Text(state.errorMessage),
-          );
-        } else {
-          return const Center(
-            child: Text('Something went wrong!'),
-          );
-        }
-      },
+    final subscriptions = state.subscriptions;
+
+    return Padding(
+      padding: const ProjectPadding.allSmall(),
+      child: Column(
+        children: [
+          const _SearchSubscriptions(),
+          context.sized.emptySizedHeightBoxLow3x,
+          _SubscriptionsList(
+            subscriptions: subscriptions,
+            state: state,
+          ),
+        ],
+      ),
     );
   }
 }
@@ -100,8 +92,10 @@ final class _SearchSubscriptions extends StatelessWidget {
 final class _SubscriptionsList extends StatelessWidget {
   const _SubscriptionsList({
     required this.subscriptions,
+    required this.state,
   });
   final List<SubscriptionsList> subscriptions;
+  final AppLoadedState state;
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +106,8 @@ final class _SubscriptionsList extends StatelessWidget {
           final subscription = subscriptions[index];
           return _SubscriptionsListCard(
             subscription: subscription,
+            index: index,
+            state: state,
           );
         },
       ),
@@ -122,9 +118,13 @@ final class _SubscriptionsList extends StatelessWidget {
 final class _SubscriptionsListCard extends StatelessWidget {
   const _SubscriptionsListCard({
     required this.subscription,
+    required this.state,
+    required this.index,
   });
 
   final SubscriptionsList subscription;
+  final AppLoadedState state;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -132,12 +132,14 @@ final class _SubscriptionsListCard extends StatelessWidget {
       child: ListTile(
         trailing: IconButton(
           onPressed: () {},
-          icon: const Icon(CupertinoIcons.chevron_right),
+          icon: const Icon(
+            CupertinoIcons.chevron_right,
+          ),
         ),
         onTap: () {
           NavigationService.instance.navigateToPage(
             path: Routes.subscriptionsDetail,
-            data: subscription,
+            data: state.subscriptions[index],
           );
         },
         leading: ClipRRect(

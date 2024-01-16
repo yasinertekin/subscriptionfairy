@@ -1,5 +1,4 @@
-// Define the states for your Cubit
-import 'package:subscriptionfairy/product/model/users/users.dart';
+/*import 'package:subscriptionfairy/product/model/users/users.dart';
 
 // Define the states for your Cubit
 abstract class UsersState {}
@@ -25,3 +24,4 @@ class GetUsersSubscriptionsEvent extends UsersEvent {
   GetUsersSubscriptionsEvent(this.usersUid);
   final String usersUid;
 }
+*/

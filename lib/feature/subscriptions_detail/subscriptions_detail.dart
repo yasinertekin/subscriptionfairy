@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:subscriptionfairy/product/base/base_cubit.dart';
+import 'package:subscriptionfairy/product/base/base_state.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
 import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
 
@@ -16,6 +19,7 @@ final class SubscriptionDetails extends StatelessWidget {
     // arguments'ten geçilen verileri al
     final receivedSubscriptions =
         ModalRoute.of(context)!.settings.arguments! as SubscriptionsList;
+    final state = context.watch<AppCubit>().state as AppLoadedState;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Subscription Details'),
@@ -59,7 +63,13 @@ final class SubscriptionDetails extends StatelessWidget {
                       ),
                       Expanded(
                         child: Switch(
-                          value: false,
+                          value: state.users.subscriptionList!
+                              .where(
+                                (element) =>
+                                    element.subId ==
+                                    receivedSubscriptions.name?[index].subId,
+                              )
+                              .isNotEmpty,
                           onChanged: (value) {},
                         ),
                       ),

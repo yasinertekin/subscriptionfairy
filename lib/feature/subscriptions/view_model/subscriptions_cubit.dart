@@ -1,4 +1,4 @@
-// Cubit sınıfı
+/*
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:subscriptionfairy/feature/subscriptions/view_model/subscriptions_state.dart';
 import 'package:subscriptionfairy/product/service/firebase_firestore_service_interface.dart';
@@ -25,3 +25,4 @@ final class SubscriptionsCubit extends Cubit<SubscriptionsState> {
     }
   }
 }
+*/

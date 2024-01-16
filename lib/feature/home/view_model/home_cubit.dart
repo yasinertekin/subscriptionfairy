@@ -1,5 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-// Create the UsersCubit class
+
+/*
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:subscriptionfairy/feature/home/view_model/home_state.dart';
 import 'package:subscriptionfairy/product/firebase/firebase_auth_service_manager.dart';
@@ -32,3 +32,4 @@ class UsersCubit extends Cubit<UsersState> {
     }
   }
 }
+*/
