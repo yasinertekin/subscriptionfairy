@@ -46,6 +46,7 @@ dependencies:
 
   # Utility
   persistent_bottom_nav_bar: ^5.0.2
+  cached_network_image: ^3.3.1
 
   # Google
   json_annotation: ^4.8.1
