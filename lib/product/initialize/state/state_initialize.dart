@@ -1,10 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:subscriptionfairy/feature/auth/register/view_model/register_cubit.dart';
 import 'package:subscriptionfairy/feature/auth/sign/view_model/auth_cubit.dart';
 import 'package:subscriptionfairy/feature/subscriptions/view_model/subscriptions_cubit.dart';
 import 'package:subscriptionfairy/product/firebase/firebase_auth_service_manager.dart';
+import 'package:subscriptionfairy/product/firebase/firebase_firestore_service_manager.dart';
 import 'package:subscriptionfairy/product/service/firabase_firestore_service.dart';
 
 /// [StateInitialize] is a class that contains all string constants.
@@ -35,7 +35,7 @@ final class StateInitialize extends StatelessWidget {
         BlocProvider<SubscriptionsCubit>(
           create: (context) => SubscriptionsCubit(
             FirebaseFireStoreService(
-              FirebaseFirestore.instance,
+              FirebaseFirestoreServiceManager.instance.firebaseFirestore,
             ),
           ),
         ),

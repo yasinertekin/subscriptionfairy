@@ -4,17 +4,15 @@ import 'package:subscriptionfairy/product/service/firebase_auth_service.dart';
 /// [FirebaseAuthServiceManager] is a class that contains all string constants.
 final class FirebaseAuthServiceManager {
   FirebaseAuthServiceManager._init();
-  static FirebaseAuthServiceManager? _instance;
+  static final FirebaseAuthServiceManager _instance =
+      FirebaseAuthServiceManager._init();
 
-  /// [instance] is a singleton instance of [FirebaseAuthServiceManager].
-  static FirebaseAuthServiceManager get instance {
-    _instance ??= FirebaseAuthServiceManager._init();
-    return _instance!;
-  }
+  /// [instance] is a function that returns instance
+  static FirebaseAuthServiceManager get instance => _instance;
 
   FirebaseAuthService? _firebaseAuthService;
 
-  /// [firebaseAuthService] is a singleton instance of [FirebaseAuthService].
+  /// [firebaseAuthService] is a function that returns firebaseAuthService
   FirebaseAuthService get firebaseAuthService {
     _firebaseAuthService ??= FirebaseAuthService(FirebaseAuth.instance);
     return _firebaseAuthService!;
