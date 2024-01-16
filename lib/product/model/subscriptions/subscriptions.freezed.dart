@@ -29,6 +29,10 @@ mixin _$Subscriptions {
 // ignore: invalid_annotation_target
   @JsonKey(name: 'subscription_plan')
   String? get subscriptionPlan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'isSubscribed')
+  bool? get subscriptionPlanId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'subscription_icon')
+  String? get subscriptionIcon => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +48,9 @@ abstract class $SubscriptionsCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'subscription_plan') String? subscriptionPlan});
+      @JsonKey(name: 'subscription_plan') String? subscriptionPlan,
+      @JsonKey(name: 'isSubscribed') bool? subscriptionPlanId,
+      @JsonKey(name: 'subscription_icon') String? subscriptionIcon});
 }
 
 /// @nodoc
@@ -62,6 +68,8 @@ class _$SubscriptionsCopyWithImpl<$Res, $Val extends Subscriptions>
   $Res call({
     Object? name = freezed,
     Object? subscriptionPlan = freezed,
+    Object? subscriptionPlanId = freezed,
+    Object? subscriptionIcon = freezed,
   }) {
     return _then(_value.copyWith(
       name: freezed == name
@@ -71,6 +79,14 @@ class _$SubscriptionsCopyWithImpl<$Res, $Val extends Subscriptions>
       subscriptionPlan: freezed == subscriptionPlan
           ? _value.subscriptionPlan
           : subscriptionPlan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subscriptionPlanId: freezed == subscriptionPlanId
+          ? _value.subscriptionPlanId
+          : subscriptionPlanId // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      subscriptionIcon: freezed == subscriptionIcon
+          ? _value.subscriptionIcon
+          : subscriptionIcon // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -86,7 +102,9 @@ abstract class _$$SubscriptionsImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'subscription_plan') String? subscriptionPlan});
+      @JsonKey(name: 'subscription_plan') String? subscriptionPlan,
+      @JsonKey(name: 'isSubscribed') bool? subscriptionPlanId,
+      @JsonKey(name: 'subscription_icon') String? subscriptionIcon});
 }
 
 /// @nodoc
@@ -102,6 +120,8 @@ class __$$SubscriptionsImplCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? subscriptionPlan = freezed,
+    Object? subscriptionPlanId = freezed,
+    Object? subscriptionIcon = freezed,
   }) {
     return _then(_$SubscriptionsImpl(
       name: freezed == name
@@ -112,6 +132,14 @@ class __$$SubscriptionsImplCopyWithImpl<$Res>
           ? _value.subscriptionPlan
           : subscriptionPlan // ignore: cast_nullable_to_non_nullable
               as String?,
+      subscriptionPlanId: freezed == subscriptionPlanId
+          ? _value.subscriptionPlanId
+          : subscriptionPlanId // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      subscriptionIcon: freezed == subscriptionIcon
+          ? _value.subscriptionIcon
+          : subscriptionIcon // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -121,7 +149,9 @@ class __$$SubscriptionsImplCopyWithImpl<$Res>
 class _$SubscriptionsImpl implements _Subscriptions {
   const _$SubscriptionsImpl(
       {@JsonKey(name: 'name') this.name,
-      @JsonKey(name: 'subscription_plan') this.subscriptionPlan});
+      @JsonKey(name: 'subscription_plan') this.subscriptionPlan,
+      @JsonKey(name: 'isSubscribed') this.subscriptionPlanId,
+      @JsonKey(name: 'subscription_icon') this.subscriptionIcon});
 
   factory _$SubscriptionsImpl.fromJson(Map<String, dynamic> json) =>
       _$$SubscriptionsImplFromJson(json);
@@ -137,10 +167,16 @@ class _$SubscriptionsImpl implements _Subscriptions {
   @override
   @JsonKey(name: 'subscription_plan')
   final String? subscriptionPlan;
+  @override
+  @JsonKey(name: 'isSubscribed')
+  final bool? subscriptionPlanId;
+  @override
+  @JsonKey(name: 'subscription_icon')
+  final String? subscriptionIcon;
 
   @override
   String toString() {
-    return 'Subscriptions(name: $name, subscriptionPlan: $subscriptionPlan)';
+    return 'Subscriptions(name: $name, subscriptionPlan: $subscriptionPlan, subscriptionPlanId: $subscriptionPlanId, subscriptionIcon: $subscriptionIcon)';
   }
 
   @override
@@ -150,12 +186,17 @@ class _$SubscriptionsImpl implements _Subscriptions {
             other is _$SubscriptionsImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.subscriptionPlan, subscriptionPlan) ||
-                other.subscriptionPlan == subscriptionPlan));
+                other.subscriptionPlan == subscriptionPlan) &&
+            (identical(other.subscriptionPlanId, subscriptionPlanId) ||
+                other.subscriptionPlanId == subscriptionPlanId) &&
+            (identical(other.subscriptionIcon, subscriptionIcon) ||
+                other.subscriptionIcon == subscriptionIcon));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, subscriptionPlan);
+  int get hashCode => Object.hash(runtimeType, name, subscriptionPlan,
+      subscriptionPlanId, subscriptionIcon);
 
   @JsonKey(ignore: true)
   @override
@@ -174,7 +215,9 @@ class _$SubscriptionsImpl implements _Subscriptions {
 abstract class _Subscriptions implements Subscriptions {
   const factory _Subscriptions(
           {@JsonKey(name: 'name') final String? name,
-          @JsonKey(name: 'subscription_plan') final String? subscriptionPlan}) =
+          @JsonKey(name: 'subscription_plan') final String? subscriptionPlan,
+          @JsonKey(name: 'isSubscribed') final bool? subscriptionPlanId,
+          @JsonKey(name: 'subscription_icon') final String? subscriptionIcon}) =
       _$SubscriptionsImpl;
 
   factory _Subscriptions.fromJson(Map<String, dynamic> json) =
@@ -192,6 +235,12 @@ abstract class _Subscriptions implements Subscriptions {
 // ignore: invalid_annotation_target
   @JsonKey(name: 'subscription_plan')
   String? get subscriptionPlan;
+  @override
+  @JsonKey(name: 'isSubscribed')
+  bool? get subscriptionPlanId;
+  @override
+  @JsonKey(name: 'subscription_icon')
+  String? get subscriptionIcon;
   @override
   @JsonKey(ignore: true)
   _$$SubscriptionsImplCopyWith<_$SubscriptionsImpl> get copyWith =>

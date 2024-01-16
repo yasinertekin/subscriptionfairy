@@ -7,8 +7,7 @@ part of 'subscriptions_list.dart';
 // **************************************************************************
 
 _$SubscriptionsListImpl _$$SubscriptionsListImplFromJson(
-  Map<String, dynamic> json,
-) =>
+        Map<String, dynamic> json) =>
     _$SubscriptionsListImpl(
       name: (json['subscription_list'] as List<dynamic>?)
           ?.map((e) => Subscriptions.fromJson(e as Map<String, dynamic>))
@@ -18,8 +17,7 @@ _$SubscriptionsListImpl _$$SubscriptionsListImplFromJson(
     );
 
 Map<String, dynamic> _$$SubscriptionsListImplToJson(
-  _$SubscriptionsListImpl instance,
-) =>
+        _$SubscriptionsListImpl instance) =>
     <String, dynamic>{
       'subscription_list': instance.name,
       'subscription_name': instance.subscriptionName,

@@ -27,6 +27,9 @@ mixin _$SubscriptionsList {
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'subscription_name')
   String? get subscriptionName => throw _privateConstructorUsedError;
+
+  /// icon
+// ignore: invalid_annotation_target
   @JsonKey(name: 'subscription_icon')
   String? get subscriptionIcon => throw _privateConstructorUsedError;
 
@@ -160,6 +163,9 @@ class _$SubscriptionsListImpl implements _SubscriptionsList {
   @override
   @JsonKey(name: 'subscription_name')
   final String? subscriptionName;
+
+  /// icon
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'subscription_icon')
   final String? subscriptionIcon;
@@ -224,6 +230,9 @@ abstract class _SubscriptionsList implements SubscriptionsList {
   @JsonKey(name: 'subscription_name')
   String? get subscriptionName;
   @override
+
+  /// icon
+// ignore: invalid_annotation_target
   @JsonKey(name: 'subscription_icon')
   String? get subscriptionIcon;
   @override

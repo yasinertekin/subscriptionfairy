@@ -17,6 +17,8 @@ class Subscriptions with _$Subscriptions {
     /// title
     // ignore: invalid_annotation_target
     @JsonKey(name: 'subscription_plan') String? subscriptionPlan,
+    @JsonKey(name: 'isSubscribed') bool? subscriptionPlanId,
+    @JsonKey(name: 'subscription_icon') String? subscriptionIcon,
   }) = _Subscriptions;
 
   /// Converts a Subscriptions instance to json
