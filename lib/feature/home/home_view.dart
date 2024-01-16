@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:subscriptionfairy/product/base/base_cubit.dart';
 import 'package:subscriptionfairy/product/base/base_state.dart';
 import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
@@ -72,7 +73,11 @@ final class _HomeBlocBuilder extends StatelessWidget {
                         '',
                   ),
                   trailing: Switch(
-                    onChanged: (value) {},
+                    onChanged: (value) async {
+                      await context.read<AppCubit>().deleteSubscriptionList(
+                            state.users.subscriptionList![index],
+                          );
+                    },
                     value: state.users.subscriptionList?[index].isSubscribed ??
                         false,
                   ),

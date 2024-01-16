@@ -54,92 +54,35 @@ final class FirebaseFireStoreService extends FirebaseFireStoreServiceInterface {
   }
 
   @override
-  Future<Users> addSubscription(
-    String usersUid,
-    Subscriptions subscription,
-  ) async {
-    final snapshot = await firestore.collection('users').doc(usersUid).get();
-
-    if (snapshot.exists) {
-      // Eğer snapshot varsa, snapshot'ı Users'a çevir
-      final users = Users.fromJson(
-        snapshot.data()!,
-      );
-
-      // Eğer subscriptionList boş değilse, subscriptionList'e subscription'ı ekle
-      if (users.subscriptionList != null) {
-        users.subscriptionList!.add(subscription);
-      } else {
-        await firestore.collection('users').doc(usersUid).update(
-              users.copyWith(
-                subscriptionList: [subscription],
-              ).toJson(),
-            );
-      }
-
-      await firestore.collection('users').doc(users.usersUid).update(
-            users
-                .copyWith(
-                  subscriptionList: users.subscriptionList,
-                )
-                .toJson(),
-          );
-
-      // Güncellenmiş kullanıcıyı döndür
-      return users;
-    } else {
-      // Eğer snapshot yoksa, boş bir Users döndür
-      return const Users(
-        subscriptionList: [],
-        username: '',
-        email: '',
-        usersUid: '',
-      );
-    }
+  Future<void> updateSubscriptionList(
+    String userId,
+    Subscriptions newSubscription,
+  ) {
+    return firestore.collection('users').doc(userId).update(
+      {
+        'subscription_list': FieldValue.arrayUnion(
+          [
+            newSubscription.toJson(),
+          ],
+        ),
+      },
+    );
   }
 
   @override
-  Future<Users> addSubscriptionToUser(
-    String userUid,
-    Subscriptions subscription,
-  ) async {
-    final usersCollection = FirebaseFirestore.instance.collection('users');
-
-    try {
-      // Kullanıcının döküman referansını al
-      final DocumentReference userDocRef = usersCollection.doc(userUid);
-
-      // Kullanıcının mevcut verilerini çek
-      final userDocSnapshot = await userDocRef.get();
-
-      if (userDocSnapshot.exists) {
-        // Kullanıcının var olan verilerini Users sınıfına dönüştür
-        var existingUserData =
-            Users.fromJson(userDocSnapshot.data()! as Map<String, dynamic>);
-
-        // Yeni subscription'ı ekleyerek güncelle
-        existingUserData = existingUserData.copyWith(
-          subscriptionList: [
-            ...existingUserData.subscriptionList ?? [],
-            subscription,
+  Future<void> deleteSubscriptionsElement(
+    ///
+    String userId,
+    Subscriptions newSubscription,
+  ) {
+    return firestore.collection('users').doc(userId).update(
+      {
+        'subscription_list': FieldValue.arrayRemove(
+          [
+            newSubscription.toJson(),
           ],
-        );
-
-        // Güncellenmiş veriyi Firestore'a geri yükle
-        await userDocRef.set(existingUserData.toJson());
-
-        // Return the updated Users object
-        return existingUserData;
-      } else {
-        // Kullanıcı dökümanı yoksa hata mesajı verebilirsiniz
-        print('Belirtilen kullanıcı bulunamadı.');
-      }
-    } catch (e) {
-      // Hata durumunda hata mesajını yazdırabilirsiniz
-      print('Hata oluştu: $e');
-    }
-
-    // If an error occurs or the user document doesn't exist, return a default Users object
-    return const Users(); // You might want to customize this default Users object based on your needs
+        ),
+      },
+    );
   }
 }

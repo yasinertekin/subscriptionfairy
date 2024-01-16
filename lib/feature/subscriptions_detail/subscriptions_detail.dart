@@ -70,7 +70,15 @@ final class SubscriptionDetails extends StatelessWidget {
                                     receivedSubscriptions.name?[index].subId,
                               )
                               .isNotEmpty,
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            if (value) {
+                              context.read<AppCubit>().updateSubscriptionList(
+                                    receivedSubscriptions.name![index].copyWith(
+                                      isSubscribed: true,
+                                    ),
+                                  );
+                            }
+                          },
                         ),
                       ),
                     ],
