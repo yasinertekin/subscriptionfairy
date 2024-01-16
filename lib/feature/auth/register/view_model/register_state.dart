@@ -1,17 +1,28 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
+/// RegisterState
 abstract class RegisterState {}
 
-class RegisterStateInitial extends RegisterState {}
+/// RegisterState
+final class RegisterStateInitial extends RegisterState {}
 
-class RegisterStateLoading extends RegisterState {}
+/// RegisterStateLoading
+final class RegisterStateLoading extends RegisterState {}
 
-class RegisterStateSuccess extends RegisterState {
+/// RegisterStateSuccess
+final class RegisterStateSuccess extends RegisterState {
+  /// Default constructor
   RegisterStateSuccess(this.userCredential);
+
+  /// userCredential
   final UserCredential userCredential;
 }
 
-class RegisterStateFailure extends RegisterState {
+/// RegisterStateFailure
+final class RegisterStateFailure extends RegisterState {
+  /// Default constructor
   RegisterStateFailure(this.error);
+
+  /// error
   final String error;
 }
