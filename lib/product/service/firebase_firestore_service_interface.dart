@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:subscriptionfairy/product/model/subscriptions.dart';
+import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
 
 /// FirebaseFireStoreServiceInterface
 abstract class FirebaseFireStoreServiceInterface {
@@ -7,7 +7,7 @@ abstract class FirebaseFireStoreServiceInterface {
   FirebaseFireStoreServiceInterface(this.firestore);
 
   /// Get subscriptions
-  Future<List<Subscriptions>> getSubscriptions();
+  Future<List<SubscriptionsList>> getSubscriptions();
 
   /// Firestore instance
   final FirebaseFirestore firestore;
