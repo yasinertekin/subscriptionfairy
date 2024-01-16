@@ -12,6 +12,7 @@ _$SubscriptionsImpl _$$SubscriptionsImplFromJson(Map<String, dynamic> json) =>
       subscriptionPlan: json['subscription_plan'] as String?,
       subscriptionPlanId: json['isSubscribed'] as bool?,
       subscriptionIcon: json['subscription_icon'] as String?,
+      subId: json['subId'] as String?,
     );
 
 Map<String, dynamic> _$$SubscriptionsImplToJson(_$SubscriptionsImpl instance) =>
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$SubscriptionsImplToJson(_$SubscriptionsImpl instance) =>
       'subscription_plan': instance.subscriptionPlan,
       'isSubscribed': instance.subscriptionPlanId,
       'subscription_icon': instance.subscriptionIcon,
+      'subId': instance.subId,
     };

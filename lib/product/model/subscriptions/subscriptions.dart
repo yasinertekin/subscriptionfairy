@@ -19,6 +19,7 @@ class Subscriptions with _$Subscriptions {
     @JsonKey(name: 'subscription_plan') String? subscriptionPlan,
     @JsonKey(name: 'isSubscribed') bool? subscriptionPlanId,
     @JsonKey(name: 'subscription_icon') String? subscriptionIcon,
+    @JsonKey(name: 'subId') String? subId,
   }) = _Subscriptions;
 
   /// Converts a Subscriptions instance to json

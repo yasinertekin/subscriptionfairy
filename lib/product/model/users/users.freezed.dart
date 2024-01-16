@@ -31,7 +31,8 @@ mixin _$Users {
   /// icon
 // ignore: invalid_annotation_target
   @JsonKey(name: 'email')
-  String? get email => throw _privateConstructorUsedError;
+  String? get email =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'usersUid')
   String? get usersUid => throw _privateConstructorUsedError;
 
@@ -185,6 +186,7 @@ class _$UsersImpl implements _Users {
   @override
   @JsonKey(name: 'email')
   final String? email;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'usersUid')
   final String? usersUid;
@@ -256,7 +258,7 @@ abstract class _Users implements Users {
 // ignore: invalid_annotation_target
   @JsonKey(name: 'email')
   String? get email;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'usersUid')
   String? get usersUid;
   @override
