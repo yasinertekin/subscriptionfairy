@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+// ignore: implementation_imports
 import 'package:gen/src/index.dart';
 import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/feature/auth/sign/view_model/auth_cubit.dart';
@@ -7,6 +8,7 @@ import 'package:subscriptionfairy/feature/auth/sign/view_model/auth_state.dart';
 import 'package:subscriptionfairy/product/constants/string_constants.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
+import 'package:subscriptionfairy/product/mixin/custom_scaffold_messenger.dart';
 import 'package:subscriptionfairy/product/widget/custom_button.dart';
 import 'package:subscriptionfairy/product/widget/custom_text_field.dart';
 import 'package:subscriptionfairy/product/widget/sign_in_with_google_button.dart';
@@ -30,7 +32,8 @@ final class SignView extends StatelessWidget {
   }
 }
 
-final class _SignViewBuilder extends StatelessWidget {
+final class _SignViewBuilder extends StatelessWidget
+    with CustomScaffoldMessenger {
   const _SignViewBuilder({
     required this.formKey,
   });
@@ -54,15 +57,11 @@ final class _SignViewBuilder extends StatelessWidget {
           if (state is AuthenticationLoading) {
             return const Center(child: CircularProgressIndicator.adaptive());
           } else if (state is AuthenticationSuccess) {
-            return const Center(child: CircularProgressIndicator.adaptive());
           } else if (state is AuthenticationFailure) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    state.error,
-                  ),
-                ),
+              showSnackBar(
+                context,
+                state.error,
               );
             });
           }
