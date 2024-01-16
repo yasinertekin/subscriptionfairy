@@ -21,12 +21,14 @@ Subscriptions _$SubscriptionsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Subscriptions {
   /// name
+// ignore: invalid_annotation_target
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
 
   /// title
-  @JsonKey(name: 'title')
-  String? get title => throw _privateConstructorUsedError;
+// ignore: invalid_annotation_target
+  @JsonKey(name: 'subscription_plan')
+  String? get subscriptionPlan => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +44,7 @@ abstract class $SubscriptionsCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'title') String? title});
+      @JsonKey(name: 'subscription_plan') String? subscriptionPlan});
 }
 
 /// @nodoc
@@ -59,16 +61,16 @@ class _$SubscriptionsCopyWithImpl<$Res, $Val extends Subscriptions>
   @override
   $Res call({
     Object? name = freezed,
-    Object? title = freezed,
+    Object? subscriptionPlan = freezed,
   }) {
     return _then(_value.copyWith(
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      subscriptionPlan: freezed == subscriptionPlan
+          ? _value.subscriptionPlan
+          : subscriptionPlan // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -84,7 +86,7 @@ abstract class _$$SubscriptionsImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'title') String? title});
+      @JsonKey(name: 'subscription_plan') String? subscriptionPlan});
 }
 
 /// @nodoc
@@ -99,16 +101,16 @@ class __$$SubscriptionsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = freezed,
-    Object? title = freezed,
+    Object? subscriptionPlan = freezed,
   }) {
     return _then(_$SubscriptionsImpl(
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      subscriptionPlan: freezed == subscriptionPlan
+          ? _value.subscriptionPlan
+          : subscriptionPlan // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -118,24 +120,27 @@ class __$$SubscriptionsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SubscriptionsImpl implements _Subscriptions {
   const _$SubscriptionsImpl(
-      {@JsonKey(name: 'name') this.name, @JsonKey(name: 'title') this.title});
+      {@JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'subscription_plan') this.subscriptionPlan});
 
   factory _$SubscriptionsImpl.fromJson(Map<String, dynamic> json) =>
       _$$SubscriptionsImplFromJson(json);
 
   /// name
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'name')
   final String? name;
 
   /// title
+// ignore: invalid_annotation_target
   @override
-  @JsonKey(name: 'title')
-  final String? title;
+  @JsonKey(name: 'subscription_plan')
+  final String? subscriptionPlan;
 
   @override
   String toString() {
-    return 'Subscriptions(name: $name, title: $title)';
+    return 'Subscriptions(name: $name, subscriptionPlan: $subscriptionPlan)';
   }
 
   @override
@@ -144,12 +149,13 @@ class _$SubscriptionsImpl implements _Subscriptions {
         (other.runtimeType == runtimeType &&
             other is _$SubscriptionsImpl &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.title, title) || other.title == title));
+            (identical(other.subscriptionPlan, subscriptionPlan) ||
+                other.subscriptionPlan == subscriptionPlan));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, title);
+  int get hashCode => Object.hash(runtimeType, name, subscriptionPlan);
 
   @JsonKey(ignore: true)
   @override
@@ -167,8 +173,9 @@ class _$SubscriptionsImpl implements _Subscriptions {
 
 abstract class _Subscriptions implements Subscriptions {
   const factory _Subscriptions(
-      {@JsonKey(name: 'name') final String? name,
-      @JsonKey(name: 'title') final String? title}) = _$SubscriptionsImpl;
+          {@JsonKey(name: 'name') final String? name,
+          @JsonKey(name: 'subscription_plan') final String? subscriptionPlan}) =
+      _$SubscriptionsImpl;
 
   factory _Subscriptions.fromJson(Map<String, dynamic> json) =
       _$SubscriptionsImpl.fromJson;
@@ -176,13 +183,15 @@ abstract class _Subscriptions implements Subscriptions {
   @override
 
   /// name
+// ignore: invalid_annotation_target
   @JsonKey(name: 'name')
   String? get name;
   @override
 
   /// title
-  @JsonKey(name: 'title')
-  String? get title;
+// ignore: invalid_annotation_target
+  @JsonKey(name: 'subscription_plan')
+  String? get subscriptionPlan;
   @override
   @JsonKey(ignore: true)
   _$$SubscriptionsImplCopyWith<_$SubscriptionsImpl> get copyWith =>

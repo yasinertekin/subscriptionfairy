@@ -9,11 +9,11 @@ part of 'subscriptions.dart';
 _$SubscriptionsImpl _$$SubscriptionsImplFromJson(Map<String, dynamic> json) =>
     _$SubscriptionsImpl(
       name: json['name'] as String?,
-      title: json['title'] as String?,
+      subscriptionPlan: json['subscription_plan'] as String?,
     );
 
 Map<String, dynamic> _$$SubscriptionsImplToJson(_$SubscriptionsImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'title': instance.title,
+      'subscription_plan': instance.subscriptionPlan,
     };
