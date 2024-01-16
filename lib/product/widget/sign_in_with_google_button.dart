@@ -20,7 +20,7 @@ final class SignInWithGoogleButton extends StatelessWidget {
           surfaceTintColor: ColorName.colorWhite,
           backgroundColor: ColorName.colorWhite,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: context.border.normalBorderRadius,
           ),
         ),
         onPressed: () {},
@@ -30,7 +30,7 @@ final class SignInWithGoogleButton extends StatelessWidget {
             Assets.icons.icGoogleLogo.svg(
               package: 'gen',
             ),
-            const SizedBox(width: 8),
+            context.sized.emptySizedWidthBoxLow3x,
             Text(
               StringConstants.signInWithGoogle,
               style: context.general.textTheme.titleLarge!.copyWith(

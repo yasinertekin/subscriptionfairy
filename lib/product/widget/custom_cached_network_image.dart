@@ -14,8 +14,10 @@ final class CustomCachedNetworkImage extends StatelessWidget {
   /// imageUrl
   final String imageUrl;
 
+  /// height
   final double height;
 
+  /// width
   final double width;
 
   @override
