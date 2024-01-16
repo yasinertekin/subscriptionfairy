@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: implementation_imports
 import 'package:gen/src/index.dart';
 import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/product/constants/string_constants.dart';
