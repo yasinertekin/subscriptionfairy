@@ -1,10 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gen/src/index.dart';
 import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/feature/subscriptions/view_model/subscriptions_cubit.dart';
 import 'package:subscriptionfairy/feature/subscriptions/view_model/subscriptions_state.dart';
-import 'package:subscriptionfairy/product/model/subscriptions.dart';
+import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
+import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
+import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
+import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
+import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
 
 /// SubscriptionsView
 final class SubscriptionsView extends StatelessWidget {
@@ -28,6 +32,7 @@ final class _SubscriptionViewAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       title: const Text('Subscriptions'),
+      centerTitle: false,
     );
   }
 
@@ -47,8 +52,18 @@ final class _SubscriptionViewBlocBuilder extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         } else if (state is SubscriptionsLoaded) {
-          return _SubscriptionsListView(
-            subscriptions: state.subscriptions,
+          final subscriptions = state.subscriptions;
+          return Padding(
+            padding: const ProjectPadding.allSmall(),
+            child: Column(
+              children: [
+                const _SearchSubscriptions(),
+                context.sized.emptySizedHeightBoxLow3x,
+                _SubscriptionsList(
+                  subscriptions: subscriptions,
+                ),
+              ],
+            ),
           );
         } else if (state is SubscriptionsError) {
           return Center(
@@ -64,50 +79,78 @@ final class _SubscriptionViewBlocBuilder extends StatelessWidget {
   }
 }
 
-final class _SubscriptionsListView extends StatelessWidget {
-  const _SubscriptionsListView({
-    required this.subscriptions,
-  });
-  final List<Subscriptions> subscriptions;
+final class _SearchSubscriptions extends StatelessWidget {
+  const _SearchSubscriptions();
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: subscriptions.length,
-      itemBuilder: (context, index) {
-        final subscription = subscriptions[index];
-        return _SubscriptionsCard(
-          subscriptions: subscription,
-        );
-      },
+    return TextField(
+      readOnly: true,
+      decoration: InputDecoration(
+        hintText: 'Search',
+        prefixIcon: const Icon(Icons.search),
+        border: OutlineInputBorder(
+          borderRadius: context.border.normalBorderRadius,
+        ),
+      ),
     );
   }
 }
 
-final class _SubscriptionsCard extends StatelessWidget {
-  const _SubscriptionsCard({
+final class _SubscriptionsList extends StatelessWidget {
+  const _SubscriptionsList({
     required this.subscriptions,
   });
+  final List<SubscriptionsList> subscriptions;
 
-  final Subscriptions subscriptions;
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: ListView.builder(
+        itemCount: subscriptions.length,
+        itemBuilder: (context, index) {
+          final subscription = subscriptions[index];
+          return _SubscriptionsListCard(
+            subscription: subscription,
+          );
+        },
+      ),
+    );
+  }
+}
+
+final class _SubscriptionsListCard extends StatelessWidget {
+  const _SubscriptionsListCard({
+    required this.subscription,
+  });
+
+  final SubscriptionsList subscription;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: ColorName.colorRed,
-      elevation: 8,
       child: ListTile(
-        title: Text(
-          subscriptions.name.toString(),
-          style: context.general.textTheme.titleLarge!.copyWith(
-            color: ColorName.colorWhite,
+        trailing: IconButton(
+          onPressed: () {},
+          icon: const Icon(CupertinoIcons.chevron_right),
+        ),
+        onTap: () {
+          NavigationService.instance.navigateToPage(
+            path: Routes.subscriptionsDetail,
+            data: subscription,
+          );
+        },
+        leading: ClipRRect(
+          borderRadius: context.border.normalBorderRadius,
+          child: CustomCachedNetworkImage(
+            height: context.sized.dynamicHeight(0.15),
+            width: context.sized.dynamicWidth(0.15),
+            imageUrl: subscription.subscriptionIcon ?? '',
           ),
         ),
-        subtitle: Text(
-          subscriptions.title.toString(),
-          style: context.general.textTheme.bodyLarge!.copyWith(
-            color: ColorName.colorWhite,
-          ),
+        title: Text(
+          subscription.subscriptionName ?? '',
+          style: context.general.textTheme.titleLarge?.copyWith(),
         ),
       ),
     );

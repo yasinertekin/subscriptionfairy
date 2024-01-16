@@ -1,16 +1,26 @@
 // State sınıfları
-import 'package:subscriptionfairy/product/model/subscriptions.dart';
+import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
 
+/// SubscriptionsState is a class that contains all the states
 abstract class SubscriptionsState {}
 
-class SubscriptionsLoading extends SubscriptionsState {}
+/// SubscriptionsLoading is a class that contains all the states
+final class SubscriptionsLoading extends SubscriptionsState {}
 
-class SubscriptionsLoaded extends SubscriptionsState {
+/// SubscriptionsLoaded is a class that contains all the states
+final class SubscriptionsLoaded extends SubscriptionsState {
+  /// Default constructor
   SubscriptionsLoaded(this.subscriptions);
-  final List<Subscriptions> subscriptions;
+
+  /// subscriptions
+  final List<SubscriptionsList> subscriptions;
 }
 
-class SubscriptionsError extends SubscriptionsState {
+/// SubscriptionsError is a class that contains all the states
+final class SubscriptionsError extends SubscriptionsState {
+  /// Default constructor
   SubscriptionsError(this.errorMessage);
+
+  /// errorMessage
   final String errorMessage;
 }
