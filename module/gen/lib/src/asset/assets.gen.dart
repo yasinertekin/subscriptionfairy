@@ -36,6 +36,10 @@ class $AssetsIconsGen {
 class $AssetsLottieGen {
   const $AssetsLottieGen();
 
+  /// File path: assets/lottie/lottie_loading.json
+  LottieGenImage get lottieLoading =>
+      const LottieGenImage('assets/lottie/lottie_loading.json');
+
   /// File path: assets/lottie/lottie_loading_cat.json
   LottieGenImage get lottieLoadingCat =>
       const LottieGenImage('assets/lottie/lottie_loading_cat.json');
@@ -45,7 +49,8 @@ class $AssetsLottieGen {
       const LottieGenImage('assets/lottie/lottie_welcome.json');
 
   /// List of all assets
-  List<LottieGenImage> get values => [lottieLoadingCat, lottieWelcome];
+  List<LottieGenImage> get values =>
+      [lottieLoading, lottieLoadingCat, lottieWelcome];
 }
 
 class Assets {

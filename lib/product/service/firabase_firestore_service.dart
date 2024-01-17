@@ -85,4 +85,11 @@ final class FirebaseFireStoreService extends FirebaseFireStoreServiceInterface {
       },
     );
   }
+
+  @override
+  Future<void> createUsers(Users users) {
+    return firestore.collection('users').doc(users.usersUid).set(
+          users.toJson(),
+        );
+  }
 }

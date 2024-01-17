@@ -17,6 +17,9 @@ abstract class FirebaseFireStoreServiceInterface {
   /// Get users subscriptions
   Future<Users> getUsersSubscriptions(String usersUid);
 
+  /// Create users
+  Future<void> createUsers(Users users);
+
   Future<void> updateSubscriptionList(
     String userId,
     Subscriptions newSubscription,
