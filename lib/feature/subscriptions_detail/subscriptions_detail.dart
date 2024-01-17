@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:subscriptionfairy/product/base/base_cubit.dart';
-import 'package:subscriptionfairy/product/base/base_state.dart';
+import 'package:subscriptionfairy/product/core/app_cubit.dart';
+import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
 import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
 

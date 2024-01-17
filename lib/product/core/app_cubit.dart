@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:subscriptionfairy/product/base/base_state.dart';
+import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/firebase/firebase_auth_service_manager.dart';
 import 'package:subscriptionfairy/product/model/subscriptions/subscriptions.dart';
 import 'package:subscriptionfairy/product/service/firebase_firestore_service_interface.dart';
