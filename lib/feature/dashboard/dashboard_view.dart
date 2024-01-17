@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: implementation_imports
 import 'package:gen/src/index.dart';
@@ -10,6 +9,7 @@ import 'package:subscriptionfairy/feature/home/home_view.dart';
 import 'package:subscriptionfairy/feature/subscriptions/subscriptions_view.dart';
 import 'package:subscriptionfairy/product/base/base_cubit.dart';
 import 'package:subscriptionfairy/product/base/base_state.dart';
+import 'package:subscriptionfairy/product/widget/custom_loading.dart';
 
 /// This is the view for the bottom navigation bar feature.
 final class DashboardView extends StatelessWidget {
@@ -23,9 +23,7 @@ final class DashboardView extends StatelessWidget {
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
         if (state is AppLoadingState) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const CustomLoading();
         } else if (state is AppLoadedState) {
           final appCubit = context.read<AppCubit>();
           final upLoadState = state;

@@ -30,6 +30,9 @@ final class StateInitialize extends StatelessWidget {
         BlocProvider<RegisterCubit>(
           create: (context) => RegisterCubit(
             FirebaseAuthServiceManager.instance.firebaseAuthService,
+            FirebaseFireStoreService(
+              FirebaseFirestoreServiceManager.instance.firebaseFirestore,
+            ),
           ),
         ),
         BlocProvider<AppCubit>(

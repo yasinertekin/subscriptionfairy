@@ -11,6 +11,7 @@ import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/mixin/custom_scaffold_messenger.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
 import 'package:subscriptionfairy/product/widget/custom_button.dart';
+import 'package:subscriptionfairy/product/widget/custom_loading.dart';
 import 'package:subscriptionfairy/product/widget/custom_text_field.dart';
 
 part 'widget/register_body.dart';
@@ -65,7 +66,7 @@ final class _CustomBlocConsumer extends StatelessWidget
       builder: (context, state) {
         final authCubit = context.watch<RegisterCubit>();
         if (state is RegisterStateLoading) {
-          return const Center(child: CircularProgressIndicator.adaptive());
+          return const CustomLoading();
         } else if (state is RegisterStateSuccess) {
         } else if (state is RegisterStateFailure) {
           WidgetsBinding.instance.addPostFrameCallback((_) {

@@ -10,6 +10,7 @@ import 'package:subscriptionfairy/product/initialize/navigation/navigation_servi
 import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/mixin/custom_scaffold_messenger.dart';
 import 'package:subscriptionfairy/product/widget/custom_button.dart';
+import 'package:subscriptionfairy/product/widget/custom_loading.dart';
 import 'package:subscriptionfairy/product/widget/custom_text_field.dart';
 import 'package:subscriptionfairy/product/widget/sign_in_with_google_button.dart';
 
@@ -55,7 +56,7 @@ final class _SignViewBuilder extends StatelessWidget
           final authCubit = context.watch<AuthenticationCubit>();
 
           if (state is AuthenticationLoading) {
-            return const Center(child: CircularProgressIndicator.adaptive());
+            return const CustomLoading();
           } else if (state is AuthenticationSuccess) {
           } else if (state is AuthenticationFailure) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
