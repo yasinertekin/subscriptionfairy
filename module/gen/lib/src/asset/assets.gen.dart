@@ -44,13 +44,17 @@ class $AssetsLottieGen {
   LottieGenImage get lottieLoadingCat =>
       const LottieGenImage('assets/lottie/lottie_loading_cat.json');
 
+  /// File path: assets/lottie/lottie_switch.json
+  LottieGenImage get lottieSwitch =>
+      const LottieGenImage('assets/lottie/lottie_switch.json');
+
   /// File path: assets/lottie/lottie_welcome.json
   LottieGenImage get lottieWelcome =>
       const LottieGenImage('assets/lottie/lottie_welcome.json');
 
   /// List of all assets
   List<LottieGenImage> get values =>
-      [lottieLoading, lottieLoadingCat, lottieWelcome];
+      [lottieLoading, lottieLoadingCat, lottieSwitch, lottieWelcome];
 }
 
 class Assets {

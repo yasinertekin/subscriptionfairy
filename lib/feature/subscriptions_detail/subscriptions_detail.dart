@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gen/src/index.dart';
+import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
@@ -61,8 +63,18 @@ final class SubscriptionDetails extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Expanded(
-                        child: Switch(
+                      InkWell(
+                        onTap: () {},
+                        child: Assets.lottie.lottieSwitch.lottie(
+                          package: 'gen',
+                          fit: BoxFit.cover,
+                          height: context.sized.dynamicHeight(0.2),
+                          width: 100,
+                          repeat: false,
+                          reverse: false,
+                        ),
+                      ),
+                      /* Switch(
                           value: state.users.subscriptionList!
                               .where(
                                 (element) =>
@@ -79,8 +91,7 @@ final class SubscriptionDetails extends StatelessWidget {
                                   );
                             }
                           },
-                        ),
-                      ),
+                        ),*/
                     ],
                   ),
                 ],
