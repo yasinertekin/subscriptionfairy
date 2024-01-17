@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gen/src/index.dart';
-import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
+import 'package:subscriptionfairy/product/mixin/succesfull_lottie.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
 import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
 
 /// SubscriptionDetails
-final class SubscriptionDetails extends StatelessWidget {
+final class SubscriptionDetails extends StatelessWidget with SuccesFullLottie {
   /// Default constructor
   const SubscriptionDetails({
     super.key,
@@ -24,81 +24,81 @@ final class SubscriptionDetails extends StatelessWidget {
     final state = context.watch<AppCubit>().state as AppLoadedState;
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          Assets.lottie.lottieSubIsSuccess.lottie(
+            package: 'gen',
+          ),
+        ],
         title: const Text('Subscription Details'),
       ),
-      body: Expanded(
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-          ),
-          itemCount: receivedSubscriptions.name?.length,
-          itemBuilder: (context, index) {
-            return Card(
-              child: Column(
-                children: [
-                  const Spacer(),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: CustomCachedNetworkImage(
-                      height: 100,
-                      width: 100,
-                      imageUrl:
-                          receivedSubscriptions.subscriptionIcon.toString(),
-                    ),
-                  ),
-                  const Spacer(),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              receivedSubscriptions
-                                      .name?[index].subscriptionPlan
-                                      .toString() ??
-                                  '',
-                            ),
-                            const Text('15TL'),
-                          ],
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Assets.lottie.lottieSwitch.lottie(
-                          package: 'gen',
-                          fit: BoxFit.cover,
-                          height: context.sized.dynamicHeight(0.2),
-                          width: 100,
-                          repeat: false,
-                          reverse: false,
-                        ),
-                      ),
-                      /* Switch(
-                          value: state.users.subscriptionList!
-                              .where(
-                                (element) =>
-                                    element.subId ==
-                                    receivedSubscriptions.name?[index].subId,
-                              )
-                              .isNotEmpty,
-                          onChanged: (value) {
-                            if (value) {
-                              context.read<AppCubit>().updateSubscriptionList(
-                                    receivedSubscriptions.name![index].copyWith(
-                                      isSubscribed: true,
-                                    ),
-                                  );
-                            }
-                          },
-                        ),*/
-                    ],
-                  ),
-                ],
-              ),
-            );
-          },
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
         ),
+        itemCount: receivedSubscriptions.name?.length,
+        itemBuilder: (context, index) {
+          return Card(
+            child: Column(
+              children: [
+                const Spacer(),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: CustomCachedNetworkImage(
+                    height: 100,
+                    width: 100,
+                    imageUrl: receivedSubscriptions.subscriptionIcon.toString(),
+                  ),
+                ),
+                const Spacer(),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            receivedSubscriptions.name?[index].subscriptionPlan
+                                    .toString() ??
+                                '',
+                          ),
+                          const Text('15TL'),
+                        ],
+                      ),
+                    ),
+                    Switch(
+                      value: state.users.subscriptionList!
+                          .where(
+                            (element) =>
+                                element.subId ==
+                                receivedSubscriptions.name?[index].subId,
+                          )
+                          .isNotEmpty,
+                      onChanged: (value) {
+                        if (value) {
+                          succesFullLottie(context);
+
+                          context.read<AppCubit>().updateSubscriptionList(
+                                receivedSubscriptions.name![index].copyWith(
+                                  isSubscribed: true,
+                                ),
+                              );
+                        } else {
+                          context.read<AppCubit>().deleteSubscriptionList(
+                                state.users.subscriptionList!.firstWhere(
+                                  (element) =>
+                                      element.subId ==
+                                      receivedSubscriptions.name![index].subId,
+                                ),
+                              );
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
