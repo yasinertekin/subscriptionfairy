@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:subscriptionfairy/feature/auth/register/view_model/register_cubit.dart';
 import 'package:subscriptionfairy/feature/auth/sign/view_model/auth_cubit.dart';
+import 'package:subscriptionfairy/feature/date_picker/date_picker_view_model.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/firebase/firebase_auth_service_manager.dart';
 import 'package:subscriptionfairy/product/firebase/firebase_firestore_service_manager.dart';
@@ -41,6 +43,9 @@ final class StateInitialize extends StatelessWidget {
               FirebaseFirestoreServiceManager.instance.firebaseFirestore,
             ),
           ),
+        ),
+        Provider<DatePickerViewModel>(
+          create: (context) => DatePickerViewModel(),
         ),
       ],
       child: child,

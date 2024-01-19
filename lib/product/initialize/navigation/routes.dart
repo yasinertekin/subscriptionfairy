@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:subscriptionfairy/feature/auth/register/view/register_view.dart';
 import 'package:subscriptionfairy/feature/auth/sign/view/sign_view.dart';
 import 'package:subscriptionfairy/feature/dashboard/dashboard_view.dart';
+import 'package:subscriptionfairy/feature/date_picker/date_picker.dart';
 import 'package:subscriptionfairy/feature/subscriptions_detail/subscriptions_detail.dart';
 
 /// [Routes] is a class that contains all the routes
@@ -23,6 +24,8 @@ final class Routes {
   /// [initialRoute] is a function that returns initial route
   static const String initialRoute = 'initialRoute';
 
+  static const String datePicker = 'datePicker';
+
   /// [getRouteTable] is a function that returns route table
   static Map<String, WidgetBuilder> getRouteTable() {
     return {
@@ -33,6 +36,7 @@ final class Routes {
       register: (context) => const RegisterView(),
       bottomNavigationBar: (context) => const DashboardView(),
       subscriptionsDetail: (context) => const SubscriptionDetails(),
+      datePicker: (context) => const DatePicker(),
     };
   }
 }

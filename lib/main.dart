@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:subscriptionfairy/feature/date_picker/date_picker.dart';
 import 'package:subscriptionfairy/firebase_options.dart';
+import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
+import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/initialize/state/state_initialize.dart';
 import 'package:subscriptionfairy/product/initialize/theme/custom_light_theme.dart';
 
@@ -27,6 +29,9 @@ final class _MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: CustomLightTheme().themeData,
       home: const DatePicker(),
+      routes: Routes.getRouteTable(),
+      initialRoute: Routes.initialRoute,
+      navigatorKey: NavigationService.instance.navigatorKey,
     );
   }
 }

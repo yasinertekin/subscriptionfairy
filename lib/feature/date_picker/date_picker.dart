@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-final class DatePicker extends StatelessWidget {
+/// DatePicker
+final class DatePicker extends StatefulWidget {
+  /// DatePicker constructor
   const DatePicker({super.key});
 
   @override
+  State<DatePicker> createState() => _DatePickerState();
+}
+
+class _DatePickerState extends State<DatePicker> {
+  @override
   Widget build(BuildContext context) {
+    final controller = DateRangePickerController();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -14,14 +22,23 @@ final class DatePicker extends StatelessWidget {
       ),
       body: SfDateRangePicker(
         selectionMode: DateRangePickerSelectionMode.range,
-        initialSelectedRange: PickerDateRange(
-          DateTime.now().subtract(
-            const Duration(days: 4),
-          ),
-          DateTime.now().add(
-            const Duration(days: 3),
-          ),
-        ),
+        showActionButtons: true,
+        initialDisplayDate: DateTime.now(),
+        showTodayButton: true,
+        controller: controller,
+        navigationDirection: DateRangePickerNavigationDirection.vertical,
+        onSubmit: (value) {
+          Navigator.pop(context, value);
+        },
+        onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
+          final startDate = args.value.startDate as DateTime;
+          final endDate = startDate.add(const Duration(days: 30));
+
+          controller.selectedRange = PickerDateRange(
+            startDate,
+            endDate,
+          );
+        },
       ),
     );
   }

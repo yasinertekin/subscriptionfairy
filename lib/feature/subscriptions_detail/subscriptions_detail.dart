@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
+import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
+import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/mixin/succesfull_lottie.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
 import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
@@ -21,6 +23,7 @@ final class SubscriptionDetails extends StatelessWidget with SuccesFullLottie {
     final receivedSubscriptions =
         ModalRoute.of(context)!.settings.arguments! as SubscriptionsList;
     final state = context.watch<AppCubit>().state as AppLoadedState;
+    final receivedSelectDate = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Subscription Details'),
@@ -67,17 +70,21 @@ final class SubscriptionDetails extends StatelessWidget with SuccesFullLottie {
                                 receivedSubscriptions.name?[index].subId,
                           )
                           .isNotEmpty,
-                      onChanged: (value) {
+                      onChanged: (value) async {
                         if (value) {
+                          ///  TO DO: Tarih seçimi yapılacak
+                          /// Veri geçti mi geçmedi mi kontrol edicektin en son
+                          await NavigationService.instance
+                              .navigateToPage(path: Routes.datePicker);
                           succesFullLottie(context);
 
-                          context.read<AppCubit>().updateSubscriptionList(
+                          await context.read<AppCubit>().updateSubscriptionList(
                                 receivedSubscriptions.name![index].copyWith(
                                   isSubscribed: true,
                                 ),
                               );
                         } else {
-                          context.read<AppCubit>().deleteSubscriptionList(
+                          await context.read<AppCubit>().deleteSubscriptionList(
                                 state.users.subscriptionList!.firstWhere(
                                   (element) =>
                                       element.subId ==
