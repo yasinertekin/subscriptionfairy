@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
+import 'package:subscriptionfairy/product/mixin/succesfull_lottie.dart';
+import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
 import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
 
 /// This is the view for the home feature.
@@ -22,12 +25,6 @@ final class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(
-          Icons.refresh,
-        ),
-      ),
       appBar: AppBar(
         title: const Text(
           'Home',
@@ -56,37 +53,62 @@ final class _HomeBlocBuilder extends StatelessWidget {
           child: ListView.builder(
             itemCount: state.users.subscriptionList?.length,
             itemBuilder: (context, index) {
-              return Card(
-                child: ListTile(
-                  leading: CustomCachedNetworkImage(
-                    imageUrl:
-                        state.users.subscriptionList?[index].subscriptionIcon ??
-                            '',
-                    height: 100,
-                    width: 100,
-                  ),
-                  title: Text(
-                    state.users.subscriptionList?[index].subscriptionPlan ?? '',
-                  ),
-                  subtitle: Text(
-                    state.users.subscriptionList?[index].price?.toString() ??
-                        '',
-                  ),
-                  trailing: Switch(
-                    onChanged: (value) async {
-                      await context.read<AppCubit>().deleteSubscriptionList(
-                            state.users.subscriptionList![index],
-                          );
-                    },
-                    value: state.users.subscriptionList?[index].isSubscribed ??
-                        false,
-                  ),
-                ),
+              return _CustomCard(
+                state: state,
+                index: index,
               );
             },
           ),
         ),
       ],
+    );
+  }
+}
+
+final class _CustomCard extends StatelessWidget with SuccesFullLottie {
+  const _CustomCard({
+    required this.index,
+    required this.state,
+  });
+
+  final AppLoadedState state;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const ProjectPadding.allSmall(),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: ListTile(
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: CustomCachedNetworkImage(
+              imageUrl:
+                  state.users.subscriptionList?[index].subscriptionIcon ?? '',
+              height: context.sized.dynamicHeight(0.1),
+              width: context.sized.dynamicWidth(0.2),
+            ),
+          ),
+          title: Text(
+            state.users.subscriptionList?[index].subscriptionPlan ?? '',
+          ),
+          subtitle: Text(
+            '${state.users.subscriptionList?[index].price} TL',
+          ),
+          trailing: Switch(
+            onChanged: (value) async {
+              succesFullLottie(context);
+              await context.read<AppCubit>().deleteSubscriptionList(
+                    state.users.subscriptionList![index],
+                  );
+            },
+            value: state.users.subscriptionList?[index].isSubscribed ?? false,
+          ),
+        ),
+      ),
     );
   }
 }

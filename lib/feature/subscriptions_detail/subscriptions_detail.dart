@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gen/src/index.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/mixin/succesfull_lottie.dart';
@@ -24,11 +23,6 @@ final class SubscriptionDetails extends StatelessWidget with SuccesFullLottie {
     final state = context.watch<AppCubit>().state as AppLoadedState;
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          Assets.lottie.lottieSubIsSuccess.lottie(
-            package: 'gen',
-          ),
-        ],
         title: const Text('Subscription Details'),
       ),
       body: GridView.builder(

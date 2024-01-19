@@ -11,17 +11,22 @@ mixin SuccesFullLottie {
         child: SizedBox(
           width: context.sized.dynamicWidth(0.7),
           height: context.sized.dynamicHeight(0.7),
-          child: Assets.lottie.lottieSubIsSuccess.lottie(
-            package: 'gen',
-            fit: BoxFit.contain,
-            onLoaded: (composition) {
-              Future.delayed(
-                const Duration(seconds: 3),
-                () {
-                  overlayEntry?.remove(); // Use the safe navigation operator
+          child: Column(
+            children: [
+              Assets.lottie.lottieSubIsSuccess.lottie(
+                package: 'gen',
+                fit: BoxFit.contain,
+                onLoaded: (composition) {
+                  Future.delayed(
+                    const Duration(seconds: 3),
+                    () {
+                      overlayEntry
+                          ?.remove(); // Use the safe navigation operator
+                    },
+                  );
                 },
-              );
-            },
+              ),
+            ],
           ),
         ),
       ),

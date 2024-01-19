@@ -8,6 +8,7 @@ final class CustomCachedNetworkImage extends StatelessWidget {
     required this.imageUrl,
     required this.height,
     required this.width,
+    this.fit = BoxFit.cover,
     super.key,
   });
 
@@ -20,6 +21,8 @@ final class CustomCachedNetworkImage extends StatelessWidget {
   /// width
   final double width;
 
+  final BoxFit fit;
+
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
@@ -28,7 +31,7 @@ final class CustomCachedNetworkImage extends StatelessWidget {
         child: CircularProgressIndicator.adaptive(),
       ),
       errorWidget: (context, url, error) => const Icon(Icons.error),
-      fit: BoxFit.cover,
+      fit: fit,
       height: height,
       width: width,
     );
