@@ -9,7 +9,7 @@ final class CustomTextField extends StatelessWidget {
     required this.keyboardType,
     required this.validatorText,
     required this.formKey,
-    this.textInputAction = TextInputAction.next,
+    required this.textInputAction,
     this.obscureText = false,
     super.key,
   });
@@ -38,6 +38,7 @@ final class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final customTextFieldChangeNotifier = CustomTextFieldChangeNotifier();
+
     return ListenableBuilder(
       listenable: customTextFieldChangeNotifier,
       builder: (context, child) => TextFormField(
@@ -63,9 +64,6 @@ final class CustomTextField extends StatelessWidget {
                   ),
                 )
               : null,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
         ),
       ),
     );

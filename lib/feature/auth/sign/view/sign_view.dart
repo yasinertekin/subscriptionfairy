@@ -143,6 +143,7 @@ final class _CustomForm extends StatelessWidget {
       child: Column(
         children: [
           CustomTextField(
+            textInputAction: TextInputAction.next,
             formKey: formKey,
             hintText: 'Email',
             controller: emailController,

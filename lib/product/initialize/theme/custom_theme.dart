@@ -4,4 +4,6 @@ import 'package:flutter/material.dart';
 abstract class CustomTheme {
   /// The primary [ThemeData] for the application.
   ThemeData get themeData;
+
+  InputDecorationTheme get inputDecorationTheme;
 }

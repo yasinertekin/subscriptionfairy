@@ -7,6 +7,7 @@ final class _RegisterBody extends StatelessWidget with CustomScaffoldMessenger {
     required this.passwordController,
     required this.confirmPasswordController,
     required this.authCubit,
+    required this.isObscure,
   });
 
   final GlobalKey<FormState> formKey;
@@ -14,6 +15,7 @@ final class _RegisterBody extends StatelessWidget with CustomScaffoldMessenger {
   final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
   final RegisterCubit authCubit;
+  final bool isObscure;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ final class _RegisterBody extends StatelessWidget with CustomScaffoldMessenger {
           const _RegisterHeader(),
           const Spacer(),
           _CustomForm(
+            isObscure: isObscure,
             formKey: formKey,
             emailController: emailController,
             passwordController: passwordController,

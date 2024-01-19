@@ -4,20 +4,13 @@ import 'package:subscriptionfairy/product/model/users/users.dart';
 import 'package:subscriptionfairy/product/service/firebase_auth_interface.dart';
 import 'package:subscriptionfairy/product/service/firebase_firestore_service_interface.dart';
 
-/// RegisterCubit
-final class RegisterCubit extends Cubit<RegisterState> {
-  /// Default constructor
+class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit(this.authService, this.firebaseService)
-      : super(
-          RegisterStateInitial(),
-        );
+      : super(RegisterStateInitial());
 
-  /// authService
   final IFirebaseAuthInterface authService;
-
   final FirebaseFireStoreServiceInterface firebaseService;
 
-  /// Create users
   Future<void> createUsers(Users users) async {
     try {
       await firebaseService.createUsers(users);
@@ -26,11 +19,7 @@ final class RegisterCubit extends Cubit<RegisterState> {
     }
   }
 
-  /// Sign Up
-  Future<void> signUpWithEmailAndPassword(
-    String email,
-    String password,
-  ) async {
+  Future<void> signUpWithEmailAndPassword(String email, String password) async {
     emit(RegisterStateLoading());
     try {
       final userCredential =
@@ -45,9 +34,11 @@ final class RegisterCubit extends Cubit<RegisterState> {
         ),
       );
     } catch (e) {
-      emit(
-        RegisterStateFailure('Sign in failed: $e'),
-      );
+      emit(RegisterStateFailure('Sign in failed: $e'));
     }
+  }
+
+  void togglePasswordVisibility(bool isObscure) {
+    emit(RegisterStateWithPassword(isObscure: isObscure));
   }
 }

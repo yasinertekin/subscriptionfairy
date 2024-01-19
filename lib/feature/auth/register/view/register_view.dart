@@ -12,7 +12,6 @@ import 'package:subscriptionfairy/product/mixin/custom_scaffold_messenger.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
 import 'package:subscriptionfairy/product/widget/custom_button.dart';
 import 'package:subscriptionfairy/product/widget/custom_loading.dart';
-import 'package:subscriptionfairy/product/widget/custom_text_field.dart';
 
 part 'widget/register_body.dart';
 part 'widget/register_header.dart';
@@ -64,6 +63,11 @@ final class _CustomBlocConsumer extends StatelessWidget
         }
       },
       builder: (context, state) {
+        var isObscure = true;
+
+        if (state is RegisterStateWithPassword) {
+          isObscure = state.isObscure;
+        }
         final authCubit = context.watch<RegisterCubit>();
         if (state is RegisterStateLoading) {
           return const CustomLoading();
@@ -79,6 +83,7 @@ final class _CustomBlocConsumer extends StatelessWidget
           passwordController: passwordController,
           confirmPasswordController: confirmPasswordController,
           authCubit: authCubit,
+          isObscure: isObscure,
         );
       },
     );
@@ -91,6 +96,7 @@ final class _CustomForm extends StatelessWidget {
     required this.emailController,
     required this.passwordController,
     required this.confirmPasswordController,
+    required this.isObscure,
   });
 
   final GlobalKey<FormState> formKey;
@@ -98,38 +104,52 @@ final class _CustomForm extends StatelessWidget {
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
+  final bool isObscure;
 
   @override
   Widget build(BuildContext context) {
+    final authCubit = context.watch<RegisterCubit>().state;
     return Form(
       key: formKey,
       child: Column(
         children: [
-          CustomTextField(
-            hintText: StringConstants.email,
+          TextFormField(
             controller: emailController,
             keyboardType: TextInputType.emailAddress,
-            validatorText: StringConstants.emailIsRequired,
-            formKey: formKey,
+            textInputAction: TextInputAction.next,
+            decoration: const InputDecoration(
+              labelText: StringConstants.email,
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return StringConstants.emailIsRequired;
+              }
+              return null;
+            },
           ),
-          context.sized.emptySizedHeightBoxLow,
-          CustomTextField(
-            formKey: formKey,
-            hintText: StringConstants.password,
-            controller: passwordController,
-            keyboardType: TextInputType.visiblePassword,
-            obscureText: true,
-            validatorText: StringConstants.passwordIsRequired,
-          ),
-          context.sized.emptySizedHeightBoxLow,
-          CustomTextField(
-            formKey: formKey,
-            hintText: StringConstants.confirmPassword,
+          TextFormField(
             controller: confirmPasswordController,
-            keyboardType: TextInputType.visiblePassword,
-            textInputAction: TextInputAction.done,
-            obscureText: true,
-            validatorText: StringConstants.passwordIsRequired,
+            keyboardType:
+                isObscure ? TextInputType.visiblePassword : TextInputType.text,
+            decoration: InputDecoration(
+              labelText: StringConstants.email,
+              suffixIcon: IconButton(
+                onPressed: () {
+                  context.read<RegisterCubit>().togglePasswordVisibility(
+                        !isObscure,
+                      );
+                },
+                icon: Icon(
+                  isObscure ? Icons.visibility : Icons.visibility_off,
+                ),
+              ),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return StringConstants.emailIsRequired;
+              }
+              return null;
+            },
           ),
           context.sized.emptySizedHeightBoxNormal,
         ],

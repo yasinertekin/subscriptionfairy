@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: implementation_imports
 import 'package:gen/src/index.dart';
@@ -80,8 +81,11 @@ List<Widget> _buildScreens(
     SubscriptionsView(
       state: state,
     ),
-    Center(
-      child: Text(FirebaseAuth.instance.currentUser?.uid ?? 'No user'),
+    ElevatedButton(
+      onPressed: () {
+        FirebaseAuth.instance.signOut();
+      },
+      child: const Text('Sign Out'),
     ),
   ];
 }

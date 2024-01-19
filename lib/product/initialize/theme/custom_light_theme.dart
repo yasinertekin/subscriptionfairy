@@ -8,5 +8,13 @@ final class CustomLightTheme implements CustomTheme {
   ThemeData get themeData => ThemeData(
         useMaterial3: true,
         colorScheme: CustomColorScheme.lightColorScheme,
+        inputDecorationTheme: inputDecorationTheme,
+      );
+
+  @override
+  InputDecorationTheme get inputDecorationTheme => InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
       );
 }
