@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:subscriptionfairy/feature/subscriptions_detail/subscriptions_detail_view_model.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
@@ -24,6 +25,7 @@ final class SubscriptionDetails extends StatelessWidget with SuccesFullLottie {
         ModalRoute.of(context)!.settings.arguments! as SubscriptionsList;
     final state = context.watch<AppCubit>().state as AppLoadedState;
     final receivedSelectDate = ModalRoute.of(context)!.settings.arguments;
+    final subscriptionsDetailViewModel = SubscriptionsDetailViewModel();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Subscription Details'),
@@ -62,37 +64,50 @@ final class SubscriptionDetails extends StatelessWidget with SuccesFullLottie {
                         ],
                       ),
                     ),
-                    Switch(
-                      value: state.users.subscriptionList!
-                          .where(
-                            (element) =>
-                                element.subId ==
-                                receivedSubscriptions.name?[index].subId,
-                          )
-                          .isNotEmpty,
-                      onChanged: (value) async {
-                        if (value) {
-                          ///  TO DO: Tarih seçimi yapılacak
-                          /// Veri geçti mi geçmedi mi kontrol edicektin en son
-                          await NavigationService.instance
-                              .navigateToPage(path: Routes.datePicker);
-                          succesFullLottie(context);
+                    ListenableBuilder(
+                      listenable: subscriptionsDetailViewModel,
+                      builder: (context, child) => Switch(
+                        value: state.users.subscriptionList!
+                            .where(
+                              (element) =>
+                                  element.subId ==
+                                  receivedSubscriptions.name?[index].subId,
+                            )
+                            .isNotEmpty,
+                        onChanged: (value) async {
+                          if (value) {
+                            await NavigationService.instance.navigateToPage(
+                              path: Routes.datePicker,
+                              data: subscriptionsDetailViewModel,
+                            );
 
-                          await context.read<AppCubit>().updateSubscriptionList(
-                                receivedSubscriptions.name![index].copyWith(
-                                  isSubscribed: true,
-                                ),
-                              );
-                        } else {
-                          await context.read<AppCubit>().deleteSubscriptionList(
-                                state.users.subscriptionList!.firstWhere(
-                                  (element) =>
-                                      element.subId ==
-                                      receivedSubscriptions.name![index].subId,
-                                ),
-                              );
-                        }
-                      },
+                            await context
+                                .read<AppCubit>()
+                                .updateSubscriptionList(
+                                  receivedSubscriptions.name![index].copyWith(
+                                    isSubscribed: true,
+                                    startDate: subscriptionsDetailViewModel
+                                        .selectedDate,
+                                    endDate: subscriptionsDetailViewModel
+                                        .selectedDate
+                                        .add(const Duration(days: 30)),
+                                  ),
+                                );
+                            succesFullLottie(context);
+                          } else {
+                            await context
+                                .read<AppCubit>()
+                                .deleteSubscriptionList(
+                                  state.users.subscriptionList!.firstWhere(
+                                    (element) =>
+                                        element.subId ==
+                                        receivedSubscriptions
+                                            .name![index].subId,
+                                  ),
+                                );
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),

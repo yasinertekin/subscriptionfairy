@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:subscriptionfairy/feature/subscriptions_detail/subscriptions_detail_view_model.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 /// DatePicker
-final class DatePicker extends StatefulWidget {
+final class DatePicker extends StatelessWidget {
   /// DatePicker constructor
   const DatePicker({super.key});
 
   @override
-  State<DatePicker> createState() => _DatePickerState();
-}
-
-class _DatePickerState extends State<DatePicker> {
-  @override
   Widget build(BuildContext context) {
+    final receivedSelectDate = ModalRoute.of(context)!.settings.arguments!
+        as SubscriptionsDetailViewModel;
+
     final controller = DateRangePickerController();
     return Scaffold(
       appBar: AppBar(
@@ -32,6 +31,7 @@ class _DatePickerState extends State<DatePicker> {
         },
         onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
           final startDate = args.value.startDate as DateTime;
+          receivedSelectDate.onDateSelected(startDate);
           final endDate = startDate.add(const Duration(days: 30));
 
           controller.selectedRange = PickerDateRange(
