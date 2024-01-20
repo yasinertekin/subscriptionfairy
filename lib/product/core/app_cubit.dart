@@ -63,4 +63,21 @@ final class AppCubit extends Cubit<AppState> {
       emit(AppErrorState('Error deleting subscription list: $e'));
     }
   }
+
+  /// This function updates the subscriptions.
+  Future<void> updateSubscriptions(
+    Subscriptions newSubscription,
+  ) async {
+    try {
+      await firebaseService.updateSubscriptions(
+        newSubscription,
+        FirebaseAuthServiceManager
+            .instance.firebaseAuthService.firebaseAuth.currentUser!.uid,
+      );
+      // You might want to reload the data after updating the subscriptions.
+      await fetchData();
+    } catch (e) {
+      emit(AppErrorState('Error updating subscriptions: $e'));
+    }
+  }
 }

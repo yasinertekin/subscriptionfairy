@@ -30,4 +30,10 @@ abstract class FirebaseFireStoreServiceInterface {
     String userId,
     Subscriptions newSubscription,
   );
+
+  /// Update Subscriptions
+  Future<void> updateSubscriptions(
+    Subscriptions newSubscription,
+    String userId,
+  );
 }
