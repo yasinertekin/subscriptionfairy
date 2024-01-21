@@ -15,4 +15,9 @@ final class NavigationService {
   Future<void> navigateToPage({required String path, Object? data}) async {
     await navigatorKey.currentState!.pushNamed(path, arguments: data);
   }
+
+  /// Navigate to back
+  Future<void> navigateToBack() async {
+    navigatorKey.currentState!.pop();
+  }
 }
