@@ -12,16 +12,16 @@ mixin SuccesFullLottie {
           width: context.sized.dynamicWidth(0.7),
           height: context.sized.dynamicHeight(0.7),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Assets.lottie.lottieSubIsSuccess.lottie(
+              Assets.lottie.lottieExplosion.lottie(
                 package: 'gen',
                 fit: BoxFit.contain,
                 onLoaded: (composition) {
                   Future.delayed(
-                    const Duration(seconds: 3),
+                    const Duration(seconds: 1),
                     () {
-                      overlayEntry
-                          ?.remove(); // Use the safe navigation operator
+                      overlayEntry?.remove();
                     },
                   );
                 },

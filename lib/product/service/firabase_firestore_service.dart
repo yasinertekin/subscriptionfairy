@@ -75,7 +75,7 @@ final class FirebaseFireStoreService extends FirebaseFireStoreServiceInterface {
     String userId,
     Subscriptions newSubscription,
   ) {
-    return firestore.collection('users').doc(userId).set(
+    return firestore.collection('users').doc(userId).update(
       {
         'subscription_list': FieldValue.arrayRemove(
           [
@@ -96,19 +96,19 @@ final class FirebaseFireStoreService extends FirebaseFireStoreServiceInterface {
   @override
   Future<void> updateSubscriptions(
     Subscriptions newSubscription,
+    Subscriptions oldSubscription,
     String userId,
   ) {
-    return firestore.collection('users').doc(userId).set(
-      {
-        'subscription_list': FieldValue.arrayUnion(
-          [
-            newSubscription.toJson(),
-          ],
-        ),
-      },
-      SetOptions(
-        merge: false,
-      ), // Bu seçenek, belgeyi birleştirerek mevcut alanları korur
-    );
+    // Get a reference to the user document
+    final userDocRef = firestore.collection('users').doc(userId);
+
+    // Update the subscriptions atomically
+    return userDocRef.update({
+      'subscription_list': FieldValue.arrayRemove([oldSubscription.toJson()]),
+    }).then((_) {
+      return userDocRef.update({
+        'subscription_list': FieldValue.arrayUnion([newSubscription.toJson()]),
+      });
+    });
   }
 }
