@@ -1,15 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:subscriptionfairy/feature/auth/register/view_model/register_state.dart';
+import 'package:subscriptionfairy/feature/auth/authantication_state/authantication_state.dart';
 import 'package:subscriptionfairy/product/model/users/users.dart';
 import 'package:subscriptionfairy/product/service/auth/firebase_auth_interface.dart';
 import 'package:subscriptionfairy/product/service/firestore/firebase_firestore_service_interface.dart';
 
 /// RegisterCubit is a class that extends Cubit and is used to manage
 /// the state of the RegisterView.
-final class RegisterCubit extends Cubit<RegisterState> {
+final class RegisterCubit extends Cubit<AuthenticationState> {
   /// RegisterCubit constructor
   RegisterCubit(this.authService, this.firebaseService)
-      : super(RegisterStateInitial());
+      : super(AuthenticationInitial());
 
   /// authService is an instance of the IFirebaseAuthInterface
   final IFirebaseAuthInterface authService;
@@ -22,18 +22,18 @@ final class RegisterCubit extends Cubit<RegisterState> {
     try {
       await firebaseService.createUsers(users);
     } catch (e) {
-      emit(RegisterStateFailure('Error creating users: $e'));
+      emit(AuthenticationFailure('Error creating users: $e'));
     }
   }
 
   /// signInWithEmailAndPassword is a method that
   ///  signs in a user with email and password
   Future<void> signUpWithEmailAndPassword(String email, String password) async {
-    emit(RegisterStateLoading());
+    emit(AuthenticationLoading());
     try {
       final userCredential =
           await authService.createUserWithEmailAndPassword(email, password);
-      emit(RegisterStateSuccess(userCredential));
+      emit(AuthenticationSuccess(userCredential));
       await createUsers(
         Users(
           email: email,
@@ -43,13 +43,7 @@ final class RegisterCubit extends Cubit<RegisterState> {
         ),
       );
     } catch (e) {
-      emit(RegisterStateFailure('Sign in failed: $e'));
+      emit(AuthenticationFailure('Sign in failed: $e'));
     }
-  }
-
-  /// togglePasswordVisibility is a method
-  ///  that toggles the password visibility
-  void togglePasswordVisibility(bool isObscure) {
-    emit(RegisterStateWithPassword(isObscure: isObscure));
   }
 }
