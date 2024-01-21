@@ -67,9 +67,11 @@ final class AppCubit extends Cubit<AppState> {
   /// This function updates the subscriptions.
   Future<void> updateSubscriptions(
     Subscriptions newSubscription,
+    Subscriptions oldSubscription,
   ) async {
     try {
       await firebaseService.updateSubscriptions(
+        oldSubscription,
         newSubscription,
         FirebaseAuthServiceManager
             .instance.firebaseAuthService.firebaseAuth.currentUser!.uid,
