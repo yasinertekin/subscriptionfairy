@@ -9,7 +9,6 @@ import 'package:subscriptionfairy/product/mixin/succesfull_lottie.dart';
 import 'package:subscriptionfairy/product/model/subscriptions/subscriptions.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
 import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 /// This is the view for the home feature.
 final class HomeSubscriptionCard extends StatefulWidget with SuccesFullLottie {
@@ -34,10 +33,6 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
     with HomeSubscriptionCardMixin {
   @override
   Widget build(BuildContext context) {
-    controller.selectedRange = PickerDateRange(
-      widget.state.users.subscriptionList?[widget.index].startDate,
-      widget.state.users.subscriptionList?[widget.index].endDate,
-    );
     final startDate =
         widget.state.users.subscriptionList?[widget.index].startDate;
     final formattedDate = DateFormat.yMMMd().format(

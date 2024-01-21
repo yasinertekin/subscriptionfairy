@@ -4,6 +4,7 @@ import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/feature/home/view/widget/home_subscription_card.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
+import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 /// This is the view for the home feature.
@@ -25,8 +26,12 @@ final class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Home',
+        centerTitle: false,
+        title: Text(
+          'My Subscriptions',
+          style: context.general.textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: _HomeBlocBuilder(
@@ -64,16 +69,23 @@ final class _HomeBlocBuilder extends StatelessWidget {
   }
 }
 
-final class DateRangePicker extends StatelessWidget {
-  const DateRangePicker({
+/// This is the view for the home date range picker.
+final class HomeDateRangePicker extends StatelessWidget {
+  /// This is the constructor for the home date range picker.
+  const HomeDateRangePicker({
     required this.controller,
     required this.state,
     required this.index,
     super.key,
   });
 
+  /// This is the controller for the home date range picker.
   final DateRangePickerController controller;
+
+  /// This is the state for the home date range picker.
   final AppLoadedState state;
+
+  /// This is the index for the home date range picker.
   final int index;
 
   @override
@@ -87,9 +99,6 @@ final class DateRangePicker extends StatelessWidget {
         initialSelectedDate: state.users.subscriptionList?[index].startDate,
         selectionMode: DateRangePickerSelectionMode.range,
         initialDisplayDate: state.users.subscriptionList?[index].startDate,
-        onSubmit: (value) {
-          Navigator.pop(context, value);
-        },
         initialSelectedRange: PickerDateRange(
           state.users.subscriptionList?[index].startDate,
           state.users.subscriptionList?[index].endDate,
@@ -100,8 +109,10 @@ final class DateRangePicker extends StatelessWidget {
           final newSubscription = state.users.subscriptionList![index].copyWith(
             startDate: argsDate,
             endDate: argsDate.add(
-              const Duration(
-                days: 30,
+              Duration(
+                days: state.users.subscriptionList![index].subscriptionLength
+                        ?.toInt() ??
+                    0,
               ),
             ),
           );
@@ -109,9 +120,38 @@ final class DateRangePicker extends StatelessWidget {
             newSubscription.startDate,
             newSubscription.endDate,
           );
-
-          await context.read<AppCubit>().updateSubscriptions(newSubscription);
         },
+        onCancel: () {
+          Navigator.pop(context);
+        },
+        onSubmit: state.users.subscriptionList?[index].startDate == null
+            ? null
+            : (Object? value) async {
+                final pickerDateRange = value! as PickerDateRange;
+                final argsDate = pickerDateRange.startDate!;
+                final newSubscription =
+                    state.users.subscriptionList![index].copyWith(
+                  startDate: argsDate,
+                  endDate: argsDate.add(
+                    Duration(
+                      days: state
+                              .users.subscriptionList![index].subscriptionLength
+                              ?.toInt() ??
+                          0,
+                    ),
+                  ),
+                );
+                controller.selectedRange = PickerDateRange(
+                  newSubscription.startDate,
+                  newSubscription.endDate,
+                );
+
+                await context.read<AppCubit>().updateSubscriptions(
+                      state.users.subscriptionList![index],
+                      newSubscription,
+                    );
+                await NavigationService.instance.navigateToBack();
+              },
       ),
     );
   }
