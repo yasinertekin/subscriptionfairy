@@ -43,4 +43,24 @@ final class StringConstants {
 
   /// Home View
   static const String mySubscriptions = 'My Subscriptions';
+
+  /// start date
+  static const String startDate = 'Start Date';
+
+  /// end date
+  static const String endDate = 'End Date';
+
+  /// subscription details
+  static const String subscriptionsDetails = 'Subscription Details';
+
+  /// total prices
+  static const String totalPrices = 'Total Prices';
+
+  /// total subscription
+  static const String totalSubscription = 'Total Subscription';
+
+  /// active subscriptions
+  static const String activeSubscriptions = 'Subscription Name';
+
+  static const String tl = 'TL';
 }

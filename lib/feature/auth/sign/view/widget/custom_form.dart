@@ -1,4 +1,4 @@
-part of '../register_view.dart';
+part of '../sign_view.dart';
 
 final class _CustomForm extends StatelessWidget {
   const _CustomForm({
@@ -8,7 +8,6 @@ final class _CustomForm extends StatelessWidget {
   });
 
   final GlobalKey<FormState> formKey;
-
   final TextEditingController emailController;
   final TextEditingController passwordController;
 
@@ -19,22 +18,22 @@ final class _CustomForm extends StatelessWidget {
       child: Column(
         children: [
           CustomTextField(
-            formKey: formKey,
             textInputAction: TextInputAction.next,
-            validatorText: StringConstants.emailIsRequired,
-            controller: emailController,
+            formKey: formKey,
             hintText: StringConstants.email,
+            controller: emailController,
             keyboardType: TextInputType.emailAddress,
+            validatorText: StringConstants.emailIsRequired,
           ),
           context.sized.emptySizedHeightBoxLow,
           CustomTextField(
             formKey: formKey,
-            textInputAction: TextInputAction.done,
-            validatorText: StringConstants.passwordIsRequired,
-            controller: passwordController,
-            obscureText: true,
             hintText: StringConstants.password,
+            controller: passwordController,
             keyboardType: TextInputType.visiblePassword,
+            obscureText: true,
+            validatorText: StringConstants.passwordIsRequired,
+            textInputAction: TextInputAction.done,
           ),
         ],
       ),

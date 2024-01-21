@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/feature/home/view_model/home_view_model.dart';
 import 'package:subscriptionfairy/feature/home/view_model/mixin/home_subscription_card_mixin.dart';
+import 'package:subscriptionfairy/product/constants/string_constants.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/mixin/succesfull_lottie.dart';
@@ -34,33 +34,29 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
     with HomeSubscriptionCardMixin, SuccesFullLottie {
   @override
   Widget build(BuildContext context) {
-    final startDate =
-        widget.state.users.subscriptionList?[widget.index].startDate;
-    final formattedDate = DateFormat.yMMMd().format(
-      startDate ?? DateTime.now(),
-    );
-    final endDate = widget.state.users.subscriptionList?[widget.index].endDate;
-    final formattedEndDate = DateFormat.yMMMd().format(
-      endDate ?? DateTime.now(),
-    );
+    final startDate = getSubscriptionStartDate();
+    final endDate = getSubscriptionEndDate();
 
-    final subscriptionList = widget.state.users.subscriptionList?[widget.index];
+    final formattedDate = getFormattedDate(startDate);
+    final formattedEndDate = getFormattedDate(endDate);
+
+    final subscriptionList = getSubscriptionList();
     final cubit = context.read<AppCubit>();
 
-    final homeViewModel = HomeViewModel();
+    const elevation = 10.0;
 
     return Padding(
       padding: const ProjectPadding.allSmall(),
       child: Card(
-        elevation: 10,
+        elevation: elevation,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: context.border.normalBorderRadius,
         ),
         child: ListenableBuilder(
           listenable: homeViewModel,
           builder: (context, child) => ExpansionTile(
             leading: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: context.border.normalBorderRadius,
               child: CustomCachedNetworkImage(
                 imageUrl: subscriptionList?.subscriptionIcon ?? '',
                 height: context.sized.dynamicHeight(0.1),
@@ -71,26 +67,11 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
               subscriptionList?.name ?? '',
             ),
             subtitle: Text(
-              '${subscriptionList?.price ?? ''} TL',
+              '${subscriptionList?.price ?? ''} \$',
             ),
             trailing: homeViewModel.isProcessing
                 ? const CircularProgressIndicator()
-                : Switch(
-                    onChanged: (value) async {
-                      homeViewModel.changeProcessing();
-                      succesFullLottie(
-                        context,
-                      );
-                      await cubit.updateSubscriptions(
-                        subscriptionList!,
-                        subscriptionList.copyWith(
-                          isSubscribed: value,
-                        ),
-                      );
-                      homeViewModel.changeProcessing();
-                    },
-                    value: subscriptionList?.isSubscribed ?? false,
-                  ),
+                : _customHomeSwitch(context, cubit, subscriptionList),
             children: [
               _subscriptionDateListTile(
                 formattedDate,
@@ -105,6 +86,29 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
     );
   }
 
+  Switch _customHomeSwitch(
+    BuildContext context,
+    AppCubit cubit,
+    Subscriptions? subscriptionList,
+  ) {
+    return Switch(
+      onChanged: (value) async {
+        homeViewModel.changeProcessing();
+        succesFullLottie(
+          context,
+        );
+        await cubit.updateSubscriptions(
+          subscriptionList!,
+          subscriptionList.copyWith(
+            isSubscribed: value,
+          ),
+        );
+        homeViewModel.changeProcessing();
+      },
+      value: subscriptionList?.isSubscribed ?? false,
+    );
+  }
+
   ListTile _subscriptionDateListTile(
     String formattedDate,
     String formattedEndDate,
@@ -112,10 +116,10 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
   ) {
     return ListTile(
       title: Text(
-        'Başlangıç Tarihi: $formattedDate',
+        '${StringConstants.startDate} $formattedDate',
       ),
       subtitle: Text(
-        'Bitiş Tarihi: $formattedEndDate',
+        '${StringConstants.endDate} $formattedEndDate',
       ),
       trailing: IconButton(
         onPressed: () {

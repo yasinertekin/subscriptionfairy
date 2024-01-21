@@ -21,6 +21,9 @@ final class _RegisterHeader extends StatelessWidget {
           Text.rich(
             TextSpan(
               text: 'Already have an account? ',
+              style: context.general.textTheme.bodyLarge?.copyWith(
+                color: ColorName.colorGrey,
+              ),
               children: [
                 WidgetSpan(
                   child: GestureDetector(

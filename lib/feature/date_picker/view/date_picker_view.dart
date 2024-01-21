@@ -31,21 +31,33 @@ final class DatePickerView extends StatelessWidget {
           NavigationService.instance.navigateToBack();
         },
         onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
-          final startDate = args.value.startDate as DateTime;
-          receivedSelectDate.onDateSelected(startDate);
-          final endDate = startDate.add(
-            Duration(
-              days: receivedSelectDate.endDate
-                  .toInt(), // receivedSelectDate.endDate.toInt(),
-            ),
-          );
-
-          controller.selectedRange = PickerDateRange(
-            startDate,
-            endDate,
+          _selectDate(
+            args,
+            receivedSelectDate,
+            controller,
           );
         },
       ),
+    );
+  }
+
+  void _selectDate(
+    DateRangePickerSelectionChangedArgs args,
+    SubscriptionsDetailViewModel receivedSelectDate,
+    DateRangePickerController controller,
+  ) {
+    final startDate = args.value.startDate as DateTime;
+    receivedSelectDate.onDateSelected(startDate);
+    final endDate = startDate.add(
+      Duration(
+        days: receivedSelectDate.endDate
+            .toInt(), // receivedSelectDate.endDate.toInt(),
+      ),
+    );
+
+    controller.selectedRange = PickerDateRange(
+      startDate,
+      endDate,
     );
   }
 }
