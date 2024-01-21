@@ -17,7 +17,9 @@ final class NavigationService {
   }
 
   /// Navigate to back
-  Future<void> navigateToBack() async {
-    navigatorKey.currentState!.pop();
+  Future<void> navigateToBack({Object? data}) async {
+    navigatorKey.currentState!.pop(
+      data,
+    );
   }
 }

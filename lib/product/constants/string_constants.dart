@@ -41,4 +41,7 @@ final class StringConstants {
 
   /// passwords do not match
   static const String passwordDoNotMatch = 'Passwords do not match';
+
+  /// Home View
+  static const String mySubscriptions = 'My Subscriptions';
 }

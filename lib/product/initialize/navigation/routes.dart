@@ -24,6 +24,7 @@ final class Routes {
   /// [initialRoute] is a function that returns initial route
   static const String initialRoute = 'initialRoute';
 
+  /// [datePicker] is a function that returns date picker
   static const String datePicker = 'datePicker';
 
   /// [getRouteTable] is a function that returns route table

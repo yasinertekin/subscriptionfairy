@@ -72,10 +72,16 @@ final class SubscriptionDetails extends StatelessWidget with SuccesFullLottie {
                             .where(
                               (element) =>
                                   element.subId ==
-                                  receivedSubscriptions.name?[index].subId,
+                                      receivedSubscriptions
+                                          .name?[index].subId &&
+                                  element.isSubscribed == true,
                             )
                             .isNotEmpty,
                         onChanged: (value) async {
+                          subscriptionsDetailViewModel.onEndDateSelected(
+                            receivedSubscriptions
+                                .name![index].subscriptionLength!,
+                          );
                           await _subscriptionsOperation(
                             value,
                             subscriptionsDetailViewModel,
