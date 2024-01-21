@@ -142,17 +142,27 @@ final class _SubscriptionPlanType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<AppCubit>();
+    final homeViewModel = HomeViewModel();
     return ListTile(
       title: Text(
         subscriptionList?.subscriptionPlan ?? '',
       ),
-      trailing: IconButton(
-        onPressed: () {
-          cubit.deleteSubscriptionList(subscriptionList!);
-        },
-        icon: const Icon(
-          Icons.delete,
-        ),
+      trailing: ListenableBuilder(
+        listenable: homeViewModel,
+        builder: (context, child) => homeViewModel.isProcessing
+            ? const CircularProgressIndicator()
+            : IconButton(
+                onPressed: () async {
+                  homeViewModel.changeProcessing();
+
+                  await cubit.deleteSubscriptionList(subscriptionList!);
+
+                  homeViewModel.changeProcessing();
+                },
+                icon: const Icon(
+                  Icons.delete_forever_sharp,
+                ),
+              ),
       ),
     );
   }
