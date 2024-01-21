@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:subscriptionfairy/product/service/firebase_auth_service.dart';
+import 'package:subscriptionfairy/product/service/auth/firebase_auth_service.dart';
 
 /// [FirebaseAuthServiceManager] is a class that contains all string constants.
 final class FirebaseAuthServiceManager {

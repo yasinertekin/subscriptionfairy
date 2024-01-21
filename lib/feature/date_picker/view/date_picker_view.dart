@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:subscriptionfairy/feature/subscriptions_detail/subscriptions_detail_view_model.dart';
+import 'package:subscriptionfairy/feature/subscriptions_detail/view_model/subscriptions_detail_view_model.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 /// DatePicker
-final class DatePicker extends StatelessWidget {
+final class DatePickerView extends StatelessWidget {
   /// DatePicker constructor
-  const DatePicker({super.key});
+  const DatePickerView({super.key});
 
   @override
   Widget build(BuildContext context) {

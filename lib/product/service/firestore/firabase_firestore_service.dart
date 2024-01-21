@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
 import 'package:subscriptionfairy/product/model/subscriptions/subscriptions.dart';
 import 'package:subscriptionfairy/product/model/users/users.dart';
-import 'package:subscriptionfairy/product/service/firebase_firestore_service_interface.dart';
+import 'package:subscriptionfairy/product/service/firestore/firebase_firestore_service_interface.dart';
 
 /// FirebaseFireStoreService
 final class FirebaseFireStoreService extends FirebaseFireStoreServiceInterface {

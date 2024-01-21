@@ -108,7 +108,6 @@ final class _CustomForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authCubit = context.watch<RegisterCubit>().state;
     return Form(
       key: formKey,
       child: Column(

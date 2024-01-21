@@ -7,7 +7,7 @@ import 'package:gen/src/index.dart';
 import 'package:kartal/kartal.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:subscriptionfairy/feature/home/view/home_view.dart';
-import 'package:subscriptionfairy/feature/subscriptions/subscriptions_view.dart';
+import 'package:subscriptionfairy/feature/subscriptions/view/subscriptions_view.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/widget/custom_loading.dart';

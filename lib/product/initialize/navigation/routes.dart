@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:subscriptionfairy/feature/auth/register/view/register_view.dart';
 import 'package:subscriptionfairy/feature/auth/sign/view/sign_view.dart';
 import 'package:subscriptionfairy/feature/dashboard/dashboard_view.dart';
-import 'package:subscriptionfairy/feature/date_picker/date_picker.dart';
-import 'package:subscriptionfairy/feature/subscriptions_detail/subscriptions_detail.dart';
+import 'package:subscriptionfairy/feature/date_picker/view/date_picker_view.dart';
+import 'package:subscriptionfairy/feature/subscriptions_detail/view/subscriptions_detail_view.dart';
 
 /// [Routes] is a class that contains all the routes
 @immutable
@@ -36,8 +36,8 @@ final class Routes {
       sign: (context) => const SignView(),
       register: (context) => const RegisterView(),
       bottomNavigationBar: (context) => const DashboardView(),
-      subscriptionsDetail: (context) => const SubscriptionDetails(),
-      datePicker: (context) => const DatePicker(),
+      subscriptionsDetail: (context) => const SubscriptionDetailView(),
+      datePicker: (context) => const DatePickerView(),
     };
   }
 }

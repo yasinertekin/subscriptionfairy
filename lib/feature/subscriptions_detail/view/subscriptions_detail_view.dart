@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:subscriptionfairy/feature/subscriptions_detail/subscriptions_detail_view_model.dart';
+import 'package:subscriptionfairy/feature/subscriptions_detail/view_model/subscriptions_detail_view_model.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
@@ -10,9 +10,10 @@ import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_
 import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
 
 /// SubscriptionDetails
-final class SubscriptionDetails extends StatelessWidget with SuccesFullLottie {
+final class SubscriptionDetailView extends StatelessWidget
+    with SuccesFullLottie {
   /// Default constructor
-  const SubscriptionDetails({
+  const SubscriptionDetailView({
     super.key,
   });
 

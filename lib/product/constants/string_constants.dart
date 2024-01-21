@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-@immutable
-
 /// [StringConstants] is a class that contains all string constants.
+@immutable
 final class StringConstants {
   const StringConstants._();
 
