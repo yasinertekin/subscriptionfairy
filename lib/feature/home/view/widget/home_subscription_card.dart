@@ -81,8 +81,11 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
                       succesFullLottie(
                         context,
                       );
-                      await cubit.deleteSubscriptionList(
+                      await cubit.updateSubscriptions(
                         subscriptionList!,
+                        subscriptionList.copyWith(
+                          isSubscribed: value,
+                        ),
                       );
                       homeViewModel.changeProcessing();
                     },
@@ -138,9 +141,18 @@ final class _SubscriptionPlanType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<AppCubit>();
     return ListTile(
       title: Text(
         subscriptionList?.subscriptionPlan ?? '',
+      ),
+      trailing: IconButton(
+        onPressed: () {
+          cubit.deleteSubscriptionList(subscriptionList!);
+        },
+        icon: const Icon(
+          Icons.delete,
+        ),
       ),
     );
   }

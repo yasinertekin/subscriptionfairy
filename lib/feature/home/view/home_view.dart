@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gen/src/index.dart';
 import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/feature/home/view/widget/home_subscription_card.dart';
 import 'package:subscriptionfairy/feature/home/view_model/home_view_model.dart';
+import 'package:subscriptionfairy/product/constants/string_constants.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
@@ -30,7 +32,7 @@ final class HomeView extends StatelessWidget {
       appBar: AppBar(
         centerTitle: false,
         title: Text(
-          'My Subscriptions',
+          StringConstants.mySubscriptions,
           style: context.general.textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.bold,
           ),
@@ -52,9 +54,17 @@ final class _HomeBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final totalPrices = state.users.subscriptionList
+        ?.map((e) => e.price)
+        .fold<num>(0, (value, element) => value + (element ?? 0));
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        _SubscriptionDetailsExpansionTile(
+          totalPrices: totalPrices,
+          state: state,
+        ),
         Expanded(
           child: ListView.builder(
             itemCount: state.users.subscriptionList?.length,
@@ -67,6 +77,92 @@ final class _HomeBuilder extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+final class _SubscriptionDetailsExpansionTile extends StatelessWidget {
+  const _SubscriptionDetailsExpansionTile({
+    required this.totalPrices,
+    required this.state,
+  });
+
+  final num? totalPrices;
+  final AppLoadedState state;
+
+  @override
+  Widget build(BuildContext context) {
+    return ExpansionTile(
+      title: Text(
+        'Subscription Details',
+        style: context.general.textTheme.bodySmall?.copyWith(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      children: [
+        _SubscriptionDetailsListTile(
+          iconColor: ColorName.colorGreen,
+          icon: const Icon(
+            Icons.attach_money,
+          ),
+          title: 'Total Price',
+          trailing: '${totalPrices?.toStringAsFixed(2)} TL',
+        ),
+        _SubscriptionDetailsListTile(
+          iconColor: ColorName.colorGrey,
+          icon: const Icon(
+            Icons.subscriptions,
+          ),
+          title: 'Total Subscription',
+          trailing: '${state.users.subscriptionList?.length}',
+        ),
+        _SubscriptionDetailsListTile(
+          iconColor: ColorName.colorRed,
+          icon: const Icon(
+            Icons.subscriptions,
+          ),
+          title: 'Active Subscription',
+          trailing: '${state.users.subscriptionList?.where(
+                (element) => element.isSubscribed == true,
+              ).length}',
+        ),
+      ],
+    );
+  }
+}
+
+final class _SubscriptionDetailsListTile extends StatelessWidget {
+  const _SubscriptionDetailsListTile({
+    required this.iconColor,
+    required this.icon,
+    required this.title,
+    required this.trailing,
+  });
+
+  final Color iconColor;
+  final Icon icon;
+  final String title;
+  final String trailing;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(
+        icon.icon,
+        color: iconColor,
+      ),
+      title: Text(
+        title,
+        style: context.general.textTheme.bodySmall?.copyWith(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      trailing: Text(
+        trailing,
+        style: context.general.textTheme.bodySmall?.copyWith(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 }
