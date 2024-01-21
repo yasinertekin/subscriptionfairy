@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/feature/home/view/widget/home_subscription_card.dart';
+import 'package:subscriptionfairy/feature/home/view_model/home_view_model.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
+import 'package:subscriptionfairy/product/model/subscriptions/subscriptions.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 /// This is the view for the home feature.
@@ -90,69 +92,113 @@ final class HomeDateRangePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeViewModel = HomeViewModel();
+    final subscription = state.users.subscriptionList?[index];
+    return ListenableBuilder(
+      listenable: homeViewModel,
+      builder: (context, child) => Column(
+        children: [
+          _changeDateWidget(context, homeViewModel, subscription),
+          if (homeViewModel.isProcessing)
+            const Align(
+              alignment: Alignment.centerRight,
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            )
+          else
+            const SizedBox.shrink(),
+        ],
+      ),
+    );
+  }
+
+  SizedBox _changeDateWidget(
+    BuildContext context,
+    HomeViewModel homeViewModel,
+    Subscriptions? subscription,
+  ) {
     return SizedBox(
-      height: context.sized.dynamicHeight(0.6),
+      height: context.sized.dynamicHeight(0.53),
       width: context.sized.dynamicWidth(1),
       child: SfDateRangePicker(
         controller: controller,
-        showActionButtons: true,
-        initialSelectedDate: state.users.subscriptionList?[index].startDate,
+        // ignore: avoid_bool_literals_in_conditional_expressions
+        showActionButtons: homeViewModel.isProcessing ? false : true,
+        initialSelectedDate: subscription?.startDate,
         selectionMode: DateRangePickerSelectionMode.range,
-        initialDisplayDate: state.users.subscriptionList?[index].startDate,
+        initialDisplayDate: subscription?.startDate,
         initialSelectedRange: PickerDateRange(
-          state.users.subscriptionList?[index].startDate,
-          state.users.subscriptionList?[index].endDate,
+          subscription?.startDate,
+          subscription?.endDate,
         ),
         navigationDirection: DateRangePickerNavigationDirection.vertical,
         onSelectionChanged: (DateRangePickerSelectionChangedArgs args) async {
-          final argsDate = args.value.startDate as DateTime;
-          final newSubscription = state.users.subscriptionList![index].copyWith(
-            startDate: argsDate,
-            endDate: argsDate.add(
-              Duration(
-                days: state.users.subscriptionList![index].subscriptionLength
-                        ?.toInt() ??
-                    0,
-              ),
-            ),
-          );
-          controller.selectedRange = PickerDateRange(
-            newSubscription.startDate,
-            newSubscription.endDate,
-          );
+          _onSelectionChanged(args);
         },
         onCancel: () {
-          Navigator.pop(context);
+          NavigationService.instance.navigateToBack();
         },
-        onSubmit: state.users.subscriptionList?[index].startDate == null
+        onSubmit: subscription?.startDate == null
             ? null
             : (Object? value) async {
-                final pickerDateRange = value! as PickerDateRange;
-                final argsDate = pickerDateRange.startDate!;
-                final newSubscription =
-                    state.users.subscriptionList![index].copyWith(
-                  startDate: argsDate,
-                  endDate: argsDate.add(
-                    Duration(
-                      days: state
-                              .users.subscriptionList![index].subscriptionLength
-                              ?.toInt() ??
-                          0,
-                    ),
-                  ),
+                await _changeSubscriptionDate(
+                  homeViewModel,
+                  value,
+                  context,
                 );
-                controller.selectedRange = PickerDateRange(
-                  newSubscription.startDate,
-                  newSubscription.endDate,
-                );
-
-                await context.read<AppCubit>().updateSubscriptions(
-                      state.users.subscriptionList![index],
-                      newSubscription,
-                    );
-                await NavigationService.instance.navigateToBack();
               },
       ),
     );
+  }
+
+  void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
+    // ignore: avoid_dynamic_calls
+    final argsDate = args.value.startDate as DateTime;
+    final newSubscription = state.users.subscriptionList![index].copyWith(
+      startDate: argsDate,
+      endDate: argsDate.add(
+        Duration(
+          days: state.users.subscriptionList![index].subscriptionLength
+                  ?.toInt() ??
+              0,
+        ),
+      ),
+    );
+    controller.selectedRange = PickerDateRange(
+      newSubscription.startDate,
+      newSubscription.endDate,
+    );
+  }
+
+  Future<void> _changeSubscriptionDate(
+    HomeViewModel subscriptionNotifier,
+    Object? value,
+    BuildContext context,
+  ) async {
+    subscriptionNotifier.changeProcessing();
+    final pickerDateRange = value! as PickerDateRange;
+    final argsDate = pickerDateRange.startDate!;
+    final newSubscription = state.users.subscriptionList![index].copyWith(
+      startDate: argsDate,
+      endDate: argsDate.add(
+        Duration(
+          days: state.users.subscriptionList![index].subscriptionLength
+                  ?.toInt() ??
+              0,
+        ),
+      ),
+    );
+    controller.selectedRange = PickerDateRange(
+      newSubscription.startDate,
+      newSubscription.endDate,
+    );
+
+    await context.read<AppCubit>().updateSubscriptions(
+          state.users.subscriptionList![index],
+          newSubscription,
+        );
+    await NavigationService.instance.navigateToBack();
+    subscriptionNotifier.changeProcessing();
   }
 }

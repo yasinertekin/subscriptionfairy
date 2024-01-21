@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:kartal/kartal.dart';
-import 'package:subscriptionfairy/feature/home/view_model/mixin/custom_card_mixin.dart';
+import 'package:subscriptionfairy/feature/home/view_model/home_view_model.dart';
+import 'package:subscriptionfairy/feature/home/view_model/mixin/home_subscription_card_mixin.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/mixin/succesfull_lottie.dart';
@@ -30,7 +31,7 @@ final class HomeSubscriptionCard extends StatefulWidget with SuccesFullLottie {
 }
 
 final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
-    with HomeSubscriptionCardMixin {
+    with HomeSubscriptionCardMixin, SuccesFullLottie {
   @override
   Widget build(BuildContext context) {
     final startDate =
@@ -46,6 +47,8 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
     final subscriptionList = widget.state.users.subscriptionList?[widget.index];
     final cubit = context.read<AppCubit>();
 
+    final homeViewModel = HomeViewModel();
+
     return Padding(
       padding: const ProjectPadding.allSmall(),
       child: Card(
@@ -53,33 +56,47 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
-        child: ExpansionTile(
-          leading: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: CustomCachedNetworkImage(
-              imageUrl: subscriptionList?.subscriptionIcon ?? '',
-              height: context.sized.dynamicHeight(0.1),
-              width: context.sized.dynamicWidth(0.2),
+        child: ListenableBuilder(
+          listenable: homeViewModel,
+          builder: (context, child) => ExpansionTile(
+            leading: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: CustomCachedNetworkImage(
+                imageUrl: subscriptionList?.subscriptionIcon ?? '',
+                height: context.sized.dynamicHeight(0.1),
+                width: context.sized.dynamicWidth(0.2),
+              ),
             ),
+            title: Text(
+              subscriptionList?.name ?? '',
+            ),
+            subtitle: Text(
+              '${subscriptionList?.price ?? ''} TL',
+            ),
+            trailing: homeViewModel.isProcessing
+                ? const CircularProgressIndicator()
+                : Switch(
+                    onChanged: (value) async {
+                      homeViewModel.changeProcessing();
+                      succesFullLottie(
+                        context,
+                      );
+                      await cubit.deleteSubscriptionList(
+                        subscriptionList!,
+                      );
+                      homeViewModel.changeProcessing();
+                    },
+                    value: subscriptionList?.isSubscribed ?? false,
+                  ),
+            children: [
+              _subscriptionDateListTile(
+                formattedDate,
+                formattedEndDate,
+                context,
+              ),
+              _SubscriptionPlanType(subscriptionList: subscriptionList),
+            ],
           ),
-          title: Text(
-            subscriptionList?.name ?? '',
-          ),
-          subtitle: Text(
-            '${subscriptionList?.price ?? ''} TL',
-          ),
-          trailing: Switch(
-            onChanged: (value) async {
-              await cubit.deleteSubscriptionList(
-                subscriptionList!,
-              );
-            },
-            value: subscriptionList?.isSubscribed ?? false,
-          ),
-          children: [
-            _subscriptionDateListTile(formattedDate, formattedEndDate, context),
-            _SubscriptionPlanType(subscriptionList: subscriptionList),
-          ],
         ),
       ),
     );

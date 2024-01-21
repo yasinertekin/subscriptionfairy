@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gen/src/index.dart';
 import 'package:kartal/kartal.dart';
 
+/// This mixin is used to show a succesfull lottie animation.
 mixin SuccesFullLottie {
+  /// This function shows a succesfull lottie animation.
   void succesFullLottie(BuildContext context) {
     OverlayEntry? overlayEntry; // Declare overlayEntry as nullable
 
