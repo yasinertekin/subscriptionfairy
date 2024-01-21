@@ -36,15 +36,15 @@ final class HomeView extends StatelessWidget {
           ),
         ),
       ),
-      body: _HomeBlocBuilder(
+      body: _HomeBuilder(
         state,
       ),
     );
   }
 }
 
-final class _HomeBlocBuilder extends StatelessWidget {
-  const _HomeBlocBuilder(
+final class _HomeBuilder extends StatelessWidget {
+  const _HomeBuilder(
     this.state,
   );
 
