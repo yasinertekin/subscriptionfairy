@@ -17,4 +17,10 @@ final class CustomDarkTheme implements CustomTheme {
           borderRadius: BorderRadius.circular(10),
         ),
       );
+
+  @override
+  TabBarTheme get tabBarTheme => throw UnimplementedError();
+
+  @override
+  BottomAppBarTheme get bottomAppBarTheme => throw UnimplementedError();
 }

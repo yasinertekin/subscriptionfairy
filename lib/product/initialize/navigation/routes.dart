@@ -4,6 +4,7 @@ import 'package:subscriptionfairy/feature/auth/register/view/register_view.dart'
 import 'package:subscriptionfairy/feature/auth/sign/view/sign_view.dart';
 import 'package:subscriptionfairy/feature/dashboard/dashboard_view.dart';
 import 'package:subscriptionfairy/feature/date_picker/view/date_picker_view.dart';
+import 'package:subscriptionfairy/feature/search/view/search_view.dart';
 import 'package:subscriptionfairy/feature/subscriptions_detail/view/subscriptions_detail_view.dart';
 
 /// [Routes] is a class that contains all the routes
@@ -27,6 +28,9 @@ final class Routes {
   /// [datePicker] is a function that returns date picker
   static const String datePicker = 'datePicker';
 
+  /// [search] is a function that returns search
+  static const String search = 'search';
+
   /// [getRouteTable] is a function that returns route table
   static Map<String, WidgetBuilder> getRouteTable() {
     return {
@@ -38,6 +42,7 @@ final class Routes {
       bottomNavigationBar: (context) => const DashboardView(),
       subscriptionsDetail: (context) => const SubscriptionDetailView(),
       datePicker: (context) => const DatePickerView(),
+      search: (context) => const SearchView(),
     };
   }
 }

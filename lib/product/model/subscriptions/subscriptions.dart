@@ -17,12 +17,19 @@ class Subscriptions with _$Subscriptions {
     /// title
     // ignore: invalid_annotation_target
     @JsonKey(name: 'subscription_plan') String? subscriptionPlan,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'isSubscribed') bool? isSubscribed,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'subscription_icon') String? subscriptionIcon,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'subId') String? subId,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'endDate') DateTime? endDate,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'startDate') DateTime? startDate,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'subscriptionPrice') double? price,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'subscription_length') double? subscriptionLength,
   }) = _Subscriptions;
 

@@ -63,4 +63,9 @@ final class StringConstants {
   static const String activeSubscriptions = 'Subscription Name';
 
   static const String tl = 'TL';
+
+  /// search
+  static const String search = 'Search';
+
+  static const String subscriptionPlan = 'Subscription Plan';
 }
