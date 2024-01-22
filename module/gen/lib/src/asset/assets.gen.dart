@@ -59,6 +59,10 @@ class $AssetsLottieGen {
   LottieGenImage get lottieLoadingCat =>
       const LottieGenImage('assets/lottie/lottie_loading_cat.json');
 
+  /// File path: assets/lottie/lottie_search.json
+  LottieGenImage get lottieSearch =>
+      const LottieGenImage('assets/lottie/lottie_search.json');
+
   /// File path: assets/lottie/lottie_sub_is_success.json
   LottieGenImage get lottieSubIsSuccess =>
       const LottieGenImage('assets/lottie/lottie_sub_is_success.json');
@@ -76,6 +80,7 @@ class $AssetsLottieGen {
         lottieExplosion,
         lottieLoading,
         lottieLoadingCat,
+        lottieSearch,
         lottieSubIsSuccess,
         lottieSwitch,
         lottieWelcome
