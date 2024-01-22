@@ -28,6 +28,7 @@ final class SubscriptionsView extends StatelessWidget {
       appBar: const _SubscriptionViewAppBar(),
       body: _SubscriptionViewBuilder(
         state,
+        state.subscriptions.first,
       ),
     );
   }
@@ -36,8 +37,10 @@ final class SubscriptionsView extends StatelessWidget {
 final class _SubscriptionViewBuilder extends StatelessWidget {
   const _SubscriptionViewBuilder(
     this.state,
+    this.subscriptionsList,
   );
   final AppLoadedState state;
+  final SubscriptionsList subscriptionsList;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +50,9 @@ final class _SubscriptionViewBuilder extends StatelessWidget {
       padding: const ProjectPadding.allSmall(),
       child: Column(
         children: [
-          const _SearchSubscriptions(),
+          _SearchSubscriptions(
+            subscriptionsList,
+          ),
           context.sized.emptySizedHeightBoxLow3x,
           _SubscriptionsList(
             subscriptions: subscriptions,
@@ -74,7 +79,7 @@ final class _SubscriptionsList extends StatelessWidget {
         itemCount: subscriptions.length,
         itemBuilder: (context, index) {
           final subscription = subscriptions[index];
-          return _SubscriptionsListCard(
+          return SubscriptionsListCard(
             subscription: subscription,
             index: index,
             state: state,
