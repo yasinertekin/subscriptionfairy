@@ -21,7 +21,6 @@ final class HomeView extends StatelessWidget {
   /// This is the constructor for the home view.
   const HomeView({
     required this.state,
-    required this.appcubit,
     super.key,
   });
 
@@ -29,7 +28,6 @@ final class HomeView extends StatelessWidget {
   final AppLoadedState state;
 
   /// This is the cubit for the home view.
-  final AppCubit appcubit;
 
   @override
   Widget build(BuildContext context) {

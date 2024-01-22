@@ -20,23 +20,26 @@ final class DatePickerView extends StatelessWidget {
           'DatePicker',
         ),
       ),
-      body: SfDateRangePicker(
-        selectionMode: DateRangePickerSelectionMode.range,
-        showActionButtons: true,
-        initialDisplayDate: DateTime.now(),
-        showTodayButton: true,
-        controller: controller,
-        navigationDirection: DateRangePickerNavigationDirection.vertical,
-        onSubmit: (value) {
-          NavigationService.instance.navigateToBack();
-        },
-        onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
-          _selectDate(
-            args,
-            receivedSelectDate,
-            controller,
-          );
-        },
+      body: ListenableBuilder(
+        listenable: receivedSelectDate,
+        builder: (context, child) => SfDateRangePicker(
+          selectionMode: DateRangePickerSelectionMode.range,
+          showActionButtons: true,
+          initialDisplayDate: DateTime.now(),
+          showTodayButton: true,
+          controller: controller,
+          navigationDirection: DateRangePickerNavigationDirection.vertical,
+          onSubmit: (value) {
+            NavigationService.instance.navigateToBack();
+          },
+          onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
+            _selectDate(
+              args,
+              receivedSelectDate,
+              controller,
+            );
+          },
+        ),
       ),
     );
   }

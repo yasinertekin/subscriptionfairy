@@ -76,7 +76,6 @@ List<Widget> _buildScreens(
   return [
     HomeView(
       state: state,
-      appcubit: appCubit,
     ),
     SubscriptionsView(
       state: state,

@@ -41,7 +41,6 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
     final formattedEndDate = getFormattedDate(endDate);
 
     final subscriptionList = getSubscriptionList();
-    final cubit = context.read<AppCubit>();
 
     const elevation = 10.0;
 
@@ -52,60 +51,36 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
         shape: RoundedRectangleBorder(
           borderRadius: context.border.normalBorderRadius,
         ),
-        child: ListenableBuilder(
-          listenable: homeViewModel,
-          builder: (context, child) => ExpansionTile(
-            leading: ClipRRect(
-              borderRadius: context.border.normalBorderRadius,
-              child: CustomCachedNetworkImage(
-                imageUrl: subscriptionList?.subscriptionIcon ?? '',
-                height: context.sized.dynamicHeight(0.1),
-                width: context.sized.dynamicWidth(0.2),
-              ),
+        child: ExpansionTile(
+          leading: ClipRRect(
+            borderRadius: context.border.normalBorderRadius,
+            child: CustomCachedNetworkImage(
+              imageUrl: subscriptionList?.subscriptionIcon ?? '',
+              height: context.sized.dynamicHeight(0.1),
+              width: context.sized.dynamicWidth(0.2),
             ),
-            title: Text(
-              subscriptionList?.name ?? '',
-            ),
-            subtitle: Text(
-              '${subscriptionList?.price ?? ''} \$',
-            ),
-            trailing: homeViewModel.isProcessing
-                ? const CircularProgressIndicator()
-                : _customHomeSwitch(context, cubit, subscriptionList),
-            children: [
-              _subscriptionDateListTile(
-                formattedDate,
-                formattedEndDate,
-                context,
-              ),
-              _SubscriptionPlanType(subscriptionList: subscriptionList),
-            ],
           ),
+          title: Text(
+            subscriptionList?.name ?? '',
+          ),
+          subtitle: Text(
+            '${subscriptionList?.price ?? ''} \$',
+          ),
+          trailing: homeViewModel.isProcessing
+              ? const CircularProgressIndicator()
+              : CustomSwitch(
+                  subscriptionList: subscriptionList,
+                ),
+          children: [
+            _subscriptionDateListTile(
+              formattedDate,
+              formattedEndDate,
+              context,
+            ),
+            _SubscriptionPlanType(subscriptionList: subscriptionList),
+          ],
         ),
       ),
-    );
-  }
-
-  Switch _customHomeSwitch(
-    BuildContext context,
-    AppCubit cubit,
-    Subscriptions? subscriptionList,
-  ) {
-    return Switch(
-      onChanged: (value) async {
-        homeViewModel.changeProcessing();
-        succesFullLottie(
-          context,
-        );
-        await cubit.updateSubscriptions(
-          subscriptionList!,
-          subscriptionList.copyWith(
-            isSubscribed: value,
-          ),
-        );
-        homeViewModel.changeProcessing();
-      },
-      value: subscriptionList?.isSubscribed ?? false,
     );
   }
 
@@ -167,6 +142,40 @@ final class _SubscriptionPlanType extends StatelessWidget {
                   Icons.delete_forever_sharp,
                 ),
               ),
+      ),
+    );
+  }
+}
+
+final class CustomSwitch extends StatelessWidget with SuccesFullLottie {
+  const CustomSwitch({
+    required this.subscriptionList,
+    super.key,
+  });
+
+  final Subscriptions? subscriptionList;
+
+  @override
+  Widget build(BuildContext context) {
+    final homeViewModel = HomeViewModel();
+    final cubit = context.read<AppCubit>();
+    return ListenableBuilder(
+      listenable: homeViewModel,
+      builder: (context, child) => Switch(
+        onChanged: (value) async {
+          homeViewModel.changeProcessing();
+          succesFullLottie(
+            context,
+          );
+          await cubit.updateSubscriptions(
+            subscriptionList!,
+            subscriptionList!.copyWith(
+              isSubscribed: value,
+            ),
+          );
+          homeViewModel.changeProcessing();
+        },
+        value: subscriptionList?.isSubscribed ?? false,
       ),
     );
   }
