@@ -27,11 +27,11 @@ final class _SearchTextField extends StatelessWidget {
           state.subscriptions,
         );
       },
-      decoration: const InputDecoration(
-        prefixIcon: Icon(
+      decoration: InputDecoration(
+        prefixIcon: const Icon(
           Icons.search,
         ),
-        hintText: StringConstants.search,
+        hintText: LocaleKeys.search_title.tr(),
       ),
     );
   }

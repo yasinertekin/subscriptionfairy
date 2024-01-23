@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
-import 'package:subscriptionfairy/firebase_options.dart';
 import 'package:subscriptionfairy/product/core/theme/theme.dart';
 import 'package:subscriptionfairy/product/core/theme/theme_state.dart';
 import 'package:subscriptionfairy/product/initialize/app_environment.dart';
@@ -19,7 +18,7 @@ Future<void> main() async {
 
   AppEnvironment.general();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+    options: AppEnvironment.firebaseOptions,
   );
   runApp(
     StateInitialize(

@@ -92,7 +92,7 @@ final class _PriceTextRich extends StatelessWidget {
       TextSpan(
         children: [
           TextSpan(
-            text: 'Price: ',
+            text: LocaleKeys.subscriptionDetails_price.tr(),
             style: context.general.textTheme.titleMedium,
           ),
           TextSpan(

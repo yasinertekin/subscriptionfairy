@@ -50,6 +50,15 @@
         "changeLanguage": "Change Language",
         "signOut": "Sign Out"
     },
+     "subscriptionDetails":{
+        "title": "Subscription Details",
+        "price": "Fiyat:"
+
+    },
+    "search": {
+        "title": "Search",
+        "textFieldHintText": "Search Subscriptions"
+    },
 
     "general": {
         "button": {

@@ -40,6 +40,15 @@
       "subscriptions":{
         "title": "Abonelikler",
         "textFieldHintText": "Abonelik Ara"
+
+    },
+    "subscriptionDetails":{
+        "title": "Abonelik Detayları",
+        "price": "Fiyat:"
+    },
+    "search": {
+        "title": "Arama",
+        "textFieldHintText": "Abonelik Ara"
     },
     "profile": {
         "title": "Profil",

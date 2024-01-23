@@ -38,6 +38,12 @@ abstract class  LocaleKeys {
   static const profile_changeLanguage = 'profile.changeLanguage';
   static const profile_signOut = 'profile.signOut';
   static const profile = 'profile';
+  static const subscriptionDetails_title = 'subscriptionDetails.title';
+  static const subscriptionDetails_price = 'subscriptionDetails.price';
+  static const subscriptionDetails = 'subscriptionDetails';
+  static const search_title = 'search.title';
+  static const search_textFieldHintText = 'search.textFieldHintText';
+  static const search = 'search';
   static const general_button_save = 'general.button.save';
   static const general_button = 'general.button';
   static const general_dialog_version_title = 'general.dialog.version.title';

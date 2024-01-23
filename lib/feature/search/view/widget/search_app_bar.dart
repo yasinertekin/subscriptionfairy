@@ -8,8 +8,8 @@ final class _SearchAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       title: const Text(
-        StringConstants.search,
-      ),
+        LocaleKeys.search_title,
+      ).tr(),
     );
   }
 

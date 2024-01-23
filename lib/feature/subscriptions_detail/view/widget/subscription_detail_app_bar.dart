@@ -7,7 +7,9 @@ final class _SubscriptionDetailAppBar extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text(StringConstants.subscriptionsDetails),
+      title: const Text(
+        LocaleKeys.subscriptionDetails_title,
+      ).tr(),
     );
   }
 

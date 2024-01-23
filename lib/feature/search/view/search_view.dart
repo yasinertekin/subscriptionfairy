@@ -1,10 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:subscriptionfairy/feature/search/view_model/search_view_model.dart';
 import 'package:subscriptionfairy/feature/subscriptions/view/subscriptions_view.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
-import 'package:subscriptionfairy/product/utility/constants/string_constants.dart';
+import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
 import 'package:subscriptionfairy/product/widget/lottie_search.dart';
 
