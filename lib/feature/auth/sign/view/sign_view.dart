@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: implementation_imports
@@ -5,10 +6,11 @@ import 'package:gen/src/index.dart';
 import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/feature/auth/sign/view_model/auth_cubit.dart';
 import 'package:subscriptionfairy/feature/auth/sign/view_model/auth_state.dart';
-import 'package:subscriptionfairy/product/constants/string_constants.dart';
+import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/mixin/custom_scaffold_messenger.dart';
+import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
 import 'package:subscriptionfairy/product/widget/custom_button.dart';
 import 'package:subscriptionfairy/product/widget/custom_loading.dart';
 import 'package:subscriptionfairy/product/widget/custom_text_field.dart';
@@ -89,7 +91,7 @@ final class _SignViewBody extends StatelessWidget {
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const ProjectPadding.allMedium(),
       child: Column(
         children: <Widget>[
           const Spacer(),

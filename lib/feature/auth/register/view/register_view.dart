@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: implementation_imports
@@ -5,7 +6,7 @@ import 'package:gen/src/index.dart';
 import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/feature/auth/authantication_state/authantication_state.dart';
 import 'package:subscriptionfairy/feature/auth/register/view_model/register_cubit.dart';
-import 'package:subscriptionfairy/product/constants/string_constants.dart';
+import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/mixin/custom_scaffold_messenger.dart';
@@ -60,17 +61,18 @@ final class _CustomBlocConsumer extends StatelessWidget
             path: Routes.bottomNavigationBar,
           );
         }
+        if (state is AuthenticationFailure) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            showSnackBar(context, state.error);
+          });
+        }
       },
       builder: (context, state) {
         final authCubit = context.watch<RegisterCubit>();
         if (state is AuthenticationLoading) {
           return const CustomLoading();
         } else if (state is AuthenticationSuccess) {
-        } else if (state is AuthenticationFailure) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            showSnackBar(context, state.error);
-          });
-        }
+        } else if (state is AuthenticationFailure) {}
         return _RegisterBody(
           formKey: formKey,
           emailController: emailController,
@@ -127,11 +129,6 @@ final class _RegisterBody extends StatelessWidget with CustomScaffoldMessenger {
       authCubit.signUpWithEmailAndPassword(
         emailController.text.trim(),
         passwordController.text,
-      );
-    } else {
-      showSnackBar(
-        context,
-        StringConstants.passwordDoNotMatch,
       );
     }
   }

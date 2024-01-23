@@ -15,7 +15,7 @@ final class _RegisterBodyButtons extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         CustomButton(
-          title: StringConstants.register,
+          title: LocaleKeys.auth_register_button_register.tr(),
           formKey: formKey,
           onPressed: onPressed,
         ),

@@ -11,16 +11,16 @@ final class _RegisterHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            StringConstants.register,
+            LocaleKeys.auth_register_title,
             style: context.general.textTheme.headlineMedium,
-          ),
+          ).tr(),
           Text(
-            'Please register to continue',
+            LocaleKeys.auth_register_content,
             style: context.general.textTheme.headlineSmall,
-          ),
+          ).tr(),
           Text.rich(
             TextSpan(
-              text: 'Already have an account? ',
+              text: LocaleKeys.auth_register_description.tr(),
               style: context.general.textTheme.bodyLarge?.copyWith(
                 color: ColorName.colorGrey,
               ),
@@ -33,11 +33,11 @@ final class _RegisterHeader extends StatelessWidget {
                       );
                     },
                     child: Text(
-                      StringConstants.signIn,
+                      LocaleKeys.auth_signIn,
                       style: context.general.textTheme.bodyLarge!.copyWith(
                         color: ColorName.colorRed,
                       ),
-                    ),
+                    ).tr(),
                   ),
                 ),
               ],
