@@ -25,7 +25,7 @@ final class _SubscriptionDetailsListTile extends StatelessWidget {
         style: context.general.textTheme.bodySmall?.copyWith(
           fontWeight: FontWeight.bold,
         ),
-      ),
+      ).tr(),
       trailing: Text(
         trailing,
         style: context.general.textTheme.bodySmall?.copyWith(
