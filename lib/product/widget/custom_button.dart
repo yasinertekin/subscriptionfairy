@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 // ignore: implementation_imports
 import 'package:gen/src/index.dart';
@@ -42,7 +43,7 @@ final class CustomButton extends StatelessWidget {
             color: ColorName.colorWhite,
             fontWeight: FontWeight.bold,
           ),
-        ),
+        ).tr(),
       ),
     );
   }

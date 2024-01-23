@@ -1,8 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 // ignore: implementation_imports
 import 'package:gen/src/index.dart';
 import 'package:kartal/kartal.dart';
-import 'package:subscriptionfairy/product/constants/string_constants.dart';
+import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
 
 /// SignInWithGoogleButton is a [StatelessWidget]
 final class SignInWithGoogleButton extends StatelessWidget {
@@ -32,11 +33,11 @@ final class SignInWithGoogleButton extends StatelessWidget {
             ),
             context.sized.emptySizedWidthBoxLow3x,
             Text(
-              StringConstants.signInWithGoogle,
+              LocaleKeys.auth_signWithGoogle,
               style: context.general.textTheme.titleLarge!.copyWith(
                 color: ColorName.colorBlack,
               ),
-            ),
+            ).tr(),
           ],
         ),
       ),
