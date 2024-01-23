@@ -28,19 +28,26 @@ mixin _$Subscriptions {
   /// title
 // ignore: invalid_annotation_target
   @JsonKey(name: 'subscription_plan')
-  String? get subscriptionPlan => throw _privateConstructorUsedError;
+  String? get subscriptionPlan =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'isSubscribed')
-  bool? get isSubscribed => throw _privateConstructorUsedError;
+  bool? get isSubscribed =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'subscription_icon')
-  String? get subscriptionIcon => throw _privateConstructorUsedError;
+  String? get subscriptionIcon =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'subId')
-  String? get subId => throw _privateConstructorUsedError;
+  String? get subId =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'endDate')
-  DateTime? get endDate => throw _privateConstructorUsedError;
+  DateTime? get endDate =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'startDate')
-  DateTime? get startDate => throw _privateConstructorUsedError;
+  DateTime? get startDate =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'subscriptionPrice')
-  double? get price => throw _privateConstructorUsedError;
+  double? get price =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'subscription_length')
   double? get subscriptionLength => throw _privateConstructorUsedError;
 
@@ -242,24 +249,31 @@ class _$SubscriptionsImpl implements _Subscriptions {
   @override
   @JsonKey(name: 'subscription_plan')
   final String? subscriptionPlan;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'isSubscribed')
   final bool? isSubscribed;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'subscription_icon')
   final String? subscriptionIcon;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'subId')
   final String? subId;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'endDate')
   final DateTime? endDate;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'startDate')
   final DateTime? startDate;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'subscriptionPrice')
   final double? price;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'subscription_length')
   final double? subscriptionLength;
@@ -346,25 +360,25 @@ abstract class _Subscriptions implements Subscriptions {
 // ignore: invalid_annotation_target
   @JsonKey(name: 'subscription_plan')
   String? get subscriptionPlan;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'isSubscribed')
   bool? get isSubscribed;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'subscription_icon')
   String? get subscriptionIcon;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'subId')
   String? get subId;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'endDate')
   DateTime? get endDate;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'startDate')
   DateTime? get startDate;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'subscriptionPrice')
   double? get price;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'subscription_length')
   double? get subscriptionLength;
   @override
