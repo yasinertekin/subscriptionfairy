@@ -9,6 +9,9 @@ final class CustomDarkTheme implements CustomTheme {
         useMaterial3: true,
         colorScheme: CustomColorScheme.darkColorScheme,
         inputDecorationTheme: inputDecorationTheme,
+        tabBarTheme: tabBarTheme,
+        bottomAppBarTheme: bottomAppBarTheme,
+        floatingActionButtonTheme: floatingActionButtonTheme,
       );
 
   @override
@@ -19,8 +22,25 @@ final class CustomDarkTheme implements CustomTheme {
       );
 
   @override
-  TabBarTheme get tabBarTheme => throw UnimplementedError();
+  TabBarTheme get tabBarTheme => TabBarTheme(
+        dividerColor: Colors.transparent,
+        unselectedLabelColor: Colors.white.withOpacity(0.5),
+        indicatorSize: TabBarIndicatorSize.label,
+        indicator: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.transparent,
+        ),
+      );
 
   @override
-  BottomAppBarTheme get bottomAppBarTheme => throw UnimplementedError();
+  BottomAppBarTheme get bottomAppBarTheme => const BottomAppBarTheme(
+        elevation: 20,
+        surfaceTintColor: Colors.transparent,
+        shape: CircularNotchedRectangle(),
+      );
+  FloatingActionButtonThemeData get floatingActionButtonTheme =>
+      const FloatingActionButtonThemeData(
+        elevation: 5,
+        shape: CircleBorder(),
+      );
 }

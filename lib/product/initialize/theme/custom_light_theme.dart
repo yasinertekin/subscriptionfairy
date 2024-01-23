@@ -38,7 +38,7 @@ final class CustomLightTheme implements CustomTheme {
   FloatingActionButtonThemeData get floatingActionButtonTheme =>
       const FloatingActionButtonThemeData(
         backgroundColor: ColorName.colorRed,
-        elevation: 10,
+        elevation: 5,
         shape: CircleBorder(),
       );
 
