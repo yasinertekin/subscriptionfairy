@@ -1,0 +1,65 @@
+{
+    "dashboard":{
+       "unknownState": "Unknown State"
+
+    },
+
+    "auth":{
+         "email": "Email",
+         "password": "Password",
+         "emailRequired": "Email is required",
+         "passwordRequired": "Password is required",
+         "signIn": "Sign In",
+         "signWithGoogle": "Sign In with Google",
+        "login": {
+            "dontHaveAccount": "Don't have an account?",
+            "forgotPassword": "Forgot Password?",
+            "signUp": "Sign Up",
+            "button": {
+                "login": "Login"
+            }
+        },
+        "register": {
+            "title": "Register",
+            "content": "Please register to continue",
+            "description": "Already have an account?",
+            "button": {
+                "register": "Register"
+            }
+            
+        }
+    },
+
+    "home": {
+        "title": "My Subscriptions",
+        "content": "Subscription Details",
+        "totalPrice": "Total Price: ",
+        "totalSubscriptions": "Total Subscriptions: ",
+        "activeSubscriptions": "Active Subscriptions: ",
+        "startDate": "Start Date: ",
+        "endDate": "End Date:"
+    },
+
+    "subscriptions":{
+        "title": "Subscriptions",
+        "textFieldHintText": "Search Subscriptions"
+    },
+     "profile": {
+        "title": "Profile",
+        "changeTheme": "Change Theme",
+        "changeLanguage": "Change Language",
+        "signOut": "Sign Out"
+    },
+
+    "general": {
+        "button": {
+            "save": "Save {}"
+        },
+        "dialog": {
+            "version": {
+                "title": "Version",
+                "content": "Version info"
+            }
+        }
+    }
+}

@@ -12,6 +12,7 @@ dependencies:
 
   #Core
   freezed: ^2.4.6
+  envied: ^0.5.3
 
   # Firebase
   firebase_auth: ^4.16.0
@@ -21,14 +22,17 @@ dependencies:
   # Utility
   persistent_bottom_nav_bar: ^5.0.2
   cached_network_image: ^3.3.1
-  intl: ^0.19.0
+  intl: ^0.18.1
+
   kartal: ^3.5.0
 
   # Date Time Picker
-  syncfusion_flutter_datepicker: ^24.1.46
+  syncfusion_flutter_datepicker: 24.1.45
 
   # Google
   json_annotation: ^4.8.1
+
+  easy_localization: ^3.0.3
 
   gen:
     path: module/gen
@@ -46,6 +50,7 @@ dev_dependencies:
   very_good_analysis: ^5.1.0
   json_serializable: ^6.7.1
   build_runner: ^2.4.8
+  envied_generator: ^0.5.3
 
 # The following section is specific to Flutter packages.
 flutter:
@@ -55,8 +60,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/translations/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

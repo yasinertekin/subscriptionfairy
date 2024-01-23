@@ -1,0 +1,61 @@
+{
+    "dashboard":{
+       "unknownState": "Bilinmeyen Durum"
+    },
+
+    "auth":{
+         "email": "Email",
+         "password": "Parola",
+         "emailRequired": "Email zorunludur",
+         "passwordRequired": "Parola zorunludur",
+         "signIn": "Giriş Yap",
+         "signWithGoogle": "Google ile Giriş Yap",
+        "login": {
+            "dontHaveAccount": "Hesabınız yok mu?",
+            "forgotPassword": "Parolanızı mı unuttunuz?",
+            "signUp": "Kayıt Ol",
+            "button": {
+                "login": "Giriş Yap"
+            }
+        },
+        "register": {
+            "title": "Kayıt Ol",
+            "content": "Lütfen bilgilerinizi giriniz",
+            "description": "Zaten bir hesabınız var mı?",
+            "button": {
+                "register": "Kayıt Ol"
+            }
+            
+        }
+    },
+    "home": {
+        "title": "Aboneliklerim",
+        "content": "Aboneliklerimin Detayları",
+        "totalPrice": "Toplam Harcanan Miktar:",
+        "totalSubscriptions": "Toplam Abonelik Sayısı: ",
+        "activeSubscriptions": "Aktif Abonelik Sayısı: ",
+        "startDate": "Başlangıç Tarihi: ",
+        "endDate": "Bitiş Tarihi: "
+    },
+      "subscriptions":{
+        "title": "Abonelikler",
+        "textFieldHintText": "Abonelik Ara"
+    },
+    "profile": {
+        "title": "Profil",
+        "changeTheme": "Tema Değiştir",
+        "changeLanguage": "Dil Değiştir",
+        "signOut": "Çıkış Yap"
+    },
+    "general": {
+        "button": {
+            "save": "Kaydet {}"
+        },
+        "dialog": {
+            "version": {
+                "title": "Versiyon",
+                "content": "Versiyon bilgisi"
+            }
+        }
+    }
+}
