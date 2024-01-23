@@ -10,11 +10,11 @@ final class _ForgotPasswordButton extends StatelessWidget {
       child: TextButton(
         onPressed: () {},
         child: Text(
-          StringConstants.forgotPassword,
+          LocaleKeys.auth_login_forgotPassword,
           style: context.general.textTheme.bodyLarge?.copyWith(
             color: ColorName.colorRed,
           ),
-        ),
+        ).tr(),
       ),
     );
   }

@@ -11,14 +11,14 @@ final class _SignUpTextRich extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            StringConstants.signIn,
+            LocaleKeys.auth_signIn.tr(),
             style: context.general.textTheme.headlineLarge!.copyWith(
               fontWeight: FontWeight.bold,
             ),
-          ),
+          ).tr(),
           Text.rich(
             TextSpan(
-              text: StringConstants.dontHaveAnAccount,
+              text: LocaleKeys.auth_login_dontHaveAccount.tr(),
               style: context.general.textTheme.bodyLarge!.copyWith(
                 color: ColorName.colorGrey,
               ),
@@ -30,11 +30,11 @@ final class _SignUpTextRich extends StatelessWidget {
                           .navigateToPage(path: Routes.register);
                     },
                     child: Text(
-                      StringConstants.signUp,
+                      LocaleKeys.auth_login_signUp,
                       style: context.general.textTheme.bodyLarge!.copyWith(
                         color: ColorName.colorRed,
                       ),
-                    ),
+                    ).tr(),
                   ),
                 ),
               ],

@@ -19,7 +19,7 @@ final class _SignInButtons extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         CustomButton(
-          title: StringConstants.signIn,
+          title: LocaleKeys.auth_signIn.tr(),
           formKey: formKey,
           onPressed: () {
             if (formKey.currentState!.validate()) {
