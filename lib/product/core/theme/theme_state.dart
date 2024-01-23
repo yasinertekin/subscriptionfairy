@@ -1,7 +1,7 @@
 // Tema cubiti için event ve state tanımları
 import 'package:flutter/material.dart';
 
-/// [ThemeCubit] is a class that contains the theme cubit.
+/// [ThemeEvent] is a class that contains the theme cubit.
 abstract class ThemeEvent {}
 
 /// [LightThemeEvent] .

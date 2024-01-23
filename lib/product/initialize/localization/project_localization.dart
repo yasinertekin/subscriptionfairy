@@ -41,5 +41,8 @@ enum Locales {
   /// Locale value
   final Locale locale;
 
-  const Locales(this.locale);
+  // ignore: sort_constructors_first
+  const Locales(
+    this.locale,
+  );
 }

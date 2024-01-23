@@ -2,13 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:subscriptionfairy/feature/dashboard/dashhboard_mixin.dart';
+import 'package:subscriptionfairy/feature/dashboard/mixin/dashhboard_mixin.dart';
 import 'package:subscriptionfairy/feature/home/view/home_view.dart';
 import 'package:subscriptionfairy/feature/profile/profile_view.dart';
 import 'package:subscriptionfairy/feature/subscriptions/view/subscriptions_view.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
+import 'package:subscriptionfairy/product/utility/enum/tab_views.dart';
 import 'package:subscriptionfairy/product/widget/custom_loading.dart';
 
 /// DashboardView
@@ -147,42 +148,5 @@ final class _BottomAppBar extends StatelessWidget {
         tabs: tabViewsList,
       ),
     );
-  }
-}
-
-/// Tab views
-enum TabViews {
-  /// Subscription
-  home,
-
-  /// Notifications
-  categories,
-
-  /// offers
-  offers,
-}
-
-/// TabViewsExtension
-extension TabViewsExtension on TabViews {
-  /// icon
-  Widget getIcon() {
-    switch (this) {
-      case TabViews.home:
-        return const Icon(
-          Icons.home,
-        );
-      case TabViews.categories:
-        return const FloatingActionButton(
-          onPressed: null,
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-        );
-      case TabViews.offers:
-        return const Icon(
-          Icons.person,
-        );
-    }
   }
 }

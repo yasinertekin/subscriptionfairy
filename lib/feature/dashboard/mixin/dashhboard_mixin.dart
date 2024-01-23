@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:subscriptionfairy/feature/dashboard/deprecated_dashboard.dart';
+import 'package:subscriptionfairy/feature/dashboard/view/dashboard_view.dart';
+import 'package:subscriptionfairy/product/utility/enum/tab_views.dart';
 
 /// DashBoardMixin
 mixin DashBoardMixin on State<DashboardView> implements TickerProvider {

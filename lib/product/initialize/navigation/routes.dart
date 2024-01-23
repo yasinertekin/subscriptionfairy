@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:subscriptionfairy/feature/auth/register/view/register_view.dart';
 import 'package:subscriptionfairy/feature/auth/sign/view/sign_view.dart';
-import 'package:subscriptionfairy/feature/dashboard/deprecated_dashboard.dart';
+import 'package:subscriptionfairy/feature/dashboard/view/dashboard_view.dart';
 import 'package:subscriptionfairy/feature/date_picker/view/date_picker_view.dart';
 import 'package:subscriptionfairy/feature/search/view/search_view.dart';
 import 'package:subscriptionfairy/feature/subscriptions_detail/view/subscriptions_detail_view.dart';

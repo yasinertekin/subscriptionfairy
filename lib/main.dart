@@ -13,18 +13,13 @@ import 'package:subscriptionfairy/product/initialize/state/state_initialize.dart
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  print('widget flutter binding ensure initialized');
   await EasyLocalization.ensureInitialized();
-  print('easy localization ensure initialized');
   await DeviceUtility.instance.initPackageInfo();
-  print('device utility instance init package info');
 
   AppEnvironment.general();
-  print('app environment general');
   await Firebase.initializeApp(
     options: AppEnvironment.firebaseOptions,
   );
-  print('firebase initialize app');
   runApp(
     StateInitialize(
       child: ProductLocalization(
