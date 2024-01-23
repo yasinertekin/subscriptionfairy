@@ -4,7 +4,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:subscriptionfairy/feature/dashboard/mixin/dashhboard_mixin.dart';
 import 'package:subscriptionfairy/feature/home/view/home_view.dart';
-import 'package:subscriptionfairy/feature/profile/profile_view.dart';
+import 'package:subscriptionfairy/feature/profile/view/profile_view.dart';
 import 'package:subscriptionfairy/feature/subscriptions/view/subscriptions_view.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
