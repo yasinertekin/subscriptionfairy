@@ -18,7 +18,7 @@ final class _SearchSubscriptions extends StatelessWidget {
         );
       },
       decoration: InputDecoration(
-        hintText: 'Search',
+        hintText: LocaleKeys.subscriptions_textFieldHintText.tr(),
         prefixIcon: const Icon(Icons.search),
         border: OutlineInputBorder(
           borderRadius: context.border.normalBorderRadius,

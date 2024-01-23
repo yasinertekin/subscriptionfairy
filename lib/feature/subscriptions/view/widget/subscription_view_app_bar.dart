@@ -7,7 +7,10 @@ final class _SubscriptionViewAppBar extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Subscriptions'),
+      automaticallyImplyLeading: false,
+      title: const Text(
+        LocaleKeys.subscriptions_title,
+      ).tr(),
       centerTitle: false,
     );
   }
