@@ -1,59 +1,14 @@
-/*import 'package:flutter/material.dart';
-import 'package:subscriptionfairy/feature/dashboard/dashboard_view.dart';
-
-/// DashBoardMixin
-mixin DashBoardMixin on State<DashboardView> implements TickerProvider {
-  late final TabController _tabController;
-
-  /// tabController
-  TabController get tabController => _tabController;
-
-  /// tabViewsList
-  late final List<Tab> _tabViewsList = TabViews.values.map(
-    (e) {
-      return Tab(
-        icon: e.getIcon(),
-      );
-    },
-  ).toList();
-
-  /// tabViewsList
-  List<Tab> get tabViews => _tabViewsList;
-
-  @override
-  void initState() {
-    super.initState();
-    _initTabController(TabViews.values.length, this);
-  }
-
-  @override
-  void dispose() {
-    _disposeTabController();
-    super.dispose();
-  }
-
-  void _initTabController(int length, TickerProvider vsync) {
-    _tabController = TabController(
-      length: length,
-      vsync: vsync,
-    );
-  }
-
-  void _disposeTabController() {
-    _tabController.dispose();
-  }
-}
-*/
-
-/*import 'package:flutter/material.dart';
-
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:subscriptionfairy/feature/dashboard/dashboard_mixin.dart';
+import 'package:subscriptionfairy/feature/dashboard/dashhboard_mixin.dart';
 import 'package:subscriptionfairy/feature/home/view/home_view.dart';
+import 'package:subscriptionfairy/feature/profile/profile_view.dart';
 import 'package:subscriptionfairy/feature/subscriptions/view/subscriptions_view.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
+import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
 import 'package:subscriptionfairy/product/widget/custom_loading.dart';
 
 /// DashboardView
@@ -64,7 +19,8 @@ final class DashboardView extends StatefulWidget {
   State<DashboardView> createState() => _DashboardViewState();
 }
 
-class _DashboardViewState extends State<DashboardView> with DashBoardMixin {
+final class _DashboardViewState extends State<DashboardView>
+    with DashBoardMixin {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppCubit, AppState>(
@@ -72,9 +28,6 @@ class _DashboardViewState extends State<DashboardView> with DashBoardMixin {
         if (state is AppLoadingState) {
           return const CustomLoading();
         } else if (state is AppLoadedState) {
-          final appCubit = context.read<AppCubit>();
-          final upLoadState = state;
-          final users = state.users.subscriptionList;
           return _DashBoard(
             tabController: tabController,
             tabViews: tabViews,
@@ -85,8 +38,8 @@ class _DashboardViewState extends State<DashboardView> with DashBoardMixin {
             child: Text(state.error),
           );
         } else {
-          return const Center(
-            child: Text('Unknown state'),
+          return Center(
+            child: const Text(LocaleKeys.dashboard_unknownState).tr(),
           );
         }
       },
@@ -170,7 +123,7 @@ final class _DashboardView extends StatelessWidget {
         SubscriptionsView(
           state: state,
         ),
-        const Placeholder(),
+        const ProfileView(),
       ],
     );
   }
@@ -211,18 +164,6 @@ enum TabViews {
 
 /// TabViewsExtension
 extension TabViewsExtension on TabViews {
-  /// name
-  String get name {
-    switch (this) {
-      case TabViews.home:
-        return 'Ana Sayfa';
-      case TabViews.categories:
-        return '';
-      case TabViews.offers:
-        return 'Tekliflerim';
-    }
-  }
-
   /// icon
   Widget getIcon() {
     switch (this) {
@@ -245,5 +186,3 @@ extension TabViewsExtension on TabViews {
     }
   }
 }
-
-*/

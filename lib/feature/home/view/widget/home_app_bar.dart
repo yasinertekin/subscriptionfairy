@@ -6,13 +6,25 @@ final class _HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       centerTitle: false,
       title: Text(
-        StringConstants.mySubscriptions,
+        LocaleKeys.home_title,
         style: context.general.textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.bold,
         ),
-      ),
+      ).tr(),
+      actions: [
+        IconButton(
+          onPressed: () {
+            ProductLocalization.updateLanguage(
+              context: context,
+              value: Locales.en,
+            );
+          },
+          icon: const Icon(Icons.settings),
+        ),
+      ],
     );
   }
 

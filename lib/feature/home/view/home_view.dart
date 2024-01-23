@@ -1,12 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gen/src/index.dart';
 import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/feature/home/view/widget/home_subscription_card.dart';
 import 'package:subscriptionfairy/feature/home/view_model/home_view_model.dart';
-import 'package:subscriptionfairy/product/constants/string_constants.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
+import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
+import 'package:subscriptionfairy/product/initialize/localization/project_localization.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
 import 'package:subscriptionfairy/product/model/subscriptions/subscriptions.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';

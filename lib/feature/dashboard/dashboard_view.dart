@@ -1,15 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+/*import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: implementation_imports
 import 'package:gen/src/index.dart';
 import 'package:kartal/kartal.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:subscriptionfairy/feature/home/view/home_view.dart';
+import 'package:subscriptionfairy/feature/profile/profile_view.dart';
 import 'package:subscriptionfairy/feature/subscriptions/view/subscriptions_view.dart';
+import 'package:subscriptionfairy/product/constants/string_constants.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
+import 'package:subscriptionfairy/product/core/theme/theme.dart';
 import 'package:subscriptionfairy/product/widget/custom_loading.dart';
 
 /// This is the view for the bottom navigation bar feature.
@@ -19,6 +20,7 @@ final class DashboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeCubit = context.read<ThemeCubit>();
     const milliSeconds = 200;
     final controller = PersistentTabController();
     return BlocBuilder<AppCubit, AppState>(
@@ -41,7 +43,6 @@ final class DashboardView extends StatelessWidget {
             popAllScreensOnTapAnyTabs: true,
             decoration: NavBarDecoration(
               borderRadius: context.border.lowBorderRadius,
-              colorBehindNavBar: ColorName.colorWhite,
             ),
             itemAnimationProperties: const ItemAnimationProperties(
               // Navigation Bar's items animation properties.
@@ -61,7 +62,9 @@ final class DashboardView extends StatelessWidget {
           );
         } else {
           return const Center(
-            child: Text('Unknown state'),
+            child: Text(
+              StringConstants.unknownState,
+            ),
           );
         }
       },
@@ -80,12 +83,7 @@ List<Widget> _buildScreens(
     SubscriptionsView(
       state: state,
     ),
-    ElevatedButton(
-      onPressed: () {
-        FirebaseAuth.instance.signOut();
-      },
-      child: const Text('Sign Out'),
-    ),
+    const ProfileView(),
   ];
 }
 
@@ -95,7 +93,7 @@ List<PersistentBottomNavBarItem> _navBarsItems() {
       inactiveColorPrimary: ColorName.colorGrey,
       inactiveColorSecondary: ColorName.colorGrey,
       activeColorPrimary: ColorName.colorRed,
-      title: 'Home',
+      title: StringConstants.home,
       icon: const Icon(
         CupertinoIcons.home,
       ),
@@ -108,7 +106,7 @@ List<PersistentBottomNavBarItem> _navBarsItems() {
       activeColorPrimary: ColorName.colorRed,
       inactiveColorPrimary: ColorName.colorGrey,
       inactiveColorSecondary: ColorName.colorGrey,
-      title: 'Add',
+      title: StringConstants.add,
     ),
     PersistentBottomNavBarItem(
       activeColorPrimary: ColorName.colorRed,
@@ -117,7 +115,8 @@ List<PersistentBottomNavBarItem> _navBarsItems() {
       icon: const Icon(
         CupertinoIcons.profile_circled,
       ),
-      title: 'Profile',
+      title: StringConstants.Profile,
     ),
   ];
 }
+*/

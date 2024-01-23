@@ -1,11 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/feature/home/view_model/home_view_model.dart';
 import 'package:subscriptionfairy/feature/home/view_model/mixin/home_subscription_card_mixin.dart';
-import 'package:subscriptionfairy/product/constants/string_constants.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
+import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
 import 'package:subscriptionfairy/product/mixin/succesfull_lottie.dart';
 import 'package:subscriptionfairy/product/model/subscriptions/subscriptions.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
@@ -52,6 +53,9 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
           borderRadius: context.border.normalBorderRadius,
         ),
         child: ExpansionTile(
+          shape: RoundedRectangleBorder(
+            borderRadius: context.border.normalBorderRadius,
+          ),
           leading: ClipRRect(
             borderRadius: context.border.normalBorderRadius,
             child: CustomCachedNetworkImage(
@@ -91,10 +95,10 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
   ) {
     return ListTile(
       title: Text(
-        '${StringConstants.startDate} $formattedDate',
-      ),
+        '${LocaleKeys.home_startDate.tr()} $formattedDate',
+      ).tr(),
       subtitle: Text(
-        '${StringConstants.endDate} $formattedEndDate',
+        '${LocaleKeys.home_endDate.tr()} $formattedEndDate',
       ),
       trailing: IconButton(
         onPressed: () {

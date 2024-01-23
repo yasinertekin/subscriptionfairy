@@ -13,18 +13,18 @@ final class _SubscriptionDetailsExpansionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpansionTile(
       title: Text(
-        StringConstants.subscriptionsDetails,
+        LocaleKeys.home_content,
         style: context.general.textTheme.bodySmall?.copyWith(
           fontWeight: FontWeight.bold,
         ),
-      ),
+      ).tr(),
       children: [
         _SubscriptionDetailsListTile(
           iconColor: ColorName.colorGreen,
           icon: const Icon(
             Icons.attach_money,
           ),
-          title: StringConstants.totalPrices,
+          title: LocaleKeys.home_totalPrice,
           trailing: '${totalPrices?.toStringAsFixed(2)} \$',
         ),
         _SubscriptionDetailsListTile(
@@ -32,7 +32,7 @@ final class _SubscriptionDetailsExpansionTile extends StatelessWidget {
           icon: const Icon(
             Icons.subscriptions,
           ),
-          title: StringConstants.totalSubscription,
+          title: LocaleKeys.home_totalSubscriptions,
           trailing: '${state.users.subscriptionList?.length}',
         ),
         _SubscriptionDetailsListTile(
@@ -40,7 +40,7 @@ final class _SubscriptionDetailsExpansionTile extends StatelessWidget {
           icon: const Icon(
             Icons.subscriptions,
           ),
-          title: StringConstants.activeSubscriptions,
+          title: LocaleKeys.home_totalSubscriptions,
           trailing: '${state.users.subscriptionList?.where(
                 (element) => element.isSubscribed == true,
               ).length}',
