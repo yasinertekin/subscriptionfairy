@@ -8,6 +8,7 @@ import 'package:subscriptionfairy/product/initialize/localization/project_locali
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/initialize/theme/custom_light_theme.dart';
+import 'package:subscriptionfairy/product/utility/enum/profile.dart';
 
 /// This is the view for the bottom navigation bar feature.
 final class ProfileView extends StatelessWidget {
@@ -17,34 +18,29 @@ final class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text(
-          LocaleKeys.profile_title,
-        ).tr(),
-      ),
+      appBar: const _ProfileAppBar(),
       body: ListView.builder(
-        itemCount: profile.values.length,
+        itemCount: Profile.values.length,
         itemBuilder: (context, index) {
           return Column(
-            children: [
+            children: <Widget>[
               ListTile(
-                title: Text(profile.values[index].name),
-                trailing: profile.values[index].icon,
+                title: Text(Profile.values[index].name),
+                trailing: Profile.values[index].icon,
                 onTap: () {
-                  switch (profile.values[index]) {
-                    case profile.signOut:
+                  switch (Profile.values[index]) {
+                    case Profile.signOut:
                       FirebaseAuth.instance.signOut();
                       NavigationService.instance.navigateToPage(
                         path: Routes.sign,
                       );
-                    case profile.changeTheme:
+                    case Profile.changeTheme:
                       context.read<ThemeCubit>().state.themeData ==
                               CustomLightTheme().themeData
                           ? context.read<ThemeCubit>().setDarkTheme()
                           : context.read<ThemeCubit>().setLightTheme();
 
-                    case profile.changeLanguage:
+                    case Profile.changeLanguage:
                       if (context.locale == Locales.tr.locale) {
                         ProductLocalization.updateLanguage(
                           context: context,
@@ -68,32 +64,20 @@ final class ProfileView extends StatelessWidget {
   }
 }
 
-enum profile {
-  changeTheme,
-  changeLanguage,
-  signOut,
-}
+final class _ProfileAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
+  const _ProfileAppBar();
 
-extension profileExtension on profile {
-  String get name {
-    switch (this) {
-      case profile.signOut:
-        return LocaleKeys.profile_signOut.tr();
-      case profile.changeTheme:
-        return LocaleKeys.profile_changeTheme.tr();
-      case profile.changeLanguage:
-        return LocaleKeys.profile_changeLanguage.tr();
-    }
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      title: const Text(
+        LocaleKeys.profile_title,
+      ).tr(),
+    );
   }
 
-  Widget get icon {
-    switch (this) {
-      case profile.signOut:
-        return const Icon(Icons.logout);
-      case profile.changeTheme:
-        return const Icon(Icons.color_lens);
-      case profile.changeLanguage:
-        return const Icon(Icons.language);
-    }
-  }
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

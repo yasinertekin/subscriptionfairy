@@ -27,17 +27,16 @@ final class _SubscriptionsDetailCard extends StatelessWidget {
       child: Card(
         elevation: elevation,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Spacer(),
             ClipRRect(
               borderRadius: context.border.normalBorderRadius,
               child: CustomCachedNetworkImage(
-                height: context.sized.dynamicHeight(0.13),
+                height: context.sized.dynamicHeight(0.12),
                 width: context.sized.dynamicWidth(0.23),
                 imageUrl: receivedSubscriptions.subscriptionIcon.toString(),
               ),
             ),
-            const Spacer(),
             Row(
               children: [
                 Expanded(
