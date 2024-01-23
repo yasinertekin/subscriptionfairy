@@ -36,14 +36,11 @@ final class FirebaseFireStoreService extends FirebaseFireStoreServiceInterface {
 
     if (snapshot.exists) {
       // Eğer snapshot varsa, snapshot'ı Users'a çevir
-      print('snapshot var');
-      print(snapshot.data());
       return Users.fromJson(
         snapshot.data()!,
       );
     } else {
       // Eğer snapshot yoksa, boş bir Users döndür
-      print('snapshot yok');
       return const Users(
         subscriptionList: [],
         username: '',

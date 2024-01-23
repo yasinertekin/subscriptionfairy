@@ -71,6 +71,7 @@ final class _SubscriptionDetailCardSwitch extends StatelessWidget {
           .where(
             (element) =>
                 element.subId == receivedSubscriptions.subId &&
+                // ignore: use_if_null_to_convert_nulls_to_bools
                 element.isSubscribed == true,
           )
           .isNotEmpty,
@@ -100,6 +101,7 @@ final class _SubscriptionDetailCardSwitch extends StatelessWidget {
                 state.users.subscriptionList!.firstWhere(
                   (element) =>
                       element.subId == receivedSubscriptions.subId &&
+                      // ignore: use_if_null_to_convert_nulls_to_bools
                       element.isSubscribed == true,
                 ),
               );

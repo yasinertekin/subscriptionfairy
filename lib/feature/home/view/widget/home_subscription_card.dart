@@ -72,7 +72,7 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
           ),
           trailing: homeViewModel.isProcessing
               ? const CircularProgressIndicator()
-              : CustomSwitch(
+              : _CustomSwitch(
                   subscriptionList: subscriptionList,
                 ),
           children: [
@@ -151,10 +151,9 @@ final class _SubscriptionPlanType extends StatelessWidget {
   }
 }
 
-final class CustomSwitch extends StatelessWidget with SuccesFullLottie {
-  const CustomSwitch({
+final class _CustomSwitch extends StatelessWidget with SuccesFullLottie {
+  const _CustomSwitch({
     required this.subscriptionList,
-    super.key,
   });
 
   final Subscriptions? subscriptionList;
