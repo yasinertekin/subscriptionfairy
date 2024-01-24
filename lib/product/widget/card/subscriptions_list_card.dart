@@ -1,6 +1,16 @@
-part of '../subscriptions_view.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
+import 'package:subscriptionfairy/product/core/app_state.dart';
+import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
+import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
+import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
+import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
+import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
 
+/// SubscriptionsListCard
 final class SubscriptionsListCard extends StatelessWidget {
+  /// Default constructor
   const SubscriptionsListCard({
     required this.subscription,
     required this.state,
@@ -8,8 +18,13 @@ final class SubscriptionsListCard extends StatelessWidget {
     super.key,
   });
 
+  /// subscription
   final SubscriptionsList subscription;
+
+  /// state
   final AppLoadedState state;
+
+  /// index
   final int index;
 
   @override

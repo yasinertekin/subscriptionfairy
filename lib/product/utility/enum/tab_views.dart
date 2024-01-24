@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gen/src/index.dart';
 
 /// Tab views
 enum TabViews {
@@ -26,7 +27,7 @@ extension TabViewsExtension on TabViews {
           onPressed: null,
           child: Icon(
             Icons.add,
-            color: Colors.white,
+            color: ColorName.colorWhite,
           ),
         );
       case TabViews.offers:

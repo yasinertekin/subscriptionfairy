@@ -21,6 +21,7 @@ final class CustomCachedNetworkImage extends StatelessWidget {
   /// width
   final double width;
 
+  /// fit
   final BoxFit fit;
 
   @override

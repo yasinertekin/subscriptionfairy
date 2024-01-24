@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
@@ -8,11 +7,10 @@ import 'package:subscriptionfairy/product/initialize/navigation/navigation_servi
 import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
-import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
+import 'package:subscriptionfairy/product/widget/card/subscriptions_list_card.dart';
 
 part 'widget/search_subscriptions.dart';
 part 'widget/subscription_view_app_bar.dart';
-part 'widget/subscriptions_list_card.dart';
 
 /// SubscriptionsView
 final class SubscriptionsView extends StatelessWidget {
