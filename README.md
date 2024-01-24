@@ -16,5 +16,9 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 
-https://github.com/yasinertekin/subscriptionfairy/assets/111593895/beb258cd-7fac-4df4-95d0-a835cca945db
+https://github.com/yasinertekin/subscriptionfairy/assets/111593895/692f20bf-c20e-424e-9439-ef8bcfc519ab
+
+
+
+
 
