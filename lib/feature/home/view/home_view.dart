@@ -62,9 +62,18 @@ final class _HomeBuilder extends StatelessWidget {
           totalPrices: totalPrices,
           state: state,
         ),
-        _SubscriptionList(
-          state: state,
-        ),
+        if (state.users.subscriptionList!.isNotEmpty)
+          _SubscriptionList(
+            state: state,
+          )
+        else
+          const Expanded(
+            child: Center(
+              child: Text(
+                'You have no subscriptions yet.',
+              ),
+            ),
+          ),
       ],
     );
   }

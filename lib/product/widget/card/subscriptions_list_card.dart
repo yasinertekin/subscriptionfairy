@@ -49,7 +49,8 @@ final class SubscriptionsListCard extends StatelessWidget {
               borderRadius: context.border.normalBorderRadius,
               child: CustomCachedNetworkImage(
                 height: context.sized.dynamicHeight(0.1),
-                width: context.sized.dynamicWidth(0.15),
+                width: context.sized.dynamicWidth(0.13),
+                fit: BoxFit.fill,
                 imageUrl: subscription.subscriptionIcon ?? '',
               ),
             ),
