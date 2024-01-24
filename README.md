@@ -2,6 +2,9 @@
 
 A new Flutter project.
 
+https://github.com/yasinertekin/subscriptionfairy/assets/111593895/0c1c7f35-b8bf-4b0a-ab4c-0352a3528725
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
@@ -18,7 +21,6 @@ samples, guidance on mobile development, and a full API reference.
 
 
 
-https://github.com/yasinertekin/subscriptionfairy/assets/111593895/0c1c7f35-b8bf-4b0a-ab4c-0352a3528725
 
 
 
