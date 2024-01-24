@@ -7,6 +7,7 @@ import 'package:subscriptionfairy/product/initialize/theme/custom_theme.dart';
 final class CustomLightTheme implements CustomTheme {
   @override
   ThemeData get themeData => ThemeData(
+        brightness: Brightness.light,
         useMaterial3: true,
         colorScheme: CustomColorScheme.lightColorScheme,
         inputDecorationTheme: inputDecorationTheme,

@@ -1,20 +1,22 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:subscriptionfairy/product/core/theme/theme.dart';
+import 'package:subscriptionfairy/feature/profile/view_model/mixin/profile_view_mixin.dart';
 import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
-import 'package:subscriptionfairy/product/initialize/localization/project_localization.dart';
-import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
-import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
-import 'package:subscriptionfairy/product/initialize/theme/custom_light_theme.dart';
 import 'package:subscriptionfairy/product/utility/enum/profile.dart';
 
+part 'widget/profile_app_bar.dart';
+part 'widget/profile_list_tile.dart';
+
 /// This is the view for the bottom navigation bar feature.
-final class ProfileView extends StatelessWidget {
+final class ProfileView extends StatefulWidget {
   /// Constructor of ProfileView
   const ProfileView({super.key});
 
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+final class _ProfileViewState extends State<ProfileView> with ProfileViewMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,62 +24,21 @@ final class ProfileView extends StatelessWidget {
       body: ListView.builder(
         itemCount: Profile.values.length,
         itemBuilder: (context, index) {
-          return Column(
-            children: <Widget>[
-              ListTile(
-                title: Text(Profile.values[index].name),
-                trailing: Profile.values[index].icon,
-                onTap: () {
-                  switch (Profile.values[index]) {
-                    case Profile.signOut:
-                      FirebaseAuth.instance.signOut();
-                      NavigationService.instance.navigateToPage(
-                        path: Routes.sign,
-                      );
-                    case Profile.changeTheme:
-                      context.read<ThemeCubit>().state.themeData ==
-                              CustomLightTheme().themeData
-                          ? context.read<ThemeCubit>().setDarkTheme()
-                          : context.read<ThemeCubit>().setLightTheme();
-
-                    case Profile.changeLanguage:
-                      if (context.locale == Locales.tr.locale) {
-                        ProductLocalization.updateLanguage(
-                          context: context,
-                          value: Locales.en,
-                        );
-                      } else {
-                        ProductLocalization.updateLanguage(
-                          context: context,
-                          value: Locales.tr,
-                        );
-                      }
-                  }
-                },
-              ),
-              const Divider(),
-            ],
+          return _ProfileListTile(
+            index,
+            () {
+              switch (Profile.values[index]) {
+                case Profile.signOut:
+                  signOut();
+                case Profile.changeTheme:
+                  changeTheme(context);
+                case Profile.changeLanguage:
+                  changeLanguage(context);
+              }
+            },
           );
         },
       ),
     );
   }
-}
-
-final class _ProfileAppBar extends StatelessWidget
-    implements PreferredSizeWidget {
-  const _ProfileAppBar();
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      title: const Text(
-        LocaleKeys.profile_title,
-      ).tr(),
-    );
-  }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

@@ -38,6 +38,7 @@ final class _MyApp extends StatelessWidget {
     return BlocBuilder<ThemeCubit, ThemeState>(
       builder: (context, state) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,

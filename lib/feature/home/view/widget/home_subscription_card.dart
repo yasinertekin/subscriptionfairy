@@ -115,7 +115,8 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
   }
 }
 
-final class _SubscriptionPlanType extends StatelessWidget {
+final class _SubscriptionPlanType extends StatelessWidget
+    with SuccesFullLottie {
   const _SubscriptionPlanType({
     required this.subscriptionList,
   });
@@ -141,6 +142,9 @@ final class _SubscriptionPlanType extends StatelessWidget {
                   await cubit.deleteSubscriptionList(subscriptionList!);
 
                   homeViewModel.changeProcessing();
+                  succesFullLottie(
+                    context,
+                  );
                 },
                 icon: const Icon(
                   Icons.delete_forever_sharp,
@@ -167,9 +171,7 @@ final class _CustomSwitch extends StatelessWidget with SuccesFullLottie {
       builder: (context, child) => Switch(
         onChanged: (value) async {
           homeViewModel.changeProcessing();
-          succesFullLottie(
-            context,
-          );
+
           await cubit.updateSubscriptions(
             subscriptionList!,
             subscriptionList!.copyWith(
@@ -177,6 +179,9 @@ final class _CustomSwitch extends StatelessWidget with SuccesFullLottie {
             ),
           );
           homeViewModel.changeProcessing();
+          succesFullLottie(
+            context,
+          );
         },
         value: subscriptionList?.isSubscribed ?? false,
       ),

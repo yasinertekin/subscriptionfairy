@@ -1,6 +1,7 @@
 part of '../subscriptions_detail_view.dart';
 
-final class _SubscriptionsCardSwitch extends StatelessWidget {
+final class _SubscriptionsCardSwitch extends StatelessWidget
+    with SuccesFullLottie {
   const _SubscriptionsCardSwitch({
     required this.state,
     required this.receivedSubscriptions,
@@ -47,6 +48,7 @@ final class _SubscriptionsCardSwitch extends StatelessWidget {
               ),
             ),
           );
+          succesFullLottie(context);
         } else {
           await context.read<AppCubit>().updateSubscriptions(
                 state.users.subscriptionList!.firstWhere(
