@@ -9,7 +9,6 @@ import 'package:subscriptionfairy/feature/home/view_model/home_view_model.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
-import 'package:subscriptionfairy/product/initialize/localization/project_localization.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
 import 'package:subscriptionfairy/product/model/subscriptions/subscriptions.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';

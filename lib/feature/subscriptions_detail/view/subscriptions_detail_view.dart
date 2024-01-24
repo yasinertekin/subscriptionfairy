@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
+import 'package:subscriptionfairy/feature/home/view_model/home_view_model.dart';
 import 'package:subscriptionfairy/feature/subscriptions_detail/view_model/subscriptions_detail_view_model.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
@@ -10,6 +11,7 @@ import 'package:subscriptionfairy/product/initialize/navigation/navigation_servi
 import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/mixin/succesfull_lottie.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
+import 'package:subscriptionfairy/product/model/subscriptions/subscriptions.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
 import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
 
@@ -38,9 +40,9 @@ final class SubscriptionDetailView extends StatelessWidget
       appBar: const _SubscriptionDetailAppBar(),
       body: GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount,
-          childAspectRatio: context.sized.dynamicHeight(0.001),
+          childAspectRatio: 0.8,
         ),
         itemCount: receivedSubscriptions.name?.length,
         itemBuilder: (context, index) {

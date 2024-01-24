@@ -48,10 +48,13 @@ final class _SubscriptionsCardSwitch extends StatelessWidget {
             ),
           );
         } else {
-          await context.read<AppCubit>().deleteSubscriptionList(
+          await context.read<AppCubit>().updateSubscriptions(
                 state.users.subscriptionList!.firstWhere(
                   (element) =>
                       element.subId == receivedSubscriptions.name![index].subId,
+                ),
+                receivedSubscriptions.name![index].copyWith(
+                  isSubscribed: false,
                 ),
               );
         }
