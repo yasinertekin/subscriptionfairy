@@ -38,9 +38,9 @@ final class SubscriptionDetailView extends StatelessWidget
       appBar: const _SubscriptionDetailAppBar(),
       body: GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount,
-          childAspectRatio: 0.8,
+          childAspectRatio: context.sized.dynamicHeight(0.2),
         ),
         itemCount: receivedSubscriptions.name?.length,
         itemBuilder: (context, index) {
