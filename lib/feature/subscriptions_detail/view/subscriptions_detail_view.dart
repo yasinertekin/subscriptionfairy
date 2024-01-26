@@ -40,7 +40,7 @@ final class SubscriptionDetailView extends StatelessWidget
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount,
-          childAspectRatio: context.sized.dynamicHeight(0.2),
+          childAspectRatio: context.sized.dynamicHeight(0.001),
         ),
         itemCount: receivedSubscriptions.name?.length,
         itemBuilder: (context, index) {
