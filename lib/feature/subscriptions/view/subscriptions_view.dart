@@ -34,7 +34,6 @@ final class SubscriptionsView extends StatelessWidget {
             appBar: const _SubscriptionViewAppBar(),
             body: _SubscriptionViewBuilder(
               state.subscriptions,
-              state.subscriptions.first,
             ),
           );
         } else if (state is AppErrorState) {
@@ -54,11 +53,9 @@ final class SubscriptionsView extends StatelessWidget {
 final class _SubscriptionViewBuilder extends StatelessWidget {
   const _SubscriptionViewBuilder(
     this.subscriptionsList,
-    this.subscriptionListTwo,
   );
 
   final List<SubscriptionsList> subscriptionsList;
-  final SubscriptionsList subscriptionListTwo;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +64,7 @@ final class _SubscriptionViewBuilder extends StatelessWidget {
       child: Column(
         children: [
           _SearchSubscriptions(
-            subscriptionListTwo,
+            subscriptionsList,
           ),
           context.sized.emptySizedHeightBoxLow3x,
           _SubscriptionsList(

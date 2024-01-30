@@ -5,7 +5,7 @@ final class _SearchSubscriptions extends StatelessWidget {
     this.subscriptionsList,
   );
 
-  final SubscriptionsList subscriptionsList;
+  final List<SubscriptionsList> subscriptionsList;
 
   @override
   Widget build(BuildContext context) {

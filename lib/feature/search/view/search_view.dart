@@ -13,10 +13,15 @@ part 'widget/search_text_field.dart';
 /// SearchView
 final class SearchView extends StatelessWidget {
   /// Default constructor
-  const SearchView({super.key});
+  const SearchView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final receivedData =
+        ModalRoute.of(context)!.settings.arguments! as List<SubscriptionsList>;
+
     final controller = TextEditingController();
     final searchProvider = SearchViewModel();
     return ListenableBuilder(
@@ -26,7 +31,7 @@ final class SearchView extends StatelessWidget {
         body: _SearchViewBody(
           controller: controller,
           searchProvider: searchProvider,
-          subscriptions: searchProvider.subscriptions,
+          subscriptions: receivedData,
         ),
       ),
     );
