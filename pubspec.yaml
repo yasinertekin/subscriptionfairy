@@ -13,6 +13,7 @@ dependencies:
   #Core
   freezed: ^2.4.6
   envied: ^0.5.3
+  easy_localization: ^3.0.3
 
   # Firebase
   firebase_auth: ^4.16.0
@@ -23,7 +24,6 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2
   cached_network_image: ^3.3.1
   intl: ^0.18.1
-
   kartal: ^3.5.0
 
   # Date Time Picker
@@ -31,8 +31,7 @@ dependencies:
 
   # Google
   json_annotation: ^4.8.1
-
-  easy_localization: ^3.0.3
+  google_fonts: ^6.1.0
 
   gen:
     path: module/gen
