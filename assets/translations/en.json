@@ -37,7 +37,8 @@
         "totalSubscriptions": "Total Subscriptions: ",
         "activeSubscriptions": "Active Subscriptions: ",
         "startDate": "Start Date: ",
-        "endDate": "End Date:"
+        "endDate": "End Date:",
+        "youHaveNoSubscriptions": "You have no subscriptions"
     },
 
     "subscriptions":{
