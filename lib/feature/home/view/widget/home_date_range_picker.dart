@@ -63,6 +63,7 @@ final class HomeDateRangePicker extends StatelessWidget {
         ),
         navigationDirection: DateRangePickerNavigationDirection.vertical,
         onSelectionChanged: (DateRangePickerSelectionChangedArgs args) async {
+          // ignore: avoid_dynamic_calls
           final argsDate = args.value.startDate as DateTime;
           final newSubscription = subscription?.copyWith(
             startDate: argsDate,
@@ -91,10 +92,6 @@ final class HomeDateRangePicker extends StatelessWidget {
               },
       ),
     );
-  }
-
-  void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
-    // ignore: avoid_dynamic_calls
   }
 
   Future<void> _changeSubscriptionDate(

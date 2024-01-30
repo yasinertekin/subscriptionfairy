@@ -73,16 +73,17 @@ final class _HomeBuilder extends StatelessWidget {
           totalPrices: totalPrices,
           subscriptionList: subscriptionList,
         ),
+        // ignore: use_if_null_to_convert_nulls_to_bools
         if (subscriptionList?.isNotEmpty == true)
           _SubscriptionList(
             subscriptionList: subscriptionList,
           )
         else
-          const Expanded(
+          Expanded(
             child: Center(
-              child: Text(
-                'You have no subscriptions yet.',
-              ),
+              child: const Text(
+                LocaleKeys.home_youHaveNoSubscriptions,
+              ).tr(),
             ),
           ),
       ],
