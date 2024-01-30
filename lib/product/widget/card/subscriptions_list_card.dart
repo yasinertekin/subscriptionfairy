@@ -5,7 +5,7 @@ import 'package:subscriptionfairy/product/initialize/navigation/navigation_servi
 import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
-import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
+import 'package:subscriptionfairy/product/widget/other/custom_cached_network_image.dart';
 
 /// SubscriptionsListCard
 final class SubscriptionsListCard extends StatelessWidget {
