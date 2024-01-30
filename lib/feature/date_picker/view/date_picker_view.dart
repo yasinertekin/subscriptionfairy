@@ -49,6 +49,7 @@ final class DatePickerView extends StatelessWidget {
     SubscriptionsDetailViewModel receivedSelectDate,
     DateRangePickerController controller,
   ) {
+    // ignore: avoid_dynamic_calls
     final startDate = args.value.startDate as DateTime;
     receivedSelectDate.onDateSelected(startDate);
     final endDate = startDate.add(
