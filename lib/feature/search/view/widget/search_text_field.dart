@@ -4,12 +4,12 @@ final class _SearchTextField extends StatelessWidget {
   const _SearchTextField({
     required this.controller,
     required this.searchProvider,
-    required this.state,
+    required this.subscriptions,
   });
 
   final TextEditingController controller;
   final SearchViewModel searchProvider;
-  final AppLoadedState state;
+  final List<SubscriptionsList> subscriptions;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ final class _SearchTextField extends StatelessWidget {
         }
         searchProvider.search(
           controller.text,
-          state.subscriptions,
+          subscriptions,
         );
       },
       decoration: InputDecoration(

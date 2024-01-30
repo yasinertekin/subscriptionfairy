@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
@@ -13,7 +12,6 @@ final class SubscriptionsListCard extends StatelessWidget {
   /// Default constructor
   const SubscriptionsListCard({
     required this.subscription,
-    required this.state,
     required this.index,
     super.key,
   });
@@ -22,7 +20,6 @@ final class SubscriptionsListCard extends StatelessWidget {
   final SubscriptionsList subscription;
 
   /// state
-  final AppLoadedState state;
 
   /// index
   final int index;

@@ -4,7 +4,6 @@ import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/feature/home/view/home_view.dart';
 import 'package:subscriptionfairy/feature/home/view/widget/home_subscription_card.dart';
 import 'package:subscriptionfairy/feature/home/view_model/home_view_model.dart';
-import 'package:subscriptionfairy/product/model/subscriptions/subscriptions.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 /// This is the mixin for the home subscription card.
@@ -25,21 +24,6 @@ mixin HomeSubscriptionCardMixin on State<HomeSubscriptionCard> {
     return DateFormat.yMMMd().format(date ?? DateTime.now());
   }
 
-  /// This is the state for the home view.
-  DateTime? getSubscriptionStartDate() {
-    return widget.state.users.subscriptionList?[widget.index].startDate;
-  }
-
-  /// This is the state for the home view.
-  DateTime? getSubscriptionEndDate() {
-    return widget.state.users.subscriptionList?[widget.index].endDate;
-  }
-
-  /// This is the state for the home view.
-  Subscriptions? getSubscriptionList() {
-    return widget.state.users.subscriptionList?[widget.index];
-  }
-
   /// Alert Dialog
   void showCustomDatePicker(
     BuildContext context,
@@ -57,8 +41,8 @@ mixin HomeSubscriptionCardMixin on State<HomeSubscriptionCard> {
             width: context.sized.dynamicWidth(1),
             child: HomeDateRangePicker(
               controller: controller,
-              state: widget.state,
               index: widget.index,
+              subscription: widget.subscriptions,
             ),
           ),
         );

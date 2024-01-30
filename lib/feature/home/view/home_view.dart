@@ -11,6 +11,7 @@ import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
 import 'package:subscriptionfairy/product/model/subscriptions/subscriptions.dart';
+import 'package:subscriptionfairy/product/widget/custom_loading.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 part 'widget/home_app_bar.dart';
@@ -22,36 +23,46 @@ part 'widget/subscription_details_list_tile.dart';
 final class HomeView extends StatelessWidget {
   /// This is the constructor for the home view.
   const HomeView({
-    required this.state,
     super.key,
   });
 
-  /// This is the state for the home view.
-  final AppLoadedState state;
-
-  /// This is the cubit for the home view.
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const _HomeAppBar(),
-      body: _HomeBuilder(
-        state,
-      ),
+    return BlocBuilder<AppCubit, AppState>(
+      builder: (context, state) {
+        if (state is AppLoadingState) {
+          return const CustomLoading();
+        } else if (state is AppLoadedState) {
+          final subscriptionList = state.users.subscriptionList;
+          return Scaffold(
+            appBar: const _HomeAppBar(),
+            body: _HomeBuilder(
+              subscriptionList,
+            ),
+          );
+        } else if (state is AppErrorState) {
+          return Center(
+            child: Text(state.error),
+          );
+        } else {
+          return Center(
+            child: const Text(LocaleKeys.dashboard_unknownState).tr(),
+          );
+        }
+      },
     );
   }
 }
 
 final class _HomeBuilder extends StatelessWidget {
   const _HomeBuilder(
-    this.state,
+    this.subscriptionList,
   );
-
-  final AppLoadedState state;
+  final List<Subscriptions>? subscriptionList;
 
   @override
   Widget build(BuildContext context) {
-    final totalPrices = state.users.subscriptionList
+    final totalPrices = subscriptionList
         ?.map((e) => e.price)
         .fold<num>(0, (value, element) => value + (element ?? 0));
 
@@ -60,11 +71,11 @@ final class _HomeBuilder extends StatelessWidget {
       children: [
         _SubscriptionDetailsExpansionTile(
           totalPrices: totalPrices,
-          state: state,
+          subscriptionList: subscriptionList,
         ),
-        if (state.users.subscriptionList!.isNotEmpty)
+        if (subscriptionList?.isNotEmpty == true)
           _SubscriptionList(
-            state: state,
+            subscriptionList: subscriptionList,
           )
         else
           const Expanded(
@@ -81,20 +92,20 @@ final class _HomeBuilder extends StatelessWidget {
 
 final class _SubscriptionList extends StatelessWidget {
   const _SubscriptionList({
-    required this.state,
+    required this.subscriptionList,
   });
 
-  final AppLoadedState state;
+  final List<Subscriptions>? subscriptionList;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemCount: state.users.subscriptionList?.length,
+        itemCount: subscriptionList?.length,
         itemBuilder: (context, index) {
           return HomeSubscriptionCard(
-            state: state,
             index: index,
+            subscriptions: subscriptionList?[index],
           );
         },
       ),

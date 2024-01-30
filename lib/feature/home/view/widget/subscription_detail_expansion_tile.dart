@@ -3,11 +3,11 @@ part of '../home_view.dart';
 final class _SubscriptionDetailsExpansionTile extends StatelessWidget {
   const _SubscriptionDetailsExpansionTile({
     required this.totalPrices,
-    required this.state,
+    required this.subscriptionList,
   });
 
   final num? totalPrices;
-  final AppLoadedState state;
+  final List<Subscriptions>? subscriptionList;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ final class _SubscriptionDetailsExpansionTile extends StatelessWidget {
             Icons.subscriptions,
           ),
           title: LocaleKeys.home_totalSubscriptions,
-          trailing: '${state.users.subscriptionList?.length}',
+          trailing: '${subscriptionList!.length}',
         ),
         _SubscriptionDetailsListTile(
           iconColor: ColorName.colorRed,
@@ -41,9 +41,8 @@ final class _SubscriptionDetailsExpansionTile extends StatelessWidget {
             Icons.subscriptions,
           ),
           title: LocaleKeys.home_totalSubscriptions,
-          trailing: '${state.users.subscriptionList?.where(
-                (element) => element.isSubscribed == true,
-              ).length}',
+          trailing:
+              '${subscriptionList?.where((element) => element.isSubscribed == true).length}',
         ),
       ],
     );

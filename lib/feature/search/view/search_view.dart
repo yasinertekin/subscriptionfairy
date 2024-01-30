@@ -1,10 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:subscriptionfairy/feature/search/view_model/search_view_model.dart';
-import 'package:subscriptionfairy/product/core/app_cubit.dart';
-import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
+import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
 import 'package:subscriptionfairy/product/widget/card/subscriptions_list_card.dart';
 import 'package:subscriptionfairy/product/widget/lottie/lottie_search.dart';
@@ -19,8 +17,6 @@ final class SearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<AppCubit>().state as AppLoadedState;
-
     final controller = TextEditingController();
     final searchProvider = SearchViewModel();
     return ListenableBuilder(
@@ -30,7 +26,7 @@ final class SearchView extends StatelessWidget {
         body: _SearchViewBody(
           controller: controller,
           searchProvider: searchProvider,
-          state: state,
+          subscriptions: searchProvider.subscriptions,
         ),
       ),
     );
@@ -41,12 +37,12 @@ final class _SearchViewBody extends StatelessWidget {
   const _SearchViewBody({
     required this.controller,
     required this.searchProvider,
-    required this.state,
+    required this.subscriptions,
   });
 
   final TextEditingController controller;
   final SearchViewModel searchProvider;
-  final AppLoadedState state;
+  final List<SubscriptionsList> subscriptions;
 
   @override
   Widget build(BuildContext context) {
@@ -55,15 +51,15 @@ final class _SearchViewBody extends StatelessWidget {
       child: Column(
         children: [
           _SearchTextField(
+            subscriptions: subscriptions,
             controller: controller,
             searchProvider: searchProvider,
-            state: state,
           ),
           if (searchProvider.subscriptions.isNotEmpty ||
               controller.text.isNotEmpty)
             _SearchList(
               searchProvider: searchProvider,
-              state: state,
+              subscriptionList: subscriptions,
             )
           else
             const LottieSearch(),
@@ -76,11 +72,11 @@ final class _SearchViewBody extends StatelessWidget {
 final class _SearchList extends StatelessWidget {
   const _SearchList({
     required this.searchProvider,
-    required this.state,
+    required this.subscriptionList,
   });
 
   final SearchViewModel searchProvider;
-  final AppLoadedState state;
+  final List<SubscriptionsList> subscriptionList;
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +88,6 @@ final class _SearchList extends StatelessWidget {
           return SubscriptionsListCard(
             subscription: subscription,
             index: index,
-            state: state,
           );
         },
       ),

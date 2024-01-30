@@ -5,7 +5,6 @@ import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/feature/home/view_model/home_view_model.dart';
 import 'package:subscriptionfairy/feature/home/view_model/mixin/home_subscription_card_mixin.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
-import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
 import 'package:subscriptionfairy/product/mixin/succesfull_lottie.dart';
 import 'package:subscriptionfairy/product/model/subscriptions/subscriptions.dart';
@@ -13,16 +12,16 @@ import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
 import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
 
 /// This is the view for the home feature.
-final class HomeSubscriptionCard extends StatefulWidget with SuccesFullLottie {
+final class HomeSubscriptionCard extends StatefulWidget {
   /// This is the constructor for the home view.
   const HomeSubscriptionCard({
     required this.index,
-    required this.state,
+    required this.subscriptions,
     super.key,
   });
 
-  /// This is the state for the home view.
-  final AppLoadedState state;
+  /// This is the subscriptions list.
+  final Subscriptions? subscriptions;
 
   /// This is the index for the home view.
   final int index;
@@ -35,14 +34,6 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
     with HomeSubscriptionCardMixin, SuccesFullLottie {
   @override
   Widget build(BuildContext context) {
-    final startDate = getSubscriptionStartDate();
-    final endDate = getSubscriptionEndDate();
-
-    final formattedDate = getFormattedDate(startDate);
-    final formattedEndDate = getFormattedDate(endDate);
-
-    final subscriptionList = getSubscriptionList();
-
     const elevation = 10.0;
 
     return Padding(
@@ -59,29 +50,31 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
           leading: ClipRRect(
             borderRadius: context.border.normalBorderRadius,
             child: CustomCachedNetworkImage(
-              imageUrl: subscriptionList?.subscriptionIcon ?? '',
+              imageUrl: widget.subscriptions?.subscriptionIcon ?? '',
               height: context.sized.dynamicHeight(0.1),
               width: context.sized.dynamicWidth(0.2),
             ),
           ),
           title: Text(
-            subscriptionList?.name ?? '',
+            widget.subscriptions?.name ?? '',
           ),
           subtitle: Text(
-            '${subscriptionList?.price ?? ''} \$',
+            '${widget.subscriptions?.price ?? ''} \$',
           ),
           trailing: homeViewModel.isProcessing
               ? const CircularProgressIndicator()
               : _CustomSwitch(
-                  subscriptionList: subscriptionList,
+                  subscriptionList: widget.subscriptions,
                 ),
           children: [
             _subscriptionDateListTile(
-              formattedDate,
-              formattedEndDate,
+              widget.subscriptions?.startDate?.toString() ?? '',
+              widget.subscriptions?.endDate?.toString() ?? '',
               context,
             ),
-            _SubscriptionPlanType(subscriptionList: subscriptionList),
+            _SubscriptionPlanType(
+              subscriptionList: widget.subscriptions,
+            ),
           ],
         ),
       ),

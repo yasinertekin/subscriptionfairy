@@ -5,7 +5,7 @@ final class HomeDateRangePicker extends StatelessWidget {
   /// This is the constructor for the home date range picker.
   const HomeDateRangePicker({
     required this.controller,
-    required this.state,
+    required this.subscription,
     required this.index,
     super.key,
   });
@@ -14,7 +14,7 @@ final class HomeDateRangePicker extends StatelessWidget {
   final DateRangePickerController controller;
 
   /// This is the state for the home date range picker.
-  final AppLoadedState state;
+  final Subscriptions? subscription;
 
   /// This is the index for the home date range picker.
   final int index;
@@ -22,7 +22,7 @@ final class HomeDateRangePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final homeViewModel = HomeViewModel();
-    final subscription = state.users.subscriptionList?[index];
+
     return ListenableBuilder(
       listenable: homeViewModel,
       builder: (context, child) => Column(
@@ -63,7 +63,19 @@ final class HomeDateRangePicker extends StatelessWidget {
         ),
         navigationDirection: DateRangePickerNavigationDirection.vertical,
         onSelectionChanged: (DateRangePickerSelectionChangedArgs args) async {
-          _onSelectionChanged(args);
+          final argsDate = args.value.startDate as DateTime;
+          final newSubscription = subscription?.copyWith(
+            startDate: argsDate,
+            endDate: argsDate.add(
+              Duration(
+                days: subscription.subscriptionLength?.toInt() ?? 0,
+              ),
+            ),
+          );
+          controller.selectedRange = PickerDateRange(
+            newSubscription?.startDate,
+            newSubscription?.endDate,
+          );
         },
         onCancel: () {
           NavigationService.instance.navigateToBack();
@@ -83,21 +95,6 @@ final class HomeDateRangePicker extends StatelessWidget {
 
   void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
     // ignore: avoid_dynamic_calls
-    final argsDate = args.value.startDate as DateTime;
-    final newSubscription = state.users.subscriptionList![index].copyWith(
-      startDate: argsDate,
-      endDate: argsDate.add(
-        Duration(
-          days: state.users.subscriptionList![index].subscriptionLength
-                  ?.toInt() ??
-              0,
-        ),
-      ),
-    );
-    controller.selectedRange = PickerDateRange(
-      newSubscription.startDate,
-      newSubscription.endDate,
-    );
   }
 
   Future<void> _changeSubscriptionDate(
@@ -108,24 +105,22 @@ final class HomeDateRangePicker extends StatelessWidget {
     subscriptionNotifier.changeProcessing();
     final pickerDateRange = value! as PickerDateRange;
     final argsDate = pickerDateRange.startDate!;
-    final newSubscription = state.users.subscriptionList![index].copyWith(
+    final newSubscription = subscription?.copyWith(
       startDate: argsDate,
       endDate: argsDate.add(
         Duration(
-          days: state.users.subscriptionList![index].subscriptionLength
-                  ?.toInt() ??
-              0,
+          days: subscription?.subscriptionLength?.toInt() ?? 0,
         ),
       ),
     );
     controller.selectedRange = PickerDateRange(
-      newSubscription.startDate,
-      newSubscription.endDate,
+      newSubscription?.startDate,
+      newSubscription?.endDate,
     );
 
     await context.read<AppCubit>().updateSubscriptions(
-          state.users.subscriptionList![index],
-          newSubscription,
+          subscription!,
+          newSubscription!,
         );
     await NavigationService.instance.navigateToBack();
     subscriptionNotifier.changeProcessing();
