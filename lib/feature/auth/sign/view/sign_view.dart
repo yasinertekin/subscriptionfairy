@@ -13,8 +13,8 @@ import 'package:subscriptionfairy/product/mixin/custom_scaffold_messenger.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
 import 'package:subscriptionfairy/product/widget/button/custom_button.dart';
 import 'package:subscriptionfairy/product/widget/button/sign_in_with_google_button.dart';
-import 'package:subscriptionfairy/product/widget/custom_loading.dart';
-import 'package:subscriptionfairy/product/widget/custom_text_field.dart';
+import 'package:subscriptionfairy/product/widget/lottie/custom_loading.dart';
+import 'package:subscriptionfairy/product/widget/text_field/custom_text_field.dart';
 
 part 'widget/custom_form.dart';
 part 'widget/forgot_passowrd_button.dart';
