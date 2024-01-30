@@ -4,7 +4,7 @@ import 'package:subscriptionfairy/feature/dashboard/mixin/dashhboard_mixin.dart'
 import 'package:subscriptionfairy/feature/home/view/home_view.dart';
 import 'package:subscriptionfairy/feature/profile/view/profile_view.dart';
 import 'package:subscriptionfairy/feature/subscriptions/view/subscriptions_view.dart';
-import 'package:subscriptionfairy/product/utility/enum/tab_views.dart';
+import 'package:subscriptionfairy/product/utility/constants/enum/tab_views.dart';
 
 /// DashboardView
 final class DashboardView extends StatefulWidget {

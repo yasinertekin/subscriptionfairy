@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:subscriptionfairy/feature/profile/view_model/mixin/profile_view_mixin.dart';
 import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
-import 'package:subscriptionfairy/product/utility/enum/profile.dart';
+import 'package:subscriptionfairy/product/utility/constants/enum/profile.dart';
 
 part 'widget/profile_app_bar.dart';
 part 'widget/profile_list_tile.dart';

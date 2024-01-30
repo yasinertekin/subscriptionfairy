@@ -11,7 +11,7 @@ import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/mixin/succesfull_lottie.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
-import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
+import 'package:subscriptionfairy/product/widget/other/custom_cached_network_image.dart';
 
 part 'widget/subscription_detail_app_bar.dart';
 part 'widget/subscriptions_card_switch.dart';

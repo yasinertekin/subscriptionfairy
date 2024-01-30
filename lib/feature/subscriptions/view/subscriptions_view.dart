@@ -10,7 +10,7 @@ import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
 import 'package:subscriptionfairy/product/widget/card/subscriptions_list_card.dart';
-import 'package:subscriptionfairy/product/widget/custom_loading.dart';
+import 'package:subscriptionfairy/product/widget/lottie/custom_loading.dart';
 
 part 'widget/search_subscriptions.dart';
 part 'widget/subscription_view_app_bar.dart';

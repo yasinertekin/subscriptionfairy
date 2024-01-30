@@ -9,7 +9,7 @@ import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart
 import 'package:subscriptionfairy/product/mixin/succesfull_lottie.dart';
 import 'package:subscriptionfairy/product/model/subscriptions/subscriptions.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
-import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
+import 'package:subscriptionfairy/product/widget/other/custom_cached_network_image.dart';
 
 /// This is the view for the home feature.
 final class HomeSubscriptionCard extends StatefulWidget {
