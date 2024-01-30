@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen/src/index.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:subscriptionfairy/product/initialize/theme/color_schemes.g.dart';
 import 'package:subscriptionfairy/product/initialize/theme/custom_theme.dart';
 
@@ -14,6 +15,7 @@ final class CustomLightTheme implements CustomTheme {
         tabBarTheme: tabBarTheme,
         floatingActionButtonTheme: floatingActionButtonTheme,
         bottomAppBarTheme: bottomAppBarTheme,
+        textTheme: GoogleFonts.suezOneTextTheme(),
       );
 
   @override

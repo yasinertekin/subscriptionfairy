@@ -26,9 +26,7 @@ final class _CustomForm extends StatelessWidget {
             hintText: LocaleKeys.auth_email.tr(),
             keyboardType: TextInputType.emailAddress,
           ),
-          SizedBox(
-            height: context.sized.dynamicHeight(0.03),
-          ),
+          const CustomSizedBox(),
           CustomTextField(
             formKey: formKey,
             textInputAction: TextInputAction.done,
