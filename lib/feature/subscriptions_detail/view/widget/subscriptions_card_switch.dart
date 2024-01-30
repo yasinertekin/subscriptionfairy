@@ -3,22 +3,22 @@ part of '../subscriptions_detail_view.dart';
 final class _SubscriptionsCardSwitch extends StatelessWidget
     with SuccesFullLottie {
   const _SubscriptionsCardSwitch({
+    required this.state,
     required this.receivedSubscriptions,
     required this.index,
     required this.subscriptionsDetailViewModel,
     required this.appCubit,
-    required this.subscriptionList,
   });
 
+  final AppLoadedState state;
   final SubscriptionsList receivedSubscriptions;
   final int index;
   final SubscriptionsDetailViewModel subscriptionsDetailViewModel;
   final AppCubit appCubit;
-  final List<Subscriptions>? subscriptionList;
 
   @override
   Widget build(BuildContext context) {
-    final value = subscriptionList!
+    final value = state.users.subscriptionList!
         .where(
           (element) =>
               element.subId == receivedSubscriptions.name![index].subId &&
@@ -51,7 +51,7 @@ final class _SubscriptionsCardSwitch extends StatelessWidget
           succesFullLottie(context);
         } else {
           await context.read<AppCubit>().updateSubscriptions(
-                subscriptionList!.firstWhere(
+                state.users.subscriptionList!.firstWhere(
                   (element) =>
                       element.subId == receivedSubscriptions.name![index].subId,
                 ),

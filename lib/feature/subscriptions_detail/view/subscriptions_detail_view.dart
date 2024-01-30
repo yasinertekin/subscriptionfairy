@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
 import 'package:subscriptionfairy/feature/subscriptions_detail/view_model/subscriptions_detail_view_model.dart';
 import 'package:subscriptionfairy/product/core/app_cubit.dart';
+import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/mixin/succesfull_lottie.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
-import 'package:subscriptionfairy/product/model/subscriptions/subscriptions.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
 import 'package:subscriptionfairy/product/widget/custom_cached_network_image.dart';
 
@@ -32,6 +32,7 @@ final class SubscriptionDetailView extends StatelessWidget
     // arguments'ten geçilen verileri al
     final receivedSubscriptions =
         ModalRoute.of(context)!.settings.arguments! as SubscriptionsList;
+    final state = context.watch<AppCubit>().state as AppLoadedState;
     const crossAxisCount = 2;
     return Scaffold(
       appBar: const _SubscriptionDetailAppBar(),
@@ -46,6 +47,7 @@ final class SubscriptionDetailView extends StatelessWidget
           return _SubscriptionsDetailCard(
             receivedSubscriptions: receivedSubscriptions,
             index: index,
+            state: state,
           );
         },
       ),

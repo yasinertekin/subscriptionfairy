@@ -6,6 +6,7 @@ final class _SubscriptionsDetailCard extends StatelessWidget {
   const _SubscriptionsDetailCard({
     required this.receivedSubscriptions,
     required this.index,
+    required this.state,
   });
 
   /// subscriptions
@@ -15,6 +16,7 @@ final class _SubscriptionsDetailCard extends StatelessWidget {
   final int index;
 
   /// state
+  final AppLoadedState state;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,7 @@ final class _SubscriptionsDetailCard extends StatelessWidget {
                   ),
                 ),
                 _SubscriptionsCardSwitch(
-                  subscriptionList: receivedSubscriptions.name,
+                  state: state,
                   receivedSubscriptions: receivedSubscriptions,
                   index: index,
                   subscriptionsDetailViewModel:
