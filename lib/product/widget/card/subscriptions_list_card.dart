@@ -53,7 +53,6 @@ final class SubscriptionsListCard extends StatelessWidget {
             ),
             title: Text(
               subscription.subscriptionName ?? '',
-              style: context.general.textTheme.titleLarge?.copyWith(),
             ),
           ),
         ),

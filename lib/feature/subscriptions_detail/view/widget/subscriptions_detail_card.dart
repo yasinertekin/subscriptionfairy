@@ -35,7 +35,8 @@ final class _SubscriptionsDetailCard extends StatelessWidget {
             ClipRRect(
               borderRadius: context.border.normalBorderRadius,
               child: CustomCachedNetworkImage(
-                height: context.sized.dynamicHeight(0.12),
+                height: context.sized.dynamicHeight(0.1),
+                fit: BoxFit.fill,
                 width: context.sized.dynamicWidth(0.23),
                 imageUrl: receivedSubscriptions.subscriptionIcon.toString(),
               ),

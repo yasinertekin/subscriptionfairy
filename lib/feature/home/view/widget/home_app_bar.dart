@@ -8,11 +8,8 @@ final class _HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       centerTitle: false,
-      title: Text(
+      title: const Text(
         LocaleKeys.home_title,
-        style: context.general.textTheme.titleLarge?.copyWith(
-          fontWeight: FontWeight.bold,
-        ),
       ).tr(),
     );
   }

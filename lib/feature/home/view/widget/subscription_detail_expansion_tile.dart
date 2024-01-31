@@ -12,11 +12,8 @@ final class _SubscriptionDetailsExpansionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      title: Text(
+      title: const Text(
         LocaleKeys.home_content,
-        style: context.general.textTheme.bodySmall?.copyWith(
-          fontWeight: FontWeight.bold,
-        ),
       ).tr(),
       children: [
         _SubscriptionDetailsListTile(

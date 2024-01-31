@@ -67,7 +67,8 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
             child: CustomCachedNetworkImage(
               imageUrl: widget.subscriptions?.subscriptionIcon ?? '',
               height: context.sized.dynamicHeight(0.1),
-              width: context.sized.dynamicWidth(0.2),
+              width: context.sized.dynamicWidth(0.14),
+              fit: BoxFit.fill,
             ),
           ),
           title: Text(

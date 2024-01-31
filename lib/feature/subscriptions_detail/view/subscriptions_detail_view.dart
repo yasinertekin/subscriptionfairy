@@ -36,6 +36,7 @@ final class SubscriptionDetailView extends StatelessWidget
     const crossAxisCount = 2;
     final scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
+      key: scaffoldKey,
       appBar: const _SubscriptionDetailAppBar(),
       body: GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
