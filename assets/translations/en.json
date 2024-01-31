@@ -53,7 +53,7 @@
     },
      "subscriptionDetails":{
         "title": "Subscription Details",
-        "price": "Fiyat: "
+        "price": "Price: "
 
     },
     "search": {
