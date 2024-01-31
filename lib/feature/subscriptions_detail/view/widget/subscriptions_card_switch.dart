@@ -8,6 +8,7 @@ final class _SubscriptionsCardSwitch extends StatelessWidget
     required this.index,
     required this.subscriptionsDetailViewModel,
     required this.appCubit,
+    required this.scaffoldKey,
   });
 
   final AppLoadedState state;
@@ -15,6 +16,7 @@ final class _SubscriptionsCardSwitch extends StatelessWidget
   final int index;
   final SubscriptionsDetailViewModel subscriptionsDetailViewModel;
   final AppCubit appCubit;
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,9 @@ final class _SubscriptionsCardSwitch extends StatelessWidget
               ),
             ),
           );
-          succesFullLottie(context);
+          succesFullLottie(
+            scaffoldKey,
+          );
         } else {
           await context.read<AppCubit>().updateSubscriptions(
                 state.users.subscriptionList!.firstWhere(

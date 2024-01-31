@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:gen/src/index.dart';
 import 'package:kartal/kartal.dart';
 
-/// This mixin is used to show a succesfull lottie animation.
+/// This mixin is used to show a successful Lottie animation.
 mixin SuccesFullLottie {
-  /// This function shows a succesfull lottie animation.
-  void succesFullLottie(BuildContext context) {
+  /// This function shows a successful Lottie animation.
+  void succesFullLottie(GlobalKey<ScaffoldState> scaffoldKey) {
     OverlayEntry? overlayEntry; // Declare overlayEntry as nullable
 
     overlayEntry = OverlayEntry(
@@ -34,7 +34,10 @@ mixin SuccesFullLottie {
       ),
     );
 
-    Overlay.of(context)
-        .insert(overlayEntry); // Use the non-null assertion operator
+    // Check if the scaffoldKey has a currentContext and if it's not null
+    if (scaffoldKey.currentContext != null) {
+      // Use the non-null assertion operator to avoid null warnings
+      Overlay.of(scaffoldKey.currentContext!).insert(overlayEntry);
+    }
   }
 }

@@ -34,6 +34,7 @@ final class SubscriptionDetailView extends StatelessWidget
         ModalRoute.of(context)!.settings.arguments! as SubscriptionsList;
     final state = context.watch<AppCubit>().state as AppLoadedState;
     const crossAxisCount = 2;
+    final scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
       appBar: const _SubscriptionDetailAppBar(),
       body: GridView.builder(
@@ -45,6 +46,7 @@ final class SubscriptionDetailView extends StatelessWidget
         itemCount: receivedSubscriptions.name?.length,
         itemBuilder: (context, index) {
           return _SubscriptionsDetailCard(
+            scaffoldKey: scaffoldKey,
             receivedSubscriptions: receivedSubscriptions,
             index: index,
             state: state,

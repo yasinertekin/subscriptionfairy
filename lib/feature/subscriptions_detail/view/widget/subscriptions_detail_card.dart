@@ -7,6 +7,7 @@ final class _SubscriptionsDetailCard extends StatelessWidget {
     required this.receivedSubscriptions,
     required this.index,
     required this.state,
+    required this.scaffoldKey,
   });
 
   /// subscriptions
@@ -17,6 +18,8 @@ final class _SubscriptionsDetailCard extends StatelessWidget {
 
   /// state
   final AppLoadedState state;
+
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +63,7 @@ final class _SubscriptionsDetailCard extends StatelessWidget {
                   ),
                 ),
                 _SubscriptionsCardSwitch(
+                  scaffoldKey: scaffoldKey,
                   state: state,
                   receivedSubscriptions: receivedSubscriptions,
                   index: index,

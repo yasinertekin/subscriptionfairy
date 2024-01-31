@@ -38,6 +38,7 @@ final class HomeView extends StatelessWidget {
           appBar: const _HomeAppBar(),
           body: _HomeBuilder(
             subscriptionList,
+            key,
           ),
         );
       },
@@ -48,8 +49,10 @@ final class HomeView extends StatelessWidget {
 final class _HomeBuilder extends StatelessWidget {
   const _HomeBuilder(
     this.subscriptionList,
+    this.scaffoldKey,
   );
   final List<Subscriptions>? subscriptionList;
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +71,7 @@ final class _HomeBuilder extends StatelessWidget {
         if (subscriptionList?.isNotEmpty == true)
           _SubscriptionList(
             subscriptionList: subscriptionList,
+            scaffoldKey: scaffoldKey,
           )
         else
           Expanded(
@@ -85,9 +89,11 @@ final class _HomeBuilder extends StatelessWidget {
 final class _SubscriptionList extends StatelessWidget {
   const _SubscriptionList({
     required this.subscriptionList,
+    required this.scaffoldKey,
   });
 
   final List<Subscriptions>? subscriptionList;
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   Widget build(BuildContext context) {
@@ -96,6 +102,7 @@ final class _SubscriptionList extends StatelessWidget {
         itemCount: subscriptionList?.length,
         itemBuilder: (context, index) {
           return HomeSubscriptionCard(
+            scaffoldKey: scaffoldKey,
             index: index,
             subscriptions: subscriptionList?[index],
           );

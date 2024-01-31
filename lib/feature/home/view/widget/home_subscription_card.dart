@@ -17,6 +17,7 @@ final class HomeSubscriptionCard extends StatefulWidget {
   const HomeSubscriptionCard({
     required this.index,
     required this.subscriptions,
+    required this.scaffoldKey,
     super.key,
   });
 
@@ -25,6 +26,8 @@ final class HomeSubscriptionCard extends StatefulWidget {
 
   /// This is the index for the home view.
   final int index;
+
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   State<HomeSubscriptionCard> createState() => _HomeSubscriptionCardState();
@@ -76,6 +79,7 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
           trailing: homeViewModel.isProcessing
               ? const CircularProgressIndicator()
               : _CustomSwitch(
+                  scaffoldKey: widget.scaffoldKey,
                   subscriptionList: widget.subscriptions,
                 ),
           children: [
@@ -132,6 +136,7 @@ final class _SubscriptionPlanType extends StatelessWidget
   Widget build(BuildContext context) {
     final cubit = context.read<AppCubit>();
     final homeViewModel = HomeViewModel();
+    final scaffoldKey = GlobalKey<ScaffoldState>();
     return ListTile(
       title: Text(
         subscriptionList?.subscriptionPlan ?? '',
@@ -148,7 +153,7 @@ final class _SubscriptionPlanType extends StatelessWidget
 
                   homeViewModel.changeProcessing();
                   succesFullLottie(
-                    context,
+                    scaffoldKey,
                   );
                 },
                 icon: const Icon(
@@ -163,9 +168,11 @@ final class _SubscriptionPlanType extends StatelessWidget
 final class _CustomSwitch extends StatelessWidget with SuccesFullLottie {
   const _CustomSwitch({
     required this.subscriptionList,
+    required this.scaffoldKey,
   });
 
   final Subscriptions? subscriptionList;
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +192,7 @@ final class _CustomSwitch extends StatelessWidget with SuccesFullLottie {
           );
           homeViewModel.changeProcessing();
           succesFullLottie(
-            context,
+            scaffoldKey,
           );
         },
         value: subscriptionList?.isSubscribed ?? false,
