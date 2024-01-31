@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: implementation_imports
 import 'package:gen/src/index.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:subscriptionfairy/product/initialize/theme/color_schemes.g.dart';
@@ -38,6 +39,7 @@ final class CustomLightTheme implements CustomTheme {
       );
 
   /// floatingActionButtonTheme
+  @override
   FloatingActionButtonThemeData get floatingActionButtonTheme =>
       const FloatingActionButtonThemeData(
         backgroundColor: ColorName.colorRed,

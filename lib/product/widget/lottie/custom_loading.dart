@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: implementation_imports
 import 'package:gen/src/index.dart';
 
 /// This is the view for the register feature.

@@ -41,6 +41,9 @@ final class CustomDarkTheme implements CustomTheme {
         surfaceTintColor: Colors.transparent,
         shape: CircularNotchedRectangle(),
       );
+
+  /// This is the floating action button theme.
+  @override
   FloatingActionButtonThemeData get floatingActionButtonTheme =>
       const FloatingActionButtonThemeData(
         elevation: 5,

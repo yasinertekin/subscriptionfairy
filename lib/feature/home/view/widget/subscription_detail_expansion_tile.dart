@@ -11,6 +11,11 @@ final class _SubscriptionDetailsExpansionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// This is the expansion tile for the subscription details.
+    final isSubscribedListLength = subscriptionList
+        // ignore: use_if_null_to_convert_nulls_to_bools
+        ?.where((element) => element.isSubscribed == true)
+        .length;
     return ExpansionTile(
       title: const Text(
         LocaleKeys.home_content,
@@ -38,8 +43,7 @@ final class _SubscriptionDetailsExpansionTile extends StatelessWidget {
             Icons.subscriptions,
           ),
           title: LocaleKeys.home_totalSubscriptions,
-          trailing:
-              '${subscriptionList?.where((element) => element.isSubscribed == true).length}',
+          trailing: '$isSubscribedListLength',
         ),
       ],
     );

@@ -87,7 +87,7 @@ final class _SubscriptionDetail extends StatelessWidget {
               children: [
                 Text(
                   receivedSubscriptions.name?[index].subscriptionPlan ?? '',
-                  style: context.general.textTheme.headline6?.copyWith(
+                  style: context.general.textTheme.bodyLarge?.copyWith(
                     color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
@@ -120,13 +120,13 @@ final class _PriceTextRich extends StatelessWidget {
         children: [
           TextSpan(
             text: LocaleKeys.subscriptionDetails_price.tr(),
-            style: context.general.textTheme.bodyText1?.copyWith(
+            style: context.general.textTheme.bodyMedium?.copyWith(
               color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
           TextSpan(
             text: '${receivedSubscriptions.name?[index].price} \$',
-            style: context.general.textTheme.bodyText1?.copyWith(
+            style: context.general.textTheme.bodyMedium?.copyWith(
               color: Theme.of(context).colorScheme.onSurface,
             ),
           ),

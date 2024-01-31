@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: implementation_imports
 import 'package:gen/src/index.dart';
 
 /// [LottieSearch] is a widget that displays a lottie search.

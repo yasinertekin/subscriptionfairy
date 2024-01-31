@@ -24,6 +24,7 @@ final class _SubscriptionsCardSwitch extends StatelessWidget
         .where(
           (element) =>
               element.subId == receivedSubscriptions.name![index].subId &&
+              // ignore: use_if_null_to_convert_nulls_to_bools
               element.isSubscribed == true,
         )
         .isNotEmpty;
