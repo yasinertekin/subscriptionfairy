@@ -35,7 +35,19 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
   @override
   Widget build(BuildContext context) {
     const elevation = 10.0;
+    // Tarihleri DateTime nesnesine çevir
+    var startDateTime = DateTime.parse(
+      widget.subscriptions?.startDate.toString() ?? '',
+    );
+    var endDateTime = DateTime.parse(
+      widget.subscriptions?.endDate.toString() ?? '',
+    );
 
+    // Saat, dakika, saniye ve milisaniyeyi sıfırla
+    startDateTime =
+        DateTime(startDateTime.year, startDateTime.month, startDateTime.day);
+    endDateTime =
+        DateTime(endDateTime.year, endDateTime.month, endDateTime.day);
     return Padding(
       padding: const ProjectPadding.allSmall(),
       child: Card(
@@ -68,8 +80,8 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
                 ),
           children: [
             _subscriptionDateListTile(
-              widget.subscriptions?.startDate?.toString() ?? '',
-              widget.subscriptions?.endDate?.toString() ?? '',
+              DateFormat.yMMMd().format(startDateTime),
+              DateFormat.yMMMd().format(endDateTime),
               context,
             ),
             _SubscriptionPlanType(
