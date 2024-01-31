@@ -14,6 +14,7 @@ final class CustomDarkTheme implements CustomTheme {
         bottomAppBarTheme: bottomAppBarTheme,
         floatingActionButtonTheme: floatingActionButtonTheme,
         textTheme: GoogleFonts.suezOneTextTheme(),
+        brightness: Brightness.dark,
       );
 
   @override

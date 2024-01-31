@@ -30,53 +30,76 @@ final class _SubscriptionsDetailCard extends StatelessWidget {
       child: Card(
         elevation: elevation,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: context.border.normalBorderRadius,
-              child: CustomCachedNetworkImage(
-                height: context.sized.dynamicHeight(0.1),
-                fit: BoxFit.fill,
-                width: context.sized.dynamicWidth(0.23),
-                imageUrl: receivedSubscriptions.subscriptionIcon.toString(),
+            const Spacer(),
+            Center(
+              child: ClipRRect(
+                borderRadius: context.border.normalBorderRadius,
+                child: CustomCachedNetworkImage(
+                  height: context.sized.dynamicHeight(0.1),
+                  fit: BoxFit.fill,
+                  width: context.sized.dynamicWidth(0.23),
+                  imageUrl: receivedSubscriptions.subscriptionIcon.toString(),
+                ),
               ),
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const ProjectPadding.onlyLeftSmall(),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          receivedSubscriptions.name?[index].subscriptionPlan
-                                  .toString() ??
-                              '',
-                          style: context.general.textTheme.titleMedium,
-                        ),
-                        _PriceTextRich(
-                          receivedSubscriptions: receivedSubscriptions,
-                          index: index,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                _SubscriptionsCardSwitch(
-                  scaffoldKey: scaffoldKey,
-                  state: state,
-                  receivedSubscriptions: receivedSubscriptions,
-                  index: index,
-                  subscriptionsDetailViewModel:
-                      context.read<SubscriptionsDetailViewModel>(),
-                  appCubit: appCubit,
-                ),
-              ],
+            const Spacer(),
+            _SubscriptionDetail(
+              receivedSubscriptions: receivedSubscriptions,
+              index: index,
             ),
+            _SubscriptionsCardSwitch(
+              scaffoldKey: scaffoldKey,
+              state: state,
+              receivedSubscriptions: receivedSubscriptions,
+              index: index,
+              subscriptionsDetailViewModel:
+                  context.read<SubscriptionsDetailViewModel>(),
+              appCubit: appCubit,
+            ),
+            const Spacer(),
           ],
         ),
       ),
+    );
+  }
+}
+
+final class _SubscriptionDetail extends StatelessWidget {
+  const _SubscriptionDetail({
+    required this.receivedSubscriptions,
+    required this.index,
+  });
+
+  final SubscriptionsList receivedSubscriptions;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Padding(
+            padding: const ProjectPadding.onlyLeftSmall(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  receivedSubscriptions.name?[index].subscriptionPlan ?? '',
+                  style: context.general.textTheme.headline6?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
+                _PriceTextRich(
+                  receivedSubscriptions: receivedSubscriptions,
+                  index: index,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -97,10 +120,15 @@ final class _PriceTextRich extends StatelessWidget {
         children: [
           TextSpan(
             text: LocaleKeys.subscriptionDetails_price.tr(),
-            style: context.general.textTheme.titleMedium,
+            style: context.general.textTheme.bodyText1?.copyWith(
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
           ),
           TextSpan(
             text: '${receivedSubscriptions.name?[index].price} \$',
+            style: context.general.textTheme.bodyText1?.copyWith(
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
           ),
         ],
       ),

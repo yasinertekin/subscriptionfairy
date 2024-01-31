@@ -38,7 +38,7 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
   @override
   Widget build(BuildContext context) {
     const elevation = 10.0;
-    // Tarihleri DateTime nesnesine çevir
+
     var startDateTime = DateTime.parse(
       widget.subscriptions?.startDate.toString() ?? '',
     );

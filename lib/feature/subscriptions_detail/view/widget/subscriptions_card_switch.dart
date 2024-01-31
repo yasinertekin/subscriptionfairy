@@ -27,44 +27,50 @@ final class _SubscriptionsCardSwitch extends StatelessWidget
               element.isSubscribed == true,
         )
         .isNotEmpty;
-    return Switch(
-      value: value,
-      onChanged: (value) async {
-        subscriptionsDetailViewModel.onEndDateSelected(
-          receivedSubscriptions.name![index].subscriptionLength!,
-        );
-        if (value) {
-          await NavigationService.instance.navigateToPage(
-            path: Routes.datePicker,
-            data: subscriptionsDetailViewModel,
+    return Align(
+      alignment: Alignment.centerRight,
+      child: Switch(
+        value: value,
+        onChanged: (value) async {
+          subscriptionsDetailViewModel.onEndDateSelected(
+            receivedSubscriptions.name![index].subscriptionLength!,
           );
-          await appCubit.updateSubscriptionList(
-            receivedSubscriptions.name![index].copyWith(
-              isSubscribed: true,
-              startDate: subscriptionsDetailViewModel.selectedDate,
-              endDate: subscriptionsDetailViewModel.selectedDate.add(
-                Duration(
-                  days: receivedSubscriptions.name![index].subscriptionLength!
-                      .toInt(),
+          if (value) {
+            await NavigationService.instance.navigateToPage(
+              path: Routes.datePicker,
+              data: subscriptionsDetailViewModel,
+            );
+            await appCubit.updateSubscriptionList(
+              receivedSubscriptions.name![index].copyWith(
+                isSubscribed: true,
+                startDate: subscriptionsDetailViewModel.selectedDate,
+                endDate: subscriptionsDetailViewModel.selectedDate.add(
+                  Duration(
+                    days: receivedSubscriptions.name![index].subscriptionLength!
+                        .toInt(),
+                  ),
                 ),
               ),
-            ),
-          );
-          succesFullLottie(
-            scaffoldKey,
-          );
-        } else {
-          await context.read<AppCubit>().updateSubscriptions(
-                state.users.subscriptionList!.firstWhere(
-                  (element) =>
-                      element.subId == receivedSubscriptions.name![index].subId,
-                ),
-                receivedSubscriptions.name![index].copyWith(
-                  isSubscribed: false,
-                ),
-              );
-        }
-      },
+            );
+            succesFullLottie(
+              scaffoldKey,
+            );
+          } else {
+            await context.read<AppCubit>().updateSubscriptions(
+                  state.users.subscriptionList!.firstWhere(
+                    (element) =>
+                        element.subId ==
+                        receivedSubscriptions.name![index].subId,
+                  ),
+                  receivedSubscriptions.name![index].copyWith(
+                    isSubscribed: false,
+                    startDate: DateTime.now(),
+                    endDate: DateTime.now(),
+                  ),
+                );
+          }
+        },
+      ),
     );
   }
 }
