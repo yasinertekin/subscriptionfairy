@@ -27,6 +27,7 @@ final class HomeSubscriptionCard extends StatefulWidget {
   /// This is the index for the home view.
   final int index;
 
+  /// This is the scaffold key for the home view.
   final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
