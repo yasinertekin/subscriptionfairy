@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
-import 'package:subscriptionfairy/product/core/app_cubit.dart';
 import 'package:subscriptionfairy/product/core/app_state.dart';
 import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart';
 import 'package:subscriptionfairy/product/initialize/navigation/navigation_service.dart';
@@ -10,7 +8,7 @@ import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
 import 'package:subscriptionfairy/product/widget/card/subscriptions_list_card.dart';
-import 'package:subscriptionfairy/product/widget/lottie/custom_loading.dart';
+import 'package:subscriptionfairy/product/widget/other/common_bloc_builder.dart';
 
 part 'widget/search_subscriptions.dart';
 part 'widget/subscription_view_app_bar.dart';
@@ -25,26 +23,17 @@ final class SubscriptionsView extends StatelessWidget {
   /// AppLoadedState
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppCubit, AppState>(
+    final key = GlobalKey<ScaffoldState>();
+    return CommonBlocBuilder(
+      key: key,
       builder: (context, state) {
-        if (state is AppLoadingState) {
-          return const CustomLoading();
-        } else if (state is AppLoadedState) {
-          return Scaffold(
-            appBar: const _SubscriptionViewAppBar(),
-            body: _SubscriptionViewBuilder(
-              state.subscriptions,
-            ),
-          );
-        } else if (state is AppErrorState) {
-          return Center(
-            child: Text(state.error),
-          );
-        } else {
-          return Center(
-            child: const Text(LocaleKeys.dashboard_unknownState).tr(),
-          );
-        }
+        final subscriptionsList = (state as AppLoadedState).subscriptions;
+        return Scaffold(
+          appBar: const _SubscriptionViewAppBar(),
+          body: _SubscriptionViewBuilder(
+            subscriptionsList,
+          ),
+        );
       },
     );
   }
