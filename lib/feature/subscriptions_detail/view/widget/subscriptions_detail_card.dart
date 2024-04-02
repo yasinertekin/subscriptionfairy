@@ -17,7 +17,7 @@ final class _SubscriptionsDetailCard extends StatelessWidget {
   final int index;
 
   /// state
-  final AppLoadedState state;
+  final Users state;
 
   final GlobalKey<ScaffoldState> scaffoldKey;
 
@@ -33,7 +33,7 @@ final class _SubscriptionsDetailCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Spacer(),
-            Center(
+            /* Center(
               child: ClipRRect(
                 borderRadius: context.border.normalBorderRadius,
                 child: CustomCachedNetworkImage(
@@ -43,7 +43,7 @@ final class _SubscriptionsDetailCard extends StatelessWidget {
                   imageUrl: receivedSubscriptions.subscriptionIcon.toString(),
                 ),
               ),
-            ),
+            ),*/
             const Spacer(),
             _SubscriptionDetail(
               receivedSubscriptions: receivedSubscriptions,

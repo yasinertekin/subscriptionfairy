@@ -9,7 +9,6 @@ import 'package:subscriptionfairy/product/initialize/language/locale_keys.g.dart
 import 'package:subscriptionfairy/product/mixin/succesfull_lottie.dart';
 import 'package:subscriptionfairy/product/model/subscriptions/subscriptions.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
-import 'package:subscriptionfairy/product/widget/other/custom_cached_network_image.dart';
 
 /// This is the view for the home feature.
 final class HomeSubscriptionCard extends StatefulWidget {
@@ -63,7 +62,7 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
           shape: RoundedRectangleBorder(
             borderRadius: context.border.normalBorderRadius,
           ),
-          leading: ClipRRect(
+          /*    leading: ClipRRect(
             borderRadius: context.border.normalBorderRadius,
             child: CustomCachedNetworkImage(
               imageUrl: widget.subscriptions?.subscriptionIcon ?? '',
@@ -71,7 +70,7 @@ final class _HomeSubscriptionCardState extends State<HomeSubscriptionCard>
               width: context.sized.dynamicWidth(0.14),
               fit: BoxFit.fill,
             ),
-          ),
+          ),*/
           title: Text(
             widget.subscriptions?.name ?? '',
           ),

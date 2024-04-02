@@ -10,8 +10,8 @@ import 'package:subscriptionfairy/product/initialize/navigation/navigation_servi
 import 'package:subscriptionfairy/product/initialize/navigation/routes.dart';
 import 'package:subscriptionfairy/product/mixin/succesfull_lottie.dart';
 import 'package:subscriptionfairy/product/model/subscription_list/subscriptions_list.dart';
+import 'package:subscriptionfairy/product/model/users/users.dart';
 import 'package:subscriptionfairy/product/utility/padding/project_padding.dart';
-import 'package:subscriptionfairy/product/widget/other/custom_cached_network_image.dart';
 
 part 'widget/subscription_detail_app_bar.dart';
 part 'widget/subscriptions_card_switch.dart';
@@ -50,7 +50,7 @@ final class SubscriptionDetailView extends StatelessWidget
             scaffoldKey: scaffoldKey,
             receivedSubscriptions: receivedSubscriptions,
             index: index,
-            state: state,
+            state: state.users,
           );
         },
       ),
